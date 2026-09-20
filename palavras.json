@@ -1,0 +1,2637 @@
+[
+  {
+    "palavra": "EULÍRICO",
+    "significado": "Que expressa sentimentos pessoais e íntimos, como se fosse uma poesia sobre si mesmo.",
+    "exemplo": "\"Meu verso é eulírico, falo da minha dor, transformo cicatriz em poesia de amor.\""
+  },
+  {
+    "palavra": "EFÊMERO",
+    "significado": "Algo que dura muito pouco tempo, passageiro, que acaba rápido.",
+    "exemplo": "\"Sua fama é efêmera, dura um story, meu legado é eterno, tá na minha trajetória.\""
+  },
+  {
+    "palavra": "OSTRACISMO",
+    "significado": "Exclusão social, quando alguém é deixado de lado ou ignorado por um grupo.",
+    "exemplo": "\"Cê me jogou no ostracismo, mas eu voltei pro topo, quem é de verdade nunca some no sufoco.\""
+  },
+  {
+    "palavra": "PARADOXO",
+    "significado": "Ideia que parece contraditória mas pode ter um sentido verdadeiro.",
+    "exemplo": "\"É um paradoxo, cê fala que é rua mas nunca pisou no asfalto quente.\""
+  },
+  {
+    "palavra": "RESILIÊNCIA",
+    "significado": "Capacidade de se recuperar rápido de uma queda ou dificuldade.",
+    "exemplo": "\"Minha resiliência é prova, caio e levanto, quem desacreditou agora tá me aplaudindo de canto.\""
+  },
+  {
+    "palavra": "RETÓRICA",
+    "significado": "Arte de falar bem para convencer alguém com as palavras.",
+    "exemplo": "\"Sua retórica é fraca, não convence ninguém, meu argumento é bala, perfura e vai além.\""
+  },
+  {
+    "palavra": "SAGAZ",
+    "significado": "Pessoa esperta, que entende as coisas rápido e age com inteligência.",
+    "exemplo": "\"Sou sagaz no improviso, leio sua mente, cada punch que eu solto te deixa ausente.\""
+  },
+  {
+    "palavra": "VOLÚPIA",
+    "significado": "Prazer intenso, desejo forte por algo.",
+    "exemplo": "\"Tenho volúpia pela vitória, fome de vencer, enquanto cê rima por ego, eu rimo pra viver.\""
+  },
+  {
+    "palavra": "PERSPICÁCIA",
+    "significado": "Capacidade de perceber detalhes que quase ninguém vê.",
+    "exemplo": "\"Com perspicácia eu vejo seu ponto fraco, sua rima é decorada, a minha é fato.\""
+  },
+  {
+    "palavra": "LACÔNICO",
+    "significado": "Que fala pouco, mas fala o essencial, direto ao ponto.",
+    "exemplo": "\"Sou lacônico e letal, poucas palavras, cada verso meu é punch na cara.\""
+  },
+  {
+    "palavra": "MELANCOLIA",
+    "significado": "Tristeza profunda e silenciosa, sem motivo aparente.",
+    "exemplo": "\"Transformo melancolia em melodia, a dor que cê esconde eu exponho em poesia.\""
+  },
+  {
+    "palavra": "ALTRUÍSMO",
+    "significado": "Comportamento de quem age pensando no bem de outras pessoas, muitas vezes sem esperar algo em troca.",
+    "exemplo": "\"Seu altruísmo fez com que ajudasse todos, mesmo quando ninguém havia pedido.\""
+  },
+  {
+    "palavra": "UBÍQUO",
+    "significado": "Que está presente em muitos lugares ao mesmo tempo ou parece estar em toda parte.",
+    "exemplo": "\"Com a internet, a informação tornou-se praticamente ubíqua.\""
+  },
+  {
+    "palavra": "IDÔNEO",
+    "significado": "Que é considerado adequado, confiável e competente para determinada função.",
+    "exemplo": "\"Precisamos encontrar alguém idôneo para cuidar desse projeto.\""
+  },
+  {
+    "palavra": "PRÓDIGO",
+    "significado": "Que gasta ou utiliza algo em excesso, especialmente dinheiro ou recursos.",
+    "exemplo": "\"Ele era pródigo com o próprio dinheiro e nunca pensava no dia seguinte.\""
+  },
+  {
+    "palavra": "DISSERTAR",
+    "significado": "Expor ideias sobre determinado assunto de maneira organizada e detalhada.",
+    "exemplo": "\"Ela conseguiu dissertar sobre o tema com clareza e segurança.\""
+  },
+  {
+    "palavra": "CONCISO",
+    "significado": "Que expressa uma ideia usando poucas palavras, sem informações desnecessárias.",
+    "exemplo": "\"Seu relatório foi conciso e explicou exatamente o que precisava ser dito.\""
+  },
+  {
+    "palavra": "PONDERAR",
+    "significado": "Analisar algo cuidadosamente antes de tomar uma decisão ou formar uma opinião.",
+    "exemplo": "\"Antes de responder, prefiro ponderar sobre todas as consequências.\""
+  },
+  {
+    "palavra": "PRUDÊNCIA",
+    "significado": "Qualidade de agir com cautela, bom senso e atenção às possíveis consequências.",
+    "exemplo": "\"Foi a prudência que o fez esperar antes de tomar uma decisão precipitada.\""
+  },
+  {
+    "palavra": "PREMENTE",
+    "significado": "Que exige atenção ou solução imediata por ser urgente ou muito importante.",
+    "exemplo": "\"Encontrar uma solução para o problema tornou-se uma necessidade premente.\""
+  },
+  {
+    "palavra": "INERENTE",
+    "significado": "Que faz parte da natureza ou das características próprias de algo ou alguém.",
+    "exemplo": "\"A dúvida é inerente ao processo de aprendizado.\""
+  },
+  {
+    "palavra": "SUBSIDIAR",
+    "significado": "Fornecer informações, recursos ou apoio que ajudam na realização de algo.",
+    "exemplo": "\"Os dados da pesquisa vão subsidiar a decisão da equipe.\""
+  },
+  {
+    "palavra": "CONTUNDENTE",
+    "significado": "Que é forte, convincente e difícil de contestar.",
+    "exemplo": "\"O advogado apresentou argumentos contundentes durante o debate.\""
+  },
+  {
+    "palavra": "DILEMA",
+    "significado": "Situação em que é necessário escolher entre duas possibilidades difíceis ou conflitantes.",
+    "exemplo": "\"Ele enfrentava o dilema entre seguir seus sonhos ou permanecer onde estava.\""
+  },
+  {
+    "palavra": "TÊNUE",
+    "significado": "Que é muito fraco, delicado ou difícil de perceber.",
+    "exemplo": "\"Havia uma tênue esperança de que tudo pudesse ser resolvido.\""
+  },
+  {
+    "palavra": "VORAZ",
+    "significado": "Que demonstra grande intensidade ou desejo, especialmente ao consumir algo.",
+    "exemplo": "\"O leitor voraz terminou o livro em apenas dois dias.\""
+  },
+  {
+    "palavra": "VIGOROSO",
+    "significado": "Que possui força, energia ou intensidade.",
+    "exemplo": "\"O debate provocou uma reação vigorosa entre os participantes.\""
+  },
+  {
+    "palavra": "ASTUTO",
+    "significado": "Que demonstra habilidade e inteligência para alcançar seus objetivos, especialmente em situações complicadas.",
+    "exemplo": "\"O comerciante foi astuto ao perceber rapidamente a oportunidade.\""
+  },
+  {
+    "palavra": "METICULOSO",
+    "significado": "Que realiza algo com muito cuidado, atenção e precisão nos detalhes.",
+    "exemplo": "\"Ele fez uma análise meticulosa de cada documento.\""
+  },
+  {
+    "palavra": "IMPERIOSO",
+    "significado": "Que se apresenta como necessário, urgente ou impossível de ignorar.",
+    "exemplo": "\"Era imperioso encontrar uma solução antes do prazo terminar.\""
+  },
+  {
+    "palavra": "INTRÍNSECO",
+    "significado": "Que pertence à natureza essencial de algo e não depende de fatores externos.",
+    "exemplo": "\"A curiosidade é um elemento intrínseco ao processo de descoberta.\""
+  },
+  {
+    "palavra": "EXÍMIO",
+    "significado": "Que possui grande habilidade ou excelência em determinada atividade.",
+    "exemplo": "\"Ela se tornou uma exímia pianista depois de anos de dedicação.\""
+  },
+  {
+    "palavra": "PROLÍFICO",
+    "significado": "Que produz muito ou com grande frequência, especialmente obras, ideias ou resultados.",
+    "exemplo": "\"O escritor foi prolífico e publicou diversos livros ao longo da carreira.\""
+  },
+  {
+    "palavra": "ARBITRÁRIO",
+    "significado": "Que depende apenas da vontade ou decisão de alguém, sem seguir critérios claros ou justificáveis.",
+    "exemplo": "\"A mudança foi considerada arbitrária por muitos funcionários.\""
+  },
+  {
+    "palavra": "ANÁLOGO",
+    "significado": "Que apresenta características semelhantes ou comparáveis às de outra coisa.",
+    "exemplo": "\"O comportamento dos dois grupos foi análogo em vários aspectos.\""
+  },
+  {
+    "palavra": "ANTAGÔNICO",
+    "significado": "Que se opõe fortemente a algo ou alguém.",
+    "exemplo": "\"Os dois personagens possuem interesses antagônicos.\""
+  },
+  {
+    "palavra": "AMBÍGUO",
+    "significado": "Que pode ser interpretado de mais de uma maneira, não apresentando um único sentido claro.",
+    "exemplo": "\"A resposta foi tão ambígua que ninguém sabia exatamente o que ele queria dizer.\""
+  },
+  {
+    "palavra": "INÓCUO",
+    "significado": "Que não causa dano ou não produz efeito significativo.",
+    "exemplo": "\"O comentário parecia provocativo, mas acabou sendo completamente inócuo.\""
+  },
+  {
+    "palavra": "PERNICIOSO",
+    "significado": "Que causa prejuízo ou consequências negativas, geralmente de maneira gradual.",
+    "exemplo": "\"O hábito pode ter um efeito pernicioso sobre a qualidade de vida.\""
+  },
+  {
+    "palavra": "NOCIVO",
+    "significado": "Que prejudica ou pode causar algum tipo de dano.",
+    "exemplo": "\"O excesso de exposição àquela substância pode ser nocivo.\""
+  },
+  {
+    "palavra": "BENÉFICO",
+    "significado": "Que produz benefício ou contribui positivamente para alguma situação.",
+    "exemplo": "\"A mudança de rotina teve um efeito benéfico sobre sua produtividade.\""
+  },
+  {
+    "palavra": "REFUTAR",
+    "significado": "Demonstrar que uma afirmação, argumento ou ideia está incorreta ou não é válida.",
+    "exemplo": "\"O pesquisador conseguiu refutar a teoria apresentada no artigo.\""
+  },
+  {
+    "palavra": "MITIGAR",
+    "significado": "Reduzir a intensidade, os efeitos ou as consequências de algo negativo.",
+    "exemplo": "\"Novas medidas foram adotadas para mitigar os impactos da crise.\""
+  },
+  {
+    "palavra": "AGRAVAR",
+    "significado": "Tornar algo mais grave, intenso ou difícil de resolver.",
+    "exemplo": "\"A falta de diálogo pode agravar ainda mais o conflito.\""
+  },
+  {
+    "palavra": "ELUCIDAR",
+    "significado": "Tornar algo mais claro, compreensível ou fácil de entender.",
+    "exemplo": "\"O professor utilizou exemplos para elucidar o conceito.\""
+  },
+  {
+    "palavra": "DEDUZIR",
+    "significado": "Chegar a uma conclusão a partir de informações, fatos ou indícios.",
+    "exemplo": "\"Pelos detalhes da história, foi possível deduzir o que havia acontecido.\""
+  },
+  {
+    "palavra": "INFERIR",
+    "significado": "Concluir ou compreender algo a partir de evidências ou informações disponíveis.",
+    "exemplo": "\"Podemos inferir que houve uma mudança significativa nos resultados.\""
+  },
+  {
+    "palavra": "PRESSUPOR",
+    "significado": "Aceitar algo como provável ou verdadeiro antes de ter certeza ou comprovação.",
+    "exemplo": "\"Não devemos pressupor que todos concordem com a mesma ideia.\""
+  },
+  {
+    "palavra": "IMPLICAR",
+    "significado": "Envolver ou resultar necessariamente em determinada consequência.",
+    "exemplo": "\"A mudança de estratégia pode implicar novos custos para a empresa.\""
+  },
+  {
+    "palavra": "CONJECTURA",
+    "significado": "Suposição ou hipótese baseada em indícios, mas ainda sem comprovação definitiva.",
+    "exemplo": "\"Por enquanto, a causa do fenômeno permanece apenas uma conjectura.\""
+  },
+  {
+    "palavra": "HIPÓTESE",
+    "significado": "Possibilidade ou explicação proposta para algo que ainda precisa ser verificado.",
+    "exemplo": "\"Os pesquisadores levantaram uma nova hipótese para explicar o resultado.\""
+  },
+  {
+    "palavra": "PREMISSA",
+    "significado": "Ideia ou afirmação usada como base para desenvolver um raciocínio ou conclusão.",
+    "exemplo": "\"O argumento parte da premissa de que todos devem ter acesso à informação.\""
+  },
+  {
+    "palavra": "AXIOMA",
+    "significado": "Princípio aceito como verdadeiro e usado como base para determinado sistema de ideias.",
+    "exemplo": "\"Naquele campo de estudo, essa afirmação funciona como um axioma fundamental.\""
+  },
+  {
+    "palavra": "DICOTOMIA",
+    "significado": "Divisão de algo em duas partes ou categorias que geralmente são apresentadas como opostas.",
+    "exemplo": "\"A dicotomia entre razão e emoção aparece em muitas discussões.\""
+  },
+  {
+    "palavra": "CONVERGÊNCIA",
+    "significado": "Aproximação ou encontro de ideias, opiniões, características ou caminhos diferentes.",
+    "exemplo": "\"Houve convergência entre as propostas apresentadas pelos dois grupos.\""
+  },
+  {
+    "palavra": "DIVERGÊNCIA",
+    "significado": "Diferença ou desacordo entre opiniões, ideias ou posições.",
+    "exemplo": "\"Apesar das divergências, eles conseguiram trabalhar juntos.\""
+  },
+  {
+    "palavra": "COERÊNCIA",
+    "significado": "Qualidade de algo que apresenta lógica, conexão e harmonia entre suas partes.",
+    "exemplo": "\"O texto apresenta coerência e desenvolve bem suas ideias.\""
+  },
+  {
+    "palavra": "PLAUSÍVEL",
+    "significado": "Que parece razoável, possível ou aceitável de acordo com as informações disponíveis.",
+    "exemplo": "\"A explicação apresentada parece plausível diante das evidências.\""
+  },
+  {
+    "palavra": "FACTÍVEL",
+    "significado": "Que pode ser realizado ou colocado em prática.",
+    "exemplo": "\"Precisamos elaborar um plano factível para resolver o problema.\""
+  },
+  {
+    "palavra": "VIÁVEL",
+    "significado": "Que apresenta condições reais de ser realizado ou desenvolvido.",
+    "exemplo": "\"A proposta parece viável mesmo com poucos recursos.\""
+  },
+  {
+    "palavra": "EXEQUÍVEL",
+    "significado": "Que pode ser executado ou realizado de maneira prática.",
+    "exemplo": "\"Depois dos ajustes, o projeto tornou-se exequível.\""
+  },
+  {
+    "palavra": "IMPROVÁVEL",
+    "significado": "Que apresenta pouca possibilidade de acontecer ou ser verdadeiro.",
+    "exemplo": "\"É improvável que a situação mude de um dia para o outro.\""
+  },
+  {
+    "palavra": "EVENTUAL",
+    "significado": "Que pode acontecer, mas não é certo ou permanente.",
+    "exemplo": "\"Precisamos estar preparados para eventuais mudanças no cronograma.\""
+  },
+  {
+    "palavra": "RECORRENTE",
+    "significado": "Que acontece repetidamente ou volta a ocorrer com frequência.",
+    "exemplo": "\"O problema recorrente continua afetando o funcionamento do sistema.\""
+  },
+  {
+    "palavra": "LATENTE",
+    "significado": "Que existe de maneira oculta ou ainda não se manifesta claramente.",
+    "exemplo": "\"Havia um conflito latente entre os dois grupos.\""
+  },
+  {
+    "palavra": "MANIFESTO",
+    "significado": "Que está evidente, claro ou facilmente perceptível.",
+    "exemplo": "\"O interesse dos estudantes pelo projeto tornou-se manifesto.\""
+  },
+  {
+    "palavra": "SUBJACENTE",
+    "significado": "Que está por baixo ou escondido, servindo como base para algo que aparece na superfície.",
+    "exemplo": "\"É necessário compreender as causas subjacentes ao problema.\""
+  },
+  {
+    "palavra": "INTRUSIVO",
+    "significado": "Que interfere de maneira indesejada em algo ou invade um espaço, situação ou privacidade.",
+    "exemplo": "\"A publicidade excessivamente intrusiva acabou afastando os usuários.\""
+  },
+  {
+    "palavra": "PROTELAR",
+    "significado": "Adiar ou deixar para depois algo que deveria ser realizado.",
+    "exemplo": "\"Ele continuou a protelar a decisão mesmo depois do prazo final.\""
+  },
+  {
+    "palavra": "POSTERGAR",
+    "significado": "Adiar algo para um momento posterior.",
+    "exemplo": "\"A reunião foi postergada para a próxima semana.\""
+  },
+  {
+    "palavra": "DEFERIR",
+    "significado": "Conceder ou aceitar um pedido, solicitação ou requerimento.",
+    "exemplo": "\"O juiz decidiu deferir o pedido apresentado pela defesa.\""
+  },
+  {
+    "palavra": "INDEFERIR",
+    "significado": "Recusar ou não aceitar um pedido ou solicitação.",
+    "exemplo": "\"O órgão decidiu indeferir o pedido por falta de documentos.\""
+  },
+  {
+    "palavra": "CONCEDER",
+    "significado": "Dar, permitir ou reconhecer algo a alguém.",
+    "exemplo": "\"A instituição decidiu conceder mais tempo para a entrega do trabalho.\""
+  },
+  {
+    "palavra": "ABSTER-SE",
+    "significado": "Escolher não fazer algo ou não participar de determinada ação.",
+    "exemplo": "\"Ele preferiu abster-se de comentar o assunto.\""
+  },
+  {
+    "palavra": "PRESCINDIR",
+    "significado": "Dispensar ou não precisar de algo ou alguém.",
+    "exemplo": "\"O novo sistema permite prescindir de várias etapas manuais.\""
+  },
+  {
+    "palavra": "DISSIPAR",
+    "significado": "Fazer desaparecer ou diminuir gradualmente algo, como uma dúvida, medo ou preocupação.",
+    "exemplo": "\"A explicação ajudou a dissipar as dúvidas dos estudantes.\""
+  },
+  {
+    "palavra": "SUSCITAR",
+    "significado": "Provocar, despertar ou fazer surgir uma reação, questão ou sentimento.",
+    "exemplo": "\"A declaração suscitou um intenso debate entre os participantes.\""
+  },
+  {
+    "palavra": "INCITAR",
+    "significado": "Estimular ou provocar alguém a realizar determinada ação.",
+    "exemplo": "\"O discurso conseguiu incitar a curiosidade do público.\""
+  },
+  {
+    "palavra": "INSTIGAR",
+    "significado": "Estimular alguém a agir ou provocar interesse, curiosidade ou reflexão.",
+    "exemplo": "\"A pergunta do professor conseguiu instigar os alunos a pesquisar mais.\""
+  },
+  {
+    "palavra": "AFLORAR",
+    "significado": "Surgir ou tornar-se perceptível, especialmente em relação a sentimentos, ideias ou características.",
+    "exemplo": "\"Durante a conversa, antigos sentimentos começaram a aflorar.\""
+  },
+  {
+    "palavra": "EMERGIR",
+    "significado": "Surgir ou aparecer depois de estar oculto ou submerso.",
+    "exemplo": "\"Novas ideias começaram a emergir durante a discussão.\""
+  },
+  {
+    "palavra": "ECLodIR",
+    "significado": "Surgir de maneira repentina e intensa, especialmente um acontecimento, conflito ou sentimento.",
+    "exemplo": "\"O conflito acabou eclodindo depois de meses de tensão.\""
+  },
+  {
+    "palavra": "IRROMPER",
+    "significado": "Surgir de maneira súbita, intensa e geralmente inesperada.",
+    "exemplo": "\"Uma forte discussão irrompeu no meio da reunião.\""
+  },
+  {
+    "palavra": "PERPETUAR",
+    "significado": "Fazer com que algo continue existindo por muito tempo ou passe de uma geração para outra.",
+    "exemplo": "\"A educação pode ajudar a perpetuar conhecimentos importantes.\""
+  },
+  {
+    "palavra": "LEGITIMAR",
+    "significado": "Tornar algo legítimo, justificável ou reconhecido como válido.",
+    "exemplo": "\"A votação ajudou a legitimar a decisão tomada pelo grupo.\""
+  },
+  {
+    "palavra": "RATIFICAR",
+    "significado": "Confirmar ou validar formalmente algo que já havia sido decidido ou acordado.",
+    "exemplo": "\"Os representantes se reuniram para ratificar o acordo.\""
+  },
+  {
+    "palavra": "RETIFICAR",
+    "significado": "Corrigir ou alterar algo que estava incorreto.",
+    "exemplo": "\"Foi necessário retificar a informação publicada anteriormente.\""
+  },
+  {
+    "palavra": "DELINEAR",
+    "significado": "Definir ou apresentar os contornos, características ou etapas principais de algo.",
+    "exemplo": "\"A equipe começou a delinear os próximos passos do projeto.\""
+  },
+  {
+    "palavra": "ESTIPULAR",
+    "significado": "Determinar ou estabelecer uma condição, regra, prazo ou valor.",
+    "exemplo": "\"O contrato estipula um prazo de trinta dias para o pagamento.\""
+  },
+  {
+    "palavra": "PRECONIZAR",
+    "significado": "Defender ou recomendar determinada ideia, prática ou comportamento.",
+    "exemplo": "\"O especialista preconiza uma abordagem mais cuidadosa para o problema.\""
+  },
+  {
+    "palavra": "REITERAR",
+    "significado": "Repetir ou reafirmar algo que já foi dito anteriormente.",
+    "exemplo": "\"O diretor precisou reiterar as regras durante a reunião.\""
+  },
+  {
+    "palavra": "SALIENTAR",
+    "significado": "Destacar ou chamar atenção para determinado aspecto.",
+    "exemplo": "\"A professora fez questão de salientar a importância daquele conceito.\""
+  },
+  {
+    "palavra": "RESSALTAR",
+    "significado": "Dar destaque ou importância especial a algo.",
+    "exemplo": "\"O relatório ressalta os principais problemas encontrados durante a pesquisa.\""
+  },
+  {
+    "palavra": "CORROBORAR",
+    "significado": "Confirmar ou fortalecer uma afirmação ou hipótese por meio de evidências.",
+    "exemplo": "\"Os documentos encontrados corroboram o relato das testemunhas.\""
+  },
+  {
+    "palavra": "ENDOSSAR",
+    "significado": "Apoiar, aprovar ou concordar publicamente com uma ideia ou proposta.",
+    "exemplo": "\"Vários especialistas decidiram endossar a proposta apresentada.\""
+  },
+  {
+    "palavra": "AQUIESCER",
+    "significado": "Concordar ou consentir com algo, geralmente sem oposição.",
+    "exemplo": "\"Após muita discussão, ele decidiu aquiescer ao pedido da equipe.\""
+  },
+  {
+    "palavra": "ANUIR",
+    "significado": "Dar consentimento ou concordar com determinada proposta.",
+    "exemplo": "\"O responsável precisou anuir formalmente à mudança.\""
+  },
+  {
+    "palavra": "CONIVENTE",
+    "significado": "Que permite ou tolera algo errado, mesmo tendo conhecimento da situação.",
+    "exemplo": "\"Quem presencia uma irregularidade e permanece em silêncio pode ser acusado de ser conivente.\""
+  },
+  {
+    "palavra": "OMISSO",
+    "significado": "Que deixa de agir ou de cumprir uma obrigação quando deveria fazê-lo.",
+    "exemplo": "\"O funcionário foi considerado omisso por não comunicar o problema.\""
+  },
+  {
+    "palavra": "PROBO",
+    "significado": "Que age com honestidade, integridade e retidão.",
+    "exemplo": "\"Todos confiavam nele por considerá-lo um profissional probo.\""
+  },
+  {
+    "palavra": "INCÓLUME",
+    "significado": "Que permanece sem ferimentos, danos ou alterações após uma situação difícil.",
+    "exemplo": "\"Apesar do acidente, o motorista saiu incólume.\""
+  },
+  {
+    "palavra": "IMACULADO",
+    "significado": "Que não apresenta manchas, defeitos ou sinais de corrupção; completamente puro.",
+    "exemplo": "\"O documento permaneceu imaculado durante décadas.\""
+  },
+  {
+    "palavra": "PERENE",
+    "significado": "Que permanece por muito tempo ou parece não desaparecer.",
+    "exemplo": "\"A obra deixou uma marca perene na literatura.\""
+  },
+  {
+    "palavra": "PUNGENTE",
+    "significado": "Que provoca emoção intensa ou causa uma sensação forte e marcante.",
+    "exemplo": "\"O relato trouxe uma reflexão pungente sobre a realidade social.\""
+  },
+  {
+    "palavra": "LÚGUBRE",
+    "significado": "Que transmite tristeza profunda, escuridão ou aspecto sombrio.",
+    "exemplo": "\"O ambiente lúgubre combinava perfeitamente com a história contada.\""
+  },
+  {
+    "palavra": "SORUMBÁTICO",
+    "significado": "Que demonstra tristeza, mau humor ou aspecto fechado e sombrio.",
+    "exemplo": "\"Ele permaneceu sorumbático durante toda a viagem.\""
+  },
+  {
+    "palavra": "TACITURNO",
+    "significado": "Que fala pouco e costuma permanecer calado ou reservado.",
+    "exemplo": "\"O rapaz taciturno preferia observar a conversa em vez de participar dela.\""
+  },
+  {
+    "palavra": "PROSAICO",
+    "significado": "Que é comum, cotidiano ou sem características consideradas extraordinárias.",
+    "exemplo": "\"A história transforma uma situação prosaica em algo interessante.\""
+  },
+  {
+    "palavra": "PUSILÂNIME",
+    "significado": "Que demonstra falta de coragem ou disposição para enfrentar situações difíceis.",
+    "exemplo": "\"O personagem foi criticado por sua atitude pusilânime diante do problema.\""
+  },
+  {
+    "palavra": "INEFÁVEL",
+    "significado": "Tão intenso ou extraordinário que é difícil expressar adequadamente em palavras.",
+    "exemplo": "\"Ela descreveu aquele momento como uma experiência inefável.\""
+  },
+  {
+    "palavra": "INDÔMITO",
+    "significado": "Que não se deixa dominar, intimidar ou vencer facilmente.",
+    "exemplo": "\"O espírito indômito do explorador o levou a enfrentar grandes desafios.\""
+  },
+  {
+    "palavra": "INEXORÁVEL",
+    "significado": "Que não pode ser impedido, alterado ou evitado.",
+    "exemplo": "\"O tempo segue seu curso inexorável.\""
+  },
+  {
+    "palavra": "INEBRIANTE",
+    "significado": "Que provoca grande entusiasmo, encantamento ou excitação.",
+    "exemplo": "\"A apresentação teve uma energia inebriante.\""
+  },
+  {
+    "palavra": "EXULTANTE",
+    "significado": "Que demonstra grande alegria, entusiasmo ou satisfação.",
+    "exemplo": "\"A torcida estava exultante após a vitória.\""
+  },
+  {
+    "palavra": "ELOQUENTE",
+    "significado": "Que se expressa de maneira clara, convincente e expressiva.",
+    "exemplo": "\"Seu silêncio foi mais eloquente do que qualquer discurso.\""
+  },
+  {
+    "palavra": "ORATÓRIA",
+    "significado": "Arte ou habilidade de falar em público de maneira clara, expressiva e persuasiva.",
+    "exemplo": "\"Ela estudou oratória para melhorar sua comunicação durante as apresentações.\""
+  },
+  {
+    "palavra": "VERBORRAGIA",
+    "significado": "Uso excessivo de palavras, geralmente sem acrescentar informações relevantes.",
+    "exemplo": "\"O texto poderia ser reduzido, pois contém muita verborragia.\""
+  },
+  {
+    "palavra": "PROLIXO",
+    "significado": "Que utiliza palavras em excesso e se estende mais do que o necessário.",
+    "exemplo": "\"O relatório ficou prolixo e acabou dificultando a compreensão da ideia principal.\""
+  },
+  {
+    "palavra": "PERSPICAZ",
+    "significado": "Que possui grande capacidade de perceber, compreender e analisar situações rapidamente.",
+    "exemplo": "\"Sua observação perspicaz revelou um detalhe que ninguém havia percebido.\""
+  },
+  {
+    "palavra": "DISCERNIMENTO",
+    "significado": "Capacidade de compreender e avaliar corretamente pessoas, situações ou diferenças.",
+    "exemplo": "\"É preciso ter discernimento para distinguir uma crítica construtiva de uma ofensa.\""
+  },
+  {
+    "palavra": "PRAGMÁTICO",
+    "significado": "Que prioriza soluções práticas e resultados concretos.",
+    "exemplo": "\"Ele adotou uma postura pragmática diante do problema.\""
+  },
+  {
+    "palavra": "IDEALISTA",
+    "significado": "Que valoriza ideais e acredita na possibilidade de alcançar uma realidade considerada melhor.",
+    "exemplo": "\"Mesmo diante das dificuldades, ela manteve uma postura idealista.\""
+  },
+  {
+    "palavra": "UTÓPICO",
+    "significado": "Que apresenta uma ideia ou situação ideal, mas difícil ou impossível de realizar completamente.",
+    "exemplo": "\"A proposta parecia utópica diante dos recursos disponíveis.\""
+  },
+  {
+    "palavra": "DISTÓPICO",
+    "significado": "Relacionado a uma sociedade imaginária marcada por condições negativas, opressivas ou desumanas.",
+    "exemplo": "\"O filme apresenta um futuro distópico dominado pela vigilância constante.\""
+  },
+  {
+    "palavra": "CÉTICO",
+    "significado": "Que tende a questionar afirmações e exige evidências antes de acreditar nelas.",
+    "exemplo": "\"Ele permaneceu cético diante da promessa de resultados imediatos.\""
+  },
+  {
+    "palavra": "DOGMÁTICO",
+    "significado": "Que trata determinadas ideias como verdades incontestáveis e não aceita facilmente questionamentos.",
+    "exemplo": "\"Uma postura dogmática pode dificultar o diálogo com opiniões diferentes.\""
+  },
+  {
+    "palavra": "ESTOICO",
+    "significado": "Que enfrenta dificuldades com firmeza e procura controlar suas reações diante do sofrimento.",
+    "exemplo": "\"Ele permaneceu estoico mesmo diante de uma situação extremamente difícil.\""
+  },
+  {
+    "palavra": "EGOCÊNTRICO",
+    "significado": "Que tende a considerar a própria perspectiva como centro de atenção e importância.",
+    "exemplo": "\"Seu comportamento egocêntrico dificultava a convivência com os colegas.\""
+  },
+  {
+    "palavra": "ALHEIO",
+    "significado": "Que está distante ou indiferente em relação a algo que acontece ao redor.",
+    "exemplo": "\"Ele permaneceu alheio à discussão que acontecia ao seu lado.\""
+  },
+  {
+    "palavra": "APÁTICO",
+    "significado": "Que demonstra pouca energia, interesse ou reação diante das situações.",
+    "exemplo": "\"Depois de tantas dificuldades, ele parecia apático e desmotivado.\""
+  },
+  {
+    "palavra": "COMPLACENTE",
+    "significado": "Que demonstra tolerância excessiva ou facilidade em aceitar comportamentos ou pedidos de outras pessoas.",
+    "exemplo": "\"Uma liderança complacente pode acabar permitindo problemas recorrentes.\""
+  },
+  {
+    "palavra": "CONDESCENDENTE",
+    "significado": "Que trata alguém com aparente gentileza, mas de maneira que pode transmitir superioridade.",
+    "exemplo": "\"Seu tom condescendente incomodou os colegas durante a conversa.\""
+  },
+  {
+    "palavra": "ARROGANTE",
+    "significado": "Que demonstra orgulho excessivo e atitude de superioridade em relação aos outros.",
+    "exemplo": "\"O comportamento arrogante acabou afastando seus colegas.\""
+  },
+  {
+    "palavra": "ALTIVO",
+    "significado": "Que demonstra postura elevada, orgulho ou dignidade, podendo transmitir certa superioridade.",
+    "exemplo": "\"Ela manteve uma postura altiva mesmo diante das críticas.\""
+  },
+  {
+    "palavra": "MODESTO",
+    "significado": "Que não demonstra orgulho excessivo pelas próprias qualidades ou conquistas.",
+    "exemplo": "\"Apesar do reconhecimento, ele continuou modesto sobre seu trabalho.\""
+  },
+  {
+    "palavra": "HUMILDADE",
+    "significado": "Qualidade de quem reconhece suas limitações e não se coloca acima dos outros.",
+    "exemplo": "\"A humildade permitiu que ele aceitasse críticas e continuasse aprendendo.\""
+  },
+  {
+    "palavra": "EMPATIA",
+    "significado": "Capacidade de compreender ou considerar os sentimentos e perspectivas de outra pessoa.",
+    "exemplo": "\"A empatia é essencial para construir relações baseadas em respeito.\""
+  },
+  {
+    "palavra": "ANIMOSIDADE",
+    "significado": "Sentimento de hostilidade, antipatia ou oposição em relação a alguém.",
+    "exemplo": "\"A antiga animosidade entre os dois dificultava qualquer tentativa de diálogo.\""
+  },
+  {
+    "palavra": "AVERSÃO",
+    "significado": "Sentimento intenso de rejeição ou repulsa em relação a algo ou alguém.",
+    "exemplo": "\"Ele desenvolveu aversão a ambientes extremamente barulhentos.\""
+  },
+  {
+    "palavra": "IDIOSSSINCRASIA",
+    "significado": "Característica particular e peculiar do comportamento ou da maneira de pensar de alguém ou de um grupo.",
+    "exemplo": "\"Cada pessoa possui suas próprias idiossincrasias.\""
+  },
+  {
+    "palavra": "PECULIAR",
+    "significado": "Que possui uma característica particular, incomum ou própria de algo ou alguém.",
+    "exemplo": "\"Ele possui uma maneira peculiar de explicar assuntos complexos.\""
+  },
+  {
+    "palavra": "SINGULAR",
+    "significado": "Que é único, particular ou diferente dos demais.",
+    "exemplo": "\"A artista desenvolveu um estilo singular ao longo dos anos.\""
+  },
+  {
+    "palavra": "EXCÊNTRICO",
+    "significado": "Que apresenta comportamento, aparência ou ideias muito diferentes do que é considerado comum.",
+    "exemplo": "\"O inventor tinha hábitos excêntricos, mas ideias extremamente criativas.\""
+  },
+  {
+    "palavra": "INUSITADO",
+    "significado": "Que é incomum, inesperado ou diferente do habitual.",
+    "exemplo": "\"A solução encontrada foi simples, porém bastante inusitada.\""
+  },
+  {
+    "palavra": "INSÓLITO",
+    "significado": "Que é raro, estranho ou fora do que normalmente acontece.",
+    "exemplo": "\"A cidade foi surpreendida por um acontecimento insólito.\""
+  },
+  {
+    "palavra": "ANÔMALO",
+    "significado": "Que apresenta algo fora do padrão considerado normal ou esperado.",
+    "exemplo": "\"Os pesquisadores identificaram um comportamento anômalo nos dados.\""
+  },
+  {
+    "palavra": "ATÍPICO",
+    "significado": "Que não corresponde ao padrão comum ou habitual.",
+    "exemplo": "\"Foi um dia atípico, com acontecimentos que ninguém esperava.\""
+  },
+  {
+    "palavra": "RECÔNDITO",
+    "significado": "Que está escondido, distante ou localizado em um lugar de difícil acesso.",
+    "exemplo": "\"Eles encontraram uma pequena vila em uma região recôndita.\""
+  },
+  {
+    "palavra": "ERMO",
+    "significado": "Lugar isolado, pouco habitado ou sem movimento de pessoas.",
+    "exemplo": "\"O viajante encontrou abrigo em uma região erma.\""
+  },
+  {
+    "palavra": "FÉRTIL",
+    "significado": "Que possui capacidade de produzir ou desenvolver algo em grande quantidade; também pode indicar solo produtivo.",
+    "exemplo": "\"A discussão criou um terreno fértil para novas ideias.\""
+  },
+  {
+    "palavra": "ÁRIDO",
+    "significado": "Que possui pouca umidade; também pode descrever algo pouco interessante ou difícil de compreender.",
+    "exemplo": "\"O assunto parecia árido no início, mas ficou interessante com os exemplos.\""
+  },
+  {
+    "palavra": "INÓSPITO",
+    "significado": "Que apresenta condições difíceis ou pouco favoráveis à permanência ou sobrevivência.",
+    "exemplo": "\"A região apresentava condições extremamente difíceis para os exploradores.\""
+  },
+  {
+    "palavra": "HOSTIL",
+    "significado": "Que demonstra oposição, agressividade ou falta de receptividade.",
+    "exemplo": "\"O grupo encontrou um ambiente hostil durante a negociação.\""
+  },
+  {
+    "palavra": "ADVERSO",
+    "significado": "Que é contrário, desfavorável ou apresenta dificuldades.",
+    "exemplo": "\"Mesmo em condições adversas, a equipe continuou trabalhando.\""
+  },
+  {
+    "palavra": "VULNERÁVEL",
+    "significado": "Que está sujeito a sofrer danos, ataques ou influências negativas.",
+    "exemplo": "\"O sistema ainda está vulnerável a determinados tipos de ataque.\""
+  },
+  {
+    "palavra": "ROBUSTO",
+    "significado": "Que apresenta força, resistência ou estrutura sólida.",
+    "exemplo": "\"O sistema precisa de uma estrutura robusta para suportar muitos usuários.\""
+  },
+  {
+    "palavra": "EFICAZ",
+    "significado": "Que produz o resultado desejado ou consegue cumprir seu objetivo.",
+    "exemplo": "\"A estratégia mostrou-se eficaz para solucionar o problema.\""
+  },
+  {
+    "palavra": "EFICIENTE",
+    "significado": "Que consegue alcançar bons resultados utilizando adequadamente os recursos disponíveis.",
+    "exemplo": "\"Ela encontrou uma maneira eficiente de organizar o trabalho.\""
+  },
+  {
+    "palavra": "ASSERTIVO",
+    "significado": "Que se comunica de maneira clara, firme e objetiva, respeitando os outros.",
+    "exemplo": "\"Ele foi assertivo ao explicar o que precisava ser mudado.\""
+  },
+  {
+    "palavra": "DISSUADIR",
+    "significado": "Fazer alguém desistir de uma intenção ou ação.",
+    "exemplo": "\"Os riscos não foram suficientes para dissuadi-lo de continuar.\""
+  },
+  {
+    "palavra": "PERSUADIR",
+    "significado": "Convencer alguém a aceitar uma ideia ou realizar determinada ação.",
+    "exemplo": "\"Ela conseguiu persuadir a equipe a testar sua proposta.\""
+  },
+  {
+    "palavra": "CONVENCER",
+    "significado": "Fazer alguém acreditar ou aceitar determinada ideia ou argumento.",
+    "exemplo": "\"Os dados apresentados foram suficientes para convencer o público.\""
+  },
+  {
+    "palavra": "INFLUENCIAR",
+    "significado": "Exercer algum efeito sobre pensamentos, decisões, comportamentos ou acontecimentos.",
+    "exemplo": "\"As experiências pessoais podem influenciar nossas escolhas.\""
+  },
+  {
+    "palavra": "MANIPULAR",
+    "significado": "Influenciar alguém ou uma situação de maneira estratégica, muitas vezes de forma desonesta ou oculta.",
+    "exemplo": "\"A propaganda pode manipular a percepção do público quando utiliza informações enganosas.\""
+  },
+  {
+    "palavra": "DISSENSO",
+    "significado": "Falta de concordância ou existência de opiniões diferentes dentro de um grupo.",
+    "exemplo": "\"O dissenso entre os membros impediu que a decisão fosse tomada rapidamente.\""
+  },
+  {
+    "palavra": "CONSENSO",
+    "significado": "Concordância geral alcançada por um grupo após discussão.",
+    "exemplo": "\"Depois de muito debate, os participantes chegaram a um consenso.\""
+  },
+  {
+    "palavra": "CONCILIAR",
+    "significado": "Tentar harmonizar ideias, interesses ou pessoas que apresentam diferenças.",
+    "exemplo": "\"O mediador tentou conciliar os interesses dos dois lados.\""
+  },
+  {
+    "palavra": "MEDIAR",
+    "significado": "Intervir entre duas ou mais partes para ajudar a resolver um conflito ou alcançar um acordo.",
+    "exemplo": "\"Uma terceira pessoa foi chamada para mediar a discussão.\""
+  },
+  {
+    "palavra": "NEGOCIAR",
+    "significado": "Buscar um acordo por meio de conversa, troca de propostas ou concessões.",
+    "exemplo": "\"As duas equipes precisaram negociar os termos do projeto.\""
+  },
+  {
+    "palavra": "CONCESSÃO",
+    "significado": "Aquilo que alguém aceita ceder para facilitar um acordo ou negociação.",
+    "exemplo": "\"Ambos fizeram alguma concessão para chegar a um acordo.\""
+  },
+  {
+    "palavra": "RECIPROCIDADE",
+    "significado": "Relação em que duas partes oferecem ou recebem algo de maneira correspondente.",
+    "exemplo": "\"Uma amizade saudável depende de respeito e reciprocidade.\""
+  },
+  {
+    "palavra": "SIMBIOSE",
+    "significado": "Relação de convivência ou interação estreita entre seres ou elementos diferentes, podendo beneficiar ambos.",
+    "exemplo": "\"A parceria funcionava quase como uma simbiose entre criatividade e tecnologia.\""
+  },
+  {
+    "palavra": "FRUGAL",
+    "significado": "Que evita excessos e prefere uma vida simples e econômica.",
+    "exemplo": "\"Seu estilo de vida frugal permitiu que economizasse durante anos.\""
+  },
+  {
+    "palavra": "AVILTAR",
+    "significado": "Rebaixar, humilhar ou diminuir a dignidade de alguém ou algo.",
+    "exemplo": "\"Nenhuma dificuldade justifica aviltar a dignidade de outra pessoa.\""
+  },
+  {
+    "palavra": "DEPRECIAR",
+    "significado": "Diminuir o valor, a importância ou a qualidade de algo ou alguém.",
+    "exemplo": "\"Criticar o trabalho dos outros não significa depreciar seus esforços.\""
+  },
+  {
+    "palavra": "MENOSPREZAR",
+    "significado": "Considerar algo ou alguém inferior ou sem importância.",
+    "exemplo": "\"Nunca devemos menosprezar uma ideia apenas porque ela parece simples.\""
+  },
+  {
+    "palavra": "VILIPENDIAR",
+    "significado": "Desprezar ou tratar algo ou alguém com grande desrespeito.",
+    "exemplo": "\"A liberdade de expressão não significa que seja necessário vilipendiar outras pessoas.\""
+  },
+  {
+    "palavra": "DIFAMAR",
+    "significado": "Divulgar informações que prejudicam a reputação de alguém.",
+    "exemplo": "\"Espalhar uma acusação falsa pode difamar injustamente uma pessoa.\""
+  },
+  {
+    "palavra": "CALUNIAR",
+    "significado": "Atribuir falsamente a alguém a prática de um crime.",
+    "exemplo": "\"Ele foi acusado de caluniar o colega durante a discussão.\""
+  },
+  {
+    "palavra": "DETRATAR",
+    "significado": "Falar mal de alguém ou prejudicar sua reputação.",
+    "exemplo": "\"Ela preferiu apresentar críticas construtivas em vez de detratar o trabalho alheio.\""
+  },
+  {
+    "palavra": "PRECONCEITO",
+    "significado": "Julgamento ou opinião formada antecipadamente, geralmente sem conhecimento suficiente.",
+    "exemplo": "\"O preconceito pode impedir que alguém conheça verdadeiramente outra pessoa.\""
+  },
+  {
+    "palavra": "ESTIGMA",
+    "significado": "Marca social negativa associada a uma pessoa, grupo ou condição.",
+    "exemplo": "\"O estigma associado ao erro pode impedir as pessoas de tentar novamente.\""
+  },
+  {
+    "palavra": "ESTEREÓTIPO",
+    "significado": "Ideia simplificada e generalizada sobre determinado grupo ou característica.",
+    "exemplo": "\"O filme questiona vários estereótipos presentes na sociedade.\""
+  },
+  {
+    "palavra": "PARADIGMA",
+    "significado": "Modelo ou conjunto de ideias que serve como referência para compreender ou agir sobre algo.",
+    "exemplo": "\"A descoberta provocou uma mudança de paradigma naquela área.\""
+  },
+  {
+    "palavra": "PARADIGMÁTICO",
+    "significado": "Que serve como exemplo ou modelo representativo de determinada situação.",
+    "exemplo": "\"O caso tornou-se paradigmático para estudos posteriores.\""
+  },
+  {
+    "palavra": "CONJUNTURA",
+    "significado": "Conjunto de circunstâncias ou acontecimentos que caracterizam determinada situação em um período.",
+    "exemplo": "\"A decisão foi tomada levando em conta a conjuntura econômica do momento.\""
+  },
+  {
+    "palavra": "CONTEXTO",
+    "significado": "Conjunto de circunstâncias que ajudam a compreender determinado acontecimento ou ideia.",
+    "exemplo": "\"É difícil compreender a frase sem conhecer o contexto em que foi dita.\""
+  },
+  {
+    "palavra": "OUTROSSIM",
+    "significado": "Além disso; também; igualmente.",
+    "exemplo": "\"O projeto é econômico e, outrossim, apresenta baixo impacto ambiental.\""
+  },
+  {
+    "palavra": "DESTOAR",
+    "significado": "Ser diferente ou não combinar com o conjunto ao qual pertence.",
+    "exemplo": "\"Aquela construção moderna destoa das casas históricas da região.\""
+  },
+  {
+    "palavra": "CONSONANTE",
+    "significado": "Que está de acordo ou em harmonia com algo.",
+    "exemplo": "\"A decisão foi consonante com as regras estabelecidas anteriormente.\""
+  },
+  {
+    "palavra": "DISSONANTE",
+    "significado": "Que apresenta desacordo ou falta de harmonia em relação a algo.",
+    "exemplo": "\"A opinião dele era dissonante em relação à maioria do grupo.\""
+  },
+  {
+    "palavra": "HETEROGÊNEO",
+    "significado": "Formado por elementos diferentes entre si.",
+    "exemplo": "\"A turma era bastante heterogênea, com alunos de experiências diferentes.\""
+  },
+  {
+    "palavra": "HOMOGÊNEO",
+    "significado": "Formado por elementos semelhantes ou uniformes entre si.",
+    "exemplo": "\"O grupo apresentava um nível relativamente homogêneo de conhecimento.\""
+  },
+  {
+    "palavra": "INTRINCADO",
+    "significado": "Que é complicado, difícil de compreender ou resolver.",
+    "exemplo": "\"O investigador precisou analisar um caso bastante intrincado.\""
+  },
+  {
+    "palavra": "COMPLEXO",
+    "significado": "Que possui muitas partes ou fatores relacionados, tornando sua compreensão ou solução mais difícil.",
+    "exemplo": "\"O problema é complexo e não pode ser resolvido com uma única medida.\""
+  },
+  {
+    "palavra": "PARCIAL",
+    "significado": "Que representa apenas uma parte ou que não considera todos os aspectos de uma questão.",
+    "exemplo": "\"A análise apresentada é parcial e precisa considerar outros fatores.\""
+  },
+  {
+    "palavra": "INTEGRAL",
+    "significado": "Que compreende o conjunto completo de algo, sem deixar partes relevantes de fora.",
+    "exemplo": "\"Para entender o caso, é necessária uma análise integral da situação.\""
+  },
+  {
+    "palavra": "MINUCIOSO",
+    "significado": "Que é realizado com extrema atenção aos detalhes.",
+    "exemplo": "\"O perito realizou um exame minucioso do local.\""
+  },
+  {
+    "palavra": "EXAUSTIVO",
+    "significado": "Que aborda algo de maneira ampla e detalhada, procurando não deixar aspectos relevantes de fora.",
+    "exemplo": "\"O pesquisador realizou um levantamento exaustivo das informações disponíveis.\""
+  },
+  {
+    "palavra": "SUCINTO",
+    "significado": "Que apresenta poucas palavras e vai diretamente ao ponto.",
+    "exemplo": "\"O professor pediu um resumo sucinto do capítulo.\""
+  },
+  {
+    "palavra": "PORMENORIZADO",
+    "significado": "Que apresenta muitos detalhes e informações específicas.",
+    "exemplo": "\"O relatório traz um relato pormenorizado de todos os acontecimentos.\""
+  },
+  {
+    "palavra": "SUBSTANCIAL",
+    "significado": "Que possui importância, quantidade ou valor considerável.",
+    "exemplo": "\"A equipe recebeu um investimento substancial para continuar o projeto.\""
+  },
+  {
+    "palavra": "IRRISÓRIO",
+    "significado": "Que é tão pequeno ou insignificante que pode ser considerado desprezível.",
+    "exemplo": "\"O valor pago pelo serviço foi irrisório diante do trabalho realizado.\""
+  },
+  {
+    "palavra": "EXORBITANTE",
+    "significado": "Que ultrapassa muito o que seria considerado razoável ou normal.",
+    "exemplo": "\"O preço cobrado pelo produto foi considerado exorbitante.\""
+  },
+  {
+    "palavra": "PRECARIEDADE",
+    "significado": "Condição de algo que apresenta pouca estabilidade, segurança ou qualidade.",
+    "exemplo": "\"A precariedade da estrutura preocupava os moradores.\""
+  },
+  {
+    "palavra": "PARCIALIDADE",
+    "significado": "Tendência a favorecer uma pessoa, grupo ou posição em vez de agir de maneira imparcial.",
+    "exemplo": "\"A parcialidade do avaliador foi questionada pelos participantes.\""
+  },
+  {
+    "palavra": "IMPARCIALIDADE",
+    "significado": "Qualidade de quem procura julgar ou agir sem favorecer nenhum dos lados.",
+    "exemplo": "\"A imparcialidade é importante para uma avaliação justa.\""
+  },
+  {
+    "palavra": "ISENÇÃO",
+    "significado": "Ausência de interesse pessoal ou de favoritismo ao analisar ou decidir algo.",
+    "exemplo": "\"O jornalista deve buscar isenção ao apresentar diferentes versões de um acontecimento.\""
+  },
+  {
+    "palavra": "AMBIVALÊNCIA",
+    "significado": "Existência simultânea de sentimentos, ideias ou atitudes opostas em relação a algo.",
+    "exemplo": "\"Ela sentia ambivalência diante da possibilidade de mudar de cidade.\""
+  },
+  {
+    "palavra": "INCONGRUÊNCIA",
+    "significado": "Falta de coerência ou compatibilidade entre elementos que deveriam combinar.",
+    "exemplo": "\"A incongruência entre o discurso e as ações chamou atenção.\""
+  },
+  {
+    "palavra": "DISCREPÂNCIA",
+    "significado": "Diferença ou falta de concordância entre informações, valores ou opiniões.",
+    "exemplo": "\"Os investigadores encontraram uma discrepância entre os dois documentos.\""
+  },
+  {
+    "palavra": "DIVERGIR",
+    "significado": "Ser diferente ou discordar de uma ideia, opinião ou direção.",
+    "exemplo": "\"Os especialistas podem divergir quanto à melhor solução para o problema.\""
+  },
+  {
+    "palavra": "CONVERGIR",
+    "significado": "Aproximar-se ou dirigir-se para o mesmo ponto, objetivo ou ideia.",
+    "exemplo": "\"As diferentes propostas começaram a convergir para uma solução comum.\""
+  },
+  {
+    "palavra": "COADUNAR",
+    "significado": "Combinar ou estar de acordo com algo.",
+    "exemplo": "\"A proposta não se coaduna com os objetivos definidos anteriormente.\""
+  },
+  {
+    "palavra": "PRECEDENTE",
+    "significado": "Que acontece antes ou que serve como exemplo para uma situação posterior.",
+    "exemplo": "\"A decisão criou um precedente para casos semelhantes.\""
+  },
+  {
+    "palavra": "CONCOMITANTE",
+    "significado": "Que acontece ao mesmo tempo que outra coisa.",
+    "exemplo": "\"As duas mudanças ocorreram de maneira concomitante.\""
+  },
+  {
+    "palavra": "IMINENTE",
+    "significado": "Que está prestes a acontecer.",
+    "exemplo": "\"Os moradores foram avisados sobre o risco iminente de inundação.\""
+  },
+  {
+    "palavra": "EMINENTE",
+    "significado": "Que se destaca por sua importância, qualidade ou excelência.",
+    "exemplo": "\"O congresso recebeu um eminente pesquisador da área.\""
+  },
+  {
+    "palavra": "OUTORGAR",
+    "significado": "Conceder ou atribuir oficialmente um direito, poder ou benefício.",
+    "exemplo": "\"O documento outorga ao responsável o direito de representar a instituição.\""
+  },
+  {
+    "palavra": "USURPAR",
+    "significado": "Tomar ou utilizar algo que pertence legitimamente a outra pessoa ou entidade.",
+    "exemplo": "\"O grupo foi acusado de usurpar uma função que não lhe pertencia.\""
+  },
+  {
+    "palavra": "AUFERIR",
+    "significado": "Obter ou receber determinado benefício, lucro ou vantagem.",
+    "exemplo": "\"A empresa conseguiu auferir bons resultados durante o período.\""
+  },
+  {
+    "palavra": "ARRECADAR",
+    "significado": "Reunir ou obter dinheiro, recursos ou contribuições.",
+    "exemplo": "\"A campanha conseguiu arrecadar recursos para a instituição.\""
+  },
+  {
+    "palavra": "AUSTERIDADE",
+    "significado": "Comportamento marcado por rigor, simplicidade e contenção de gastos ou excessos.",
+    "exemplo": "\"A família adotou uma política de austeridade para reorganizar as finanças.\""
+  },
+  {
+    "palavra": "OPULÊNCIA",
+    "significado": "Grande riqueza, abundância ou luxo.",
+    "exemplo": "\"O palácio impressionava pela opulência de seus salões.\""
+  },
+  {
+    "palavra": "POMPA",
+    "significado": "Exibição de grande luxo, riqueza ou solenidade.",
+    "exemplo": "\"A cerimônia foi realizada com grande pompa.\""
+  },
+  {
+    "palavra": "OSTENTAÇÃO",
+    "significado": "Exibição exagerada de riqueza, poder ou características pessoais.",
+    "exemplo": "\"A ostentação nas redes sociais pode criar uma imagem distorcida da realidade.\""
+  },
+  {
+    "palavra": "SOBERBA",
+    "significado": "Orgulho excessivo ou sentimento de superioridade em relação aos outros.",
+    "exemplo": "\"Sua soberba acabou impedindo que aceitasse conselhos.\""
+  },
+  {
+    "palavra": "PREPOTÊNCIA",
+    "significado": "Atitude de quem utiliza sua posição ou poder de maneira autoritária e arrogante.",
+    "exemplo": "\"O funcionário foi criticado pela prepotência com que tratava os colegas.\""
+  },
+  {
+    "palavra": "TIRANIA",
+    "significado": "Exercício abusivo e autoritário do poder, sem respeito às liberdades ou direitos.",
+    "exemplo": "\"A população rebelou-se contra anos de tirania.\""
+  },
+  {
+    "palavra": "DESPOTISMO",
+    "significado": "Forma de exercício do poder marcada por autoridade absoluta e ausência de limites efetivos.",
+    "exemplo": "\"O livro descreve os efeitos sociais de um regime de despotismo.\""
+  },
+  {
+    "palavra": "AUTORITARISMO",
+    "significado": "Forma de exercer autoridade com pouca tolerância à oposição ou à participação dos outros.",
+    "exemplo": "\"O autoritarismo pode reduzir o espaço para o diálogo.\""
+  },
+  {
+    "palavra": "HEGEMONIA",
+    "significado": "Predomínio ou liderança exercida por alguém ou por um grupo sobre outros.",
+    "exemplo": "\"Durante décadas, aquela equipe manteve hegemonia no campeonato.\""
+  },
+  {
+    "palavra": "PROEMINENTE",
+    "significado": "Que se destaca por sua importância, posição ou influência.",
+    "exemplo": "\"Ela ocupa uma posição proeminente no cenário artístico nacional.\""
+  },
+  {
+    "palavra": "PREPONDERANTE",
+    "significado": "Que possui maior importância, influência ou peso em determinada situação.",
+    "exemplo": "\"O fator econômico teve papel preponderante na decisão.\""
+  },
+  {
+    "palavra": "SUBSIDIÁRIO",
+    "significado": "Que serve como apoio ou complemento a algo principal.",
+    "exemplo": "\"O documento apresenta informações subsidiárias para complementar a análise.\""
+  },
+  {
+    "palavra": "COROLÁRIO",
+    "significado": "Conclusão ou consequência que decorre naturalmente de uma ideia ou situação.",
+    "exemplo": "\"O aumento dos custos foi um corolário das mudanças realizadas.\""
+  },
+  {
+    "palavra": "DESDOBRAMENTO",
+    "significado": "Consequência, desenvolvimento ou novo acontecimento decorrente de algo anterior.",
+    "exemplo": "\"Ainda não sabemos quais serão os desdobramentos da decisão.\""
+  },
+  {
+    "palavra": "CONSEQUÊNCIA",
+    "significado": "Resultado ou efeito produzido por uma ação, acontecimento ou decisão.",
+    "exemplo": "\"Toda escolha pode trazer consequências inesperadas.\""
+  },
+  {
+    "palavra": "PROGNÓSTICO",
+    "significado": "Previsão ou avaliação sobre o que provavelmente acontecerá no futuro.",
+    "exemplo": "\"Os especialistas apresentaram um prognóstico cauteloso para os próximos meses.\""
+  },
+  {
+    "palavra": "PRESSÁGIO",
+    "significado": "Sinal ou acontecimento interpretado como indicação de algo que poderá acontecer.",
+    "exemplo": "\"Para os moradores, aquela coincidência parecia um mau presságio.\""
+  },
+  {
+    "palavra": "VATICÍNIO",
+    "significado": "Previsão ou anúncio de algo que supostamente acontecerá no futuro.",
+    "exemplo": "\"O antigo vaticínio voltou a ser discutido após os acontecimentos recentes.\""
+  },
+  {
+    "palavra": "PREMONIÇÃO",
+    "significado": "Sensação ou impressão de que algo está prestes a acontecer, geralmente sem uma explicação evidente.",
+    "exemplo": "\"Ela teve a estranha premonição de que deveria voltar para casa.\""
+  },
+  {
+    "palavra": "INTEMPESTIVO",
+    "significado": "Que acontece de maneira inesperada ou em um momento considerado inadequado.",
+    "exemplo": "\"A interrupção intempestiva prejudicou o andamento da apresentação.\""
+  },
+  {
+    "palavra": "ABRUPTO",
+    "significado": "Que ocorre de maneira repentina, brusca ou inesperada.",
+    "exemplo": "\"A conversa terminou de modo abrupto.\""
+  },
+  {
+    "palavra": "GRADUAL",
+    "significado": "Que acontece aos poucos, por etapas e sem mudanças bruscas.",
+    "exemplo": "\"A recuperação foi gradual e exigiu bastante paciência.\""
+  },
+  {
+    "palavra": "PAULATINO",
+    "significado": "Que acontece lentamente e de maneira progressiva.",
+    "exemplo": "\"Houve um aumento paulatino no número de usuários.\""
+  },
+  {
+    "palavra": "SUBITAMENTE",
+    "significado": "De maneira repentina e inesperada.",
+    "exemplo": "\"A energia foi interrompida subitamente durante a apresentação.\""
+  },
+  {
+    "palavra": "RECÔNDITO",
+    "significado": "Que está profundamente escondido ou situado em local afastado e pouco acessível.",
+    "exemplo": "\"O explorador encontrou uma passagem em um canto recôndito da caverna.\""
+  },
+  {
+    "palavra": "ARCANO",
+    "significado": "Aquilo que é misterioso, secreto ou difícil de compreender.",
+    "exemplo": "\"Os documentos revelavam aspectos arcanos daquela antiga tradição.\""
+  },
+  {
+    "palavra": "ENIGMÁTICO",
+    "significado": "Que apresenta características misteriosas ou difíceis de interpretar.",
+    "exemplo": "\"O personagem permaneceu enigmático durante toda a história.\""
+  },
+  {
+    "palavra": "OBSCURO",
+    "significado": "Que é difícil de compreender, pouco conhecido ou pouco claro.",
+    "exemplo": "\"O texto apresenta um trecho obscuro que permite várias interpretações.\""
+  },
+  {
+    "palavra": "DIÁFANO",
+    "significado": "Que permite a passagem de luz; também pode indicar algo delicado, sutil ou transparente.",
+    "exemplo": "\"Uma cortina diáfana deixava a luz do amanhecer entrar no quarto.\""
+  },
+  {
+    "palavra": "ETÉREO",
+    "significado": "Que parece delicado, leve ou pertencente a algo não material.",
+    "exemplo": "\"A música criava uma atmosfera etérea e quase surreal.\""
+  },
+  {
+    "palavra": "EFUSIVO",
+    "significado": "Que demonstra sentimentos de maneira intensa, calorosa e expansiva.",
+    "exemplo": "\"Ele recebeu os amigos com um abraço efusivo.\""
+  },
+  {
+    "palavra": "CONTIDO",
+    "significado": "Que demonstra emoções de maneira controlada, sem grandes manifestações externas.",
+    "exemplo": "\"Mesmo emocionado, ele manteve um comportamento contido.\""
+  },
+  {
+    "palavra": "VEEMENTE",
+    "significado": "Que se manifesta de maneira intensa, firme e determinada.",
+    "exemplo": "\"Ela fez uma defesa veemente de sua proposta.\""
+  },
+  {
+    "palavra": "TAXATIVO",
+    "significado": "Que é categórico e não deixa espaço para dúvida ou interpretação diferente.",
+    "exemplo": "\"O comunicado foi taxativo ao informar que o prazo não seria prorrogado.\""
+  },
+  {
+    "palavra": "CATEGÓRICO",
+    "significado": "Que é claro, firme e não admite dúvidas ou hesitações.",
+    "exemplo": "\"Ele foi categórico ao afirmar que não mudaria de decisão.\""
+  },
+  {
+    "palavra": "PEREMPTÓRIO",
+    "significado": "Que é definitivo, urgente ou apresentado de maneira que não admite contestação.",
+    "exemplo": "\"A ordem foi dada em tom peremptório.\""
+  },
+  {
+    "palavra": "INTRANSIGENTE",
+    "significado": "Que não aceita facilmente opiniões diferentes ou mudanças de posição.",
+    "exemplo": "\"Sua postura intransigente dificultou qualquer tentativa de acordo.\""
+  },
+  {
+    "palavra": "FLEXÍVEL",
+    "significado": "Que consegue adaptar-se facilmente a diferentes situações, ideias ou circunstâncias.",
+    "exemplo": "\"Uma estratégia flexível pode ser ajustada conforme os resultados aparecem.\""
+  },
+  {
+    "palavra": "ADAPTABILIDADE",
+    "significado": "Capacidade de se ajustar a novas situações, condições ou mudanças.",
+    "exemplo": "\"A adaptabilidade tornou-se uma característica importante naquele ambiente de trabalho.\""
+  },
+  {
+    "palavra": "RESERVADO",
+    "significado": "Que tende a falar pouco sobre si mesmo ou a não demonstrar facilmente seus sentimentos.",
+    "exemplo": "\"Apesar de ser reservado, ele sempre participava das discussões importantes.\""
+  },
+  {
+    "palavra": "EXPANSIVO",
+    "significado": "Que demonstra sentimentos e pensamentos de maneira aberta e comunicativa.",
+    "exemplo": "\"Seu jeito expansivo facilitava a aproximação com pessoas desconhecidas.\""
+  },
+  {
+    "palavra": "CONTUNDÊNCIA",
+    "significado": "Qualidade de algo que apresenta força, firmeza e capacidade de causar impacto.",
+    "exemplo": "\"A contundência dos argumentos mudou o rumo da discussão.\""
+  },
+  {
+    "palavra": "TENACIDADE",
+    "significado": "Capacidade de persistir com firmeza diante de dificuldades ou obstáculos.",
+    "exemplo": "\"Foi sua tenacidade que permitiu concluir o projeto depois de tantos problemas.\""
+  },
+  {
+    "palavra": "PERSEVERANÇA",
+    "significado": "Persistência em continuar tentando mesmo diante de dificuldades.",
+    "exemplo": "\"A perseverança foi fundamental para que ele alcançasse seu objetivo.\""
+  },
+  {
+    "palavra": "DILETANTE",
+    "significado": "Pessoa que se dedica a uma atividade por interesse ou prazer, sem necessariamente ser profissional nela.",
+    "exemplo": "\"Ele começou como diletante, estudando fotografia apenas por paixão.\""
+  },
+  {
+    "palavra": "PROFÍCUO",
+    "significado": "Que produz bons resultados ou é útil e proveitoso.",
+    "exemplo": "\"A conversa foi bastante profícua e gerou várias ideias novas.\""
+  },
+  {
+    "palavra": "FRÍVOLO",
+    "significado": "Que demonstra pouca importância, seriedade ou profundidade.",
+    "exemplo": "\"O debate não deveria ser reduzido a uma discussão frívola.\""
+  },
+  {
+    "palavra": "SUPÉRFLUO",
+    "significado": "Que é desnecessário ou excede aquilo que realmente é preciso.",
+    "exemplo": "\"O editor removeu os trechos supérfluos do texto.\""
+  },
+  {
+    "palavra": "ESSENCIAL",
+    "significado": "Que é indispensável ou fundamental para determinada situação.",
+    "exemplo": "\"A comunicação clara é essencial para evitar conflitos.\""
+  },
+  {
+    "palavra": "IMPRESCINDÍVEL",
+    "significado": "Que não pode ser dispensado por ser absolutamente necessário.",
+    "exemplo": "\"A participação dos estudantes é imprescindível para o projeto funcionar.\""
+  },
+  {
+    "palavra": "ACESSÓRIO",
+    "significado": "Que é secundário ou complementar, não sendo essencial para algo.",
+    "exemplo": "\"Os detalhes acessórios podem ser discutidos depois.\""
+  },
+  {
+    "palavra": "MEDULAR",
+    "significado": "Que é fundamental ou central para determinado assunto.",
+    "exemplo": "\"A liberdade é uma questão medular naquele debate.\""
+  },
+  {
+    "palavra": "NODAL",
+    "significado": "Que ocupa posição central ou estratégica em determinado sistema ou situação.",
+    "exemplo": "\"A comunicação é um ponto nodal para o sucesso da equipe.\""
+  },
+  {
+    "palavra": "AXIAL",
+    "significado": "Que funciona como eixo ou elemento central de algo.",
+    "exemplo": "\"A confiança é uma questão axial para a construção de qualquer parceria.\""
+  },
+  {
+    "palavra": "INESCUSÁVEL",
+    "significado": "Que não pode ser desculpado ou justificado.",
+    "exemplo": "\"Para muitos, aquela atitude foi um erro inescusável.\""
+  },
+  {
+    "palavra": "INADVERTIDO",
+    "significado": "Que ocorre sem que alguém perceba ou sem intenção.",
+    "exemplo": "\"O comentário inadvertido acabou causando um mal-entendido.\""
+  },
+  {
+    "palavra": "INTENCIONAL",
+    "significado": "Que é feito de propósito, com determinada intenção.",
+    "exemplo": "\"A mudança foi intencional e fazia parte do novo planejamento.\""
+  },
+  {
+    "palavra": "FORTUITO",
+    "significado": "Que acontece por acaso, sem planejamento ou intenção prévia.",
+    "exemplo": "\"O encontro foi fortuito, mas acabou mudando os rumos do projeto.\""
+  },
+  {
+    "palavra": "CASUAL",
+    "significado": "Que acontece por acaso ou sem planejamento prévio.",
+    "exemplo": "\"Foi durante uma conversa casual que surgiu a ideia do projeto.\""
+  },
+  {
+    "palavra": "DELIBERAR",
+    "significado": "Discutir cuidadosamente uma questão antes de tomar uma decisão.",
+    "exemplo": "\"O grupo precisou deliberar sobre as próximas etapas do projeto.\""
+  },
+  {
+    "palavra": "SOPESAR",
+    "significado": "Avaliar cuidadosamente diferentes aspectos antes de tomar uma decisão.",
+    "exemplo": "\"Antes de aceitar a proposta, ela decidiu sopesar os riscos envolvidos.\""
+  },
+  {
+    "palavra": "AVERIGUAR",
+    "significado": "Investigar ou verificar cuidadosamente a verdade ou as condições de algo.",
+    "exemplo": "\"A equipe foi encarregada de averiguar a origem do problema.\""
+  },
+  {
+    "palavra": "PERQUIRIR",
+    "significado": "Investigar ou pesquisar profundamente algo para obter informações.",
+    "exemplo": "\"O jornalista passou meses a perquirir os detalhes do caso.\""
+  },
+  {
+    "palavra": "ESCRUTINAR",
+    "significado": "Examinar algo cuidadosamente, procurando detalhes ou informações ocultas.",
+    "exemplo": "\"Os pesquisadores precisaram escrutinar milhares de registros.\""
+  },
+  {
+    "palavra": "SINDICAR",
+    "significado": "Investigar ou apurar informações sobre determinado fato ou situação.",
+    "exemplo": "\"A comissão foi criada para sindicar possíveis irregularidades.\""
+  },
+  {
+    "palavra": "INQUIRIR",
+    "significado": "Fazer perguntas ou buscar informações de maneira cuidadosa.",
+    "exemplo": "\"O investigador começou a inquirir as testemunhas.\""
+  },
+  {
+    "palavra": "INTERPELAR",
+    "significado": "Questionar alguém diretamente, geralmente sobre uma questão específica.",
+    "exemplo": "\"O repórter decidiu interpelar o responsável sobre o ocorrido.\""
+  },
+  {
+    "palavra": "ARGUIR",
+    "significado": "Apresentar argumentos, questionar ou contestar determinada ideia ou afirmação.",
+    "exemplo": "\"O estudante soube arguir os pontos apresentados durante o debate.\""
+  },
+  {
+    "palavra": "ADUZIR",
+    "significado": "Apresentar argumentos, razões ou informações para sustentar uma ideia.",
+    "exemplo": "\"O pesquisador aduziu novas evidências para sustentar sua conclusão.\""
+  },
+  {
+    "palavra": "PRECONCEBER",
+    "significado": "Formar uma ideia ou opinião antes de conhecer adequadamente os fatos.",
+    "exemplo": "\"É perigoso preconceber uma opinião antes de ouvir os dois lados.\""
+  },
+  {
+    "palavra": "CONJECTURAR",
+    "significado": "Formar uma hipótese ou suposição sem possuir certeza ou comprovação.",
+    "exemplo": "\"Podemos apenas conjecturar sobre o que realmente aconteceu naquela noite.\""
+  },
+  {
+    "palavra": "ESPECULAR",
+    "significado": "Considerar possibilidades ou formular hipóteses sem confirmação definitiva.",
+    "exemplo": "\"Sem informações oficiais, seria prematuro especular sobre os motivos.\""
+  },
+  {
+    "palavra": "DISCORRER",
+    "significado": "Falar ou escrever de maneira desenvolvida sobre determinado assunto.",
+    "exemplo": "\"O professor passou alguns minutos a discorrer sobre a origem da palavra.\""
+  },
+  {
+    "palavra": "EXPLANAR",
+    "significado": "Explicar ou apresentar um assunto de maneira detalhada.",
+    "exemplo": "\"O pesquisador foi convidado a explanar suas conclusões ao público.\""
+  },
+  {
+    "palavra": "EXPLICITAR",
+    "significado": "Tornar algo claro ou apresentar de maneira direta aquilo que estava implícito.",
+    "exemplo": "\"O documento precisa explicitar as responsabilidades de cada participante.\""
+  },
+  {
+    "palavra": "IMPLICITAR",
+    "significado": "Conter ou apresentar uma ideia de maneira não expressa diretamente.",
+    "exemplo": "\"A frase parece implicitamente criticar a decisão tomada.\""
+  },
+  {
+    "palavra": "DENOTAR",
+    "significado": "Indicar, revelar ou demonstrar determinado significado ou característica.",
+    "exemplo": "\"Sua expressão parecia denotar preocupação.\""
+  },
+  {
+    "palavra": "CONOTAR",
+    "significado": "Transmitir um significado associado ou sugerido além do sentido literal.",
+    "exemplo": "\"Naquele contexto, a palavra pode conotar ironia.\""
+  },
+  {
+    "palavra": "LITERAL",
+    "significado": "Que corresponde exatamente ao sentido básico e direto das palavras, sem interpretação figurada.",
+    "exemplo": "\"A frase não deve ser entendida em sentido literal.\""
+  },
+  {
+    "palavra": "METAFÓRICO",
+    "significado": "Que utiliza uma ideia ou imagem para representar outra de maneira não literal.",
+    "exemplo": "\"O autor utiliza uma linguagem metafórica para falar sobre liberdade.\""
+  },
+  {
+    "palavra": "SARCÁSTICO",
+    "significado": "Que utiliza ironia mordaz ou provocativa para expressar crítica ou desprezo.",
+    "exemplo": "\"O comentário sarcástico provocou risadas, mas também gerou desconforto.\""
+  },
+  {
+    "palavra": "IRÔNICO",
+    "significado": "Que expressa algo de maneira que o sentido pretendido difere do sentido literal.",
+    "exemplo": "\"Foi irônico ouvir uma reclamação sobre atrasos justamente de quem sempre chega tarde.\""
+  },
+  {
+    "palavra": "EUFEMISMO",
+    "significado": "Expressão mais suave usada para substituir outra considerada desagradável, ofensiva ou pesada.",
+    "exemplo": "\"Dizer 'partiu' em vez de 'morreu' pode funcionar como um eufemismo.\""
+  },
+  {
+    "palavra": "HIPÉRBOLE",
+    "significado": "Figura de linguagem que utiliza exagero para intensificar uma ideia.",
+    "exemplo": "\"Dizer que esperou uma eternidade é uma hipérbole para enfatizar a demora.\""
+  },
+  {
+    "palavra": "ANTÍTESE",
+    "significado": "Aproximação de ideias ou palavras que apresentam sentidos opostos.",
+    "exemplo": "\"Vida e morte formam uma antítese recorrente na literatura.\""
+  },
+  {
+    "palavra": "METONÍMIA",
+    "significado": "Figura de linguagem em que uma palavra é usada no lugar de outra por existir uma relação entre elas.",
+    "exemplo": "\"Na frase 'li Machado de Assis', o nome do autor representa suas obras, formando uma metonímia.\""
+  },
+  {
+    "palavra": "ALUSÃO",
+    "significado": "Referência indireta a uma pessoa, acontecimento, obra ou ideia.",
+    "exemplo": "\"O autor fez uma alusão a um famoso episódio histórico.\""
+  },
+  {
+    "palavra": "PARÁFRASE",
+    "significado": "Reformulação de uma ideia ou texto utilizando outras palavras, mantendo seu sentido principal.",
+    "exemplo": "\"O estudante fez uma paráfrase do trecho para explicar o conteúdo com mais facilidade.\""
+  },
+  {
+    "palavra": "SÍNTESE",
+    "significado": "Apresentação resumida dos pontos principais de algo.",
+    "exemplo": "\"Ao final da aula, ele fez uma síntese das principais ideias discutidas.\""
+  },
+  {
+    "palavra": "ANÁLISE",
+    "significado": "Exame detalhado de algo para compreender suas partes, características ou relações.",
+    "exemplo": "\"A análise dos dados revelou um padrão inesperado.\""
+  },
+  {
+    "palavra": "CRIVO",
+    "significado": "Critério usado para selecionar, avaliar ou julgar algo.",
+    "exemplo": "\"Todas as propostas passaram pelo crivo da comissão.\""
+  },
+  {
+    "palavra": "CRITÉRIO",
+    "significado": "Princípio ou regra usado para avaliar ou tomar uma decisão.",
+    "exemplo": "\"A escolha deve seguir critérios claros e objetivos.\""
+  },
+  {
+    "palavra": "PARÂMETRO",
+    "significado": "Referência ou medida utilizada para comparar, avaliar ou orientar algo.",
+    "exemplo": "\"O desempenho anterior serviu como parâmetro para estabelecer a nova meta.\""
+  },
+  {
+    "palavra": "MÉRITO",
+    "significado": "Valor ou qualidade que torna alguém ou algo digno de reconhecimento.",
+    "exemplo": "\"O projeto tem o mérito de apresentar uma solução simples para um problema complexo.\""
+  },
+  {
+    "palavra": "DETRIMENTO",
+    "significado": "Prejuízo ou dano causado a algo ou alguém.",
+    "exemplo": "\"Ele priorizou a velocidade em detrimento da qualidade.\""
+  },
+  {
+    "palavra": "BENESSE",
+    "significado": "Benefício ou vantagem concedida a alguém.",
+    "exemplo": "\"O novo acordo trouxe diversas benesses aos funcionários.\""
+  },
+  {
+    "palavra": "DÁDIVA",
+    "significado": "Presente ou benefício recebido de maneira gratuita ou considerada especial.",
+    "exemplo": "\"Para ela, ter encontrado aquele mentor foi uma verdadeira dádiva.\""
+  },
+  {
+    "palavra": "DILEÇÃO",
+    "significado": "Afeição ou preferência especial por alguém ou alguma coisa.",
+    "exemplo": "\"O escritor demonstrava especial dileção pela poesia clássica.\""
+  },
+  {
+    "palavra": "ALENTO",
+    "significado": "Aquilo que proporciona ânimo, conforto ou esperança em momentos difíceis.",
+    "exemplo": "\"As palavras dos amigos serviram como alento durante aquele período.\""
+  },
+  {
+    "palavra": "DESÍGNIO",
+    "significado": "Intenção, propósito ou plano que alguém pretende realizar.",
+    "exemplo": "\"Ele acreditava que havia um desígnio por trás daquela escolha.\""
+  },
+  {
+    "palavra": "ÍMPETO",
+    "significado": "Impulso intenso e repentino que leva alguém a agir com força ou entusiasmo.",
+    "exemplo": "\"No ímpeto do momento, ele tomou uma decisão sem pensar nas consequências.\""
+  },
+  {
+    "palavra": "ARDOR",
+    "significado": "Grande entusiasmo, paixão ou intensidade na realização de algo.",
+    "exemplo": "\"Ela defendia seus ideais com grande ardor.\""
+  },
+  {
+    "palavra": "ÂNSIA",
+    "significado": "Desejo intenso ou expectativa muito forte por algo.",
+    "exemplo": "\"Ele aguardava com ânsia o resultado da seleção.\""
+  },
+  {
+    "palavra": "ANSEIO",
+    "significado": "Desejo intenso e persistente de alcançar ou vivenciar algo.",
+    "exemplo": "\"Seu maior anseio era conhecer outros países.\""
+  },
+  {
+    "palavra": "AVIDEZ",
+    "significado": "Desejo intenso e muitas vezes insaciável de obter ou consumir algo.",
+    "exemplo": "\"Ele lia com avidez cada novo capítulo do livro.\""
+  },
+  {
+    "palavra": "INSACIÁVEL",
+    "significado": "Que nunca parece estar satisfeito ou saciado.",
+    "exemplo": "\"Sua curiosidade insaciável o levava a estudar assuntos diferentes todos os dias.\""
+  },
+  {
+    "palavra": "SACIAR",
+    "significado": "Satisfazer completamente uma necessidade, desejo ou vontade.",
+    "exemplo": "\"A leitura ajudou a saciar sua curiosidade sobre o assunto.\""
+  },
+  {
+    "palavra": "DESÍDIA",
+    "significado": "Falta de cuidado, atenção ou esforço na realização de uma obrigação.",
+    "exemplo": "\"O projeto foi prejudicado pela desídia de alguns responsáveis.\""
+  },
+  {
+    "palavra": "NEGLIGÊNCIA",
+    "significado": "Falta de cuidado ou atenção necessária ao cumprir uma responsabilidade.",
+    "exemplo": "\"A negligência com os detalhes acabou causando problemas maiores.\""
+  },
+  {
+    "palavra": "DILIGÊNCIA",
+    "significado": "Cuidado, empenho e rapidez empregados na realização de uma tarefa.",
+    "exemplo": "\"Ela resolveu o problema com grande diligência.\""
+  },
+  {
+    "palavra": "ZELO",
+    "significado": "Cuidado e dedicação empregados na realização ou conservação de algo.",
+    "exemplo": "\"Ele trata seus livros com muito zelo.\""
+  },
+  {
+    "palavra": "ESMERO",
+    "significado": "Cuidado e dedicação empregados para fazer algo da melhor maneira possível.",
+    "exemplo": "\"O trabalho foi preparado com muito esmero.\""
+  },
+  {
+    "palavra": "ENGODO",
+    "significado": "Armadilha, estratégia enganosa ou promessa usada para atrair alguém.",
+    "exemplo": "\"A oferta parecia vantajosa, mas acabou sendo apenas um engodo.\""
+  },
+  {
+    "palavra": "ARDIL",
+    "significado": "Estratégia ou artifício utilizado para enganar ou alcançar determinado objetivo.",
+    "exemplo": "\"O personagem utilizou um ardil para escapar da situação.\""
+  },
+  {
+    "palavra": "ASTÚCIA",
+    "significado": "Habilidade de agir de maneira inteligente e estratégica para alcançar um objetivo.",
+    "exemplo": "\"Com astúcia, ele conseguiu encontrar uma solução que ninguém havia considerado.\""
+  },
+  {
+    "palavra": "ARTIFÍCIO",
+    "significado": "Recurso ou estratégia utilizada para alcançar determinado resultado.",
+    "exemplo": "\"O autor utilizou um artifício narrativo para surpreender o leitor.\""
+  },
+  {
+    "palavra": "ESTRATAGEMA",
+    "significado": "Plano ou recurso utilizado para alcançar um objetivo, geralmente envolvendo estratégia ou astúcia.",
+    "exemplo": "\"O comandante elaborou um estratagema para surpreender o adversário.\""
+  },
+  {
+    "palavra": "PERIPÉCIA",
+    "significado": "Acontecimento inesperado que altera o curso de uma história ou situação.",
+    "exemplo": "\"A viagem foi marcada por uma série de peripécias inesperadas.\""
+  },
+  {
+    "palavra": "VICISSITUDE",
+    "significado": "Mudança ou dificuldade inesperada que ocorre ao longo da vida ou de uma situação.",
+    "exemplo": "\"Ele enfrentou diversas vicissitudes antes de alcançar seu objetivo.\""
+  },
+  {
+    "palavra": "ADVERSIDADE",
+    "significado": "Situação difícil ou desfavorável que exige esforço para ser enfrentada.",
+    "exemplo": "\"As adversidades não impediram que ela continuasse estudando.\""
+  },
+  {
+    "palavra": "REVÉS",
+    "significado": "Contratempo, derrota ou acontecimento desfavorável.",
+    "exemplo": "\"Depois de alguns reveses, a equipe conseguiu reorganizar o projeto.\""
+  },
+  {
+    "palavra": "ÓBICE",
+    "significado": "Obstáculo ou dificuldade que impede ou dificulta a realização de algo.",
+    "exemplo": "\"A falta de recursos tornou-se um óbice para a execução do plano.\""
+  },
+  {
+    "palavra": "EMPECILHO",
+    "significado": "Aquilo que dificulta ou impede a realização de alguma coisa.",
+    "exemplo": "\"A falta de comunicação foi o principal empecilho para o acordo.\""
+  },
+  {
+    "palavra": "ENTRAVE",
+    "significado": "Obstáculo ou dificuldade que impede o desenvolvimento de algo.",
+    "exemplo": "\"A burocracia tornou-se um entrave para a realização do projeto.\""
+  },
+  {
+    "palavra": "IMPASSE",
+    "significado": "Situação em que não há uma solução ou avanço evidente devido à oposição entre possibilidades.",
+    "exemplo": "\"As negociações chegaram a um impasse depois de várias horas.\""
+  },
+  {
+    "palavra": "ATENUAR",
+    "significado": "Tornar algo menos intenso, grave ou doloroso.",
+    "exemplo": "\"A medida ajudou a atenuar os efeitos do problema.\""
+  },
+  {
+    "palavra": "EXACERBAR",
+    "significado": "Tornar algo mais intenso, especialmente sentimentos, conflitos ou problemas.",
+    "exemplo": "\"A declaração acabou exacerbando a tensão entre os grupos.\""
+  },
+  {
+    "palavra": "AUSPICIOSO",
+    "significado": "Que indica boas perspectivas ou sinais favoráveis para o futuro.",
+    "exemplo": "\"O início do projeto foi bastante auspicioso.\""
+  },
+  {
+    "palavra": "PROMISSOR",
+    "significado": "Que apresenta boas possibilidades de sucesso ou desenvolvimento.",
+    "exemplo": "\"O jovem pesquisador apresentou resultados promissores.\""
+  },
+  {
+    "palavra": "FRONDEOSO",
+    "significado": "Que possui muitas folhas ou ramos; também pode descrever algo abundante ou desenvolvido.",
+    "exemplo": "\"A árvore frondosa oferecia sombra durante toda a tarde.\""
+  },
+  {
+    "palavra": "FECUNDO",
+    "significado": "Que produz ou tem capacidade de produzir muitos resultados, ideias ou frutos.",
+    "exemplo": "\"O encontro foi fecundo em ideias e propostas novas.\""
+  },
+  {
+    "palavra": "PROFUSO",
+    "significado": "Que existe ou aparece em grande quantidade.",
+    "exemplo": "\"O artista utilizou cores profusas em sua nova obra.\""
+  },
+  {
+    "palavra": "ABUNDANTE",
+    "significado": "Que existe em grande quantidade ou é encontrado com facilidade.",
+    "exemplo": "\"A região possui recursos naturais abundantes.\""
+  },
+  {
+    "palavra": "ESCASSO",
+    "significado": "Que existe em pouca quantidade ou é difícil de encontrar.",
+    "exemplo": "\"Durante a seca, o acesso à água tornou-se escasso.\""
+  },
+  {
+    "palavra": "EXÍGUO",
+    "significado": "Que é muito pequeno ou insuficiente em quantidade ou tamanho.",
+    "exemplo": "\"O orçamento disponível era exíguo para realizar todas as mudanças planejadas.\""
+  },
+  {
+    "palavra": "MÓRBIDO",
+    "significado": "Que apresenta relação com doença; também pode descrever interesse excessivo por assuntos sombrios ou perturbadores.",
+    "exemplo": "\"O documentário despertou uma curiosidade mórbida sobre o caso.\""
+  },
+  {
+    "palavra": "NEFASTO",
+    "significado": "Que provoca consequências muito ruins ou é associado a acontecimentos desastrosos.",
+    "exemplo": "\"A decisão teve efeitos nefastos para toda a comunidade.\""
+  },
+  {
+    "palavra": "FUNESTO",
+    "significado": "Que anuncia ou provoca desgraça, morte ou consequências muito negativas.",
+    "exemplo": "\"O acontecimento marcou o início de um período funesto para a região.\""
+  },
+  {
+    "palavra": "CALAMITOSO",
+    "significado": "Que provoca grande destruição, sofrimento ou desordem.",
+    "exemplo": "\"A região enfrentou uma situação calamitosa após as fortes chuvas.\""
+  },
+  {
+    "palavra": "DELEITAR",
+    "significado": "Causar grande prazer, satisfação ou encantamento.",
+    "exemplo": "\"A música conseguiu deleitar o público durante toda a apresentação.\""
+  },
+  {
+    "palavra": "APRAZER",
+    "significado": "Causar prazer ou satisfação; agradar.",
+    "exemplo": "\"É sempre um prazer aprazer aqueles que apreciam nosso trabalho.\""
+  },
+  {
+    "palavra": "FRUIR",
+    "significado": "Desfrutar ou aproveitar algo de maneira prazerosa.",
+    "exemplo": "\"Ele gosta de fruir momentos tranquilos longe da rotina.\""
+  },
+  {
+    "palavra": "CONTEMPLAR",
+    "significado": "Observar atentamente ou apreciar algo; também pode significar incluir ou considerar.",
+    "exemplo": "\"O projeto contempla diferentes possibilidades de participação.\""
+  },
+  {
+    "palavra": "APREÇO",
+    "significado": "Sentimento de estima, consideração ou valorização por alguém ou algo.",
+    "exemplo": "\"Tenho grande apreço pelas pessoas que me ensinaram ao longo da vida.\""
+  },
+  {
+    "palavra": "DESDÉM",
+    "significado": "Sentimento ou atitude de desprezo e falta de consideração.",
+    "exemplo": "\"Ele tratou a sugestão com desdém, sem sequer analisá-la.\""
+  },
+  {
+    "palavra": "DESVELO",
+    "significado": "Grande cuidado, dedicação e atenção direcionados a alguém ou alguma coisa.",
+    "exemplo": "\"Ela cuidava dos filhos com enorme desvelo.\""
+  },
+  {
+    "palavra": "AFABILIDADE",
+    "significado": "Qualidade de quem trata os outros com gentileza, cordialidade e simpatia.",
+    "exemplo": "\"Sua afabilidade fazia com que todos se sentissem bem-vindos.\""
+  },
+  {
+    "palavra": "CORDIALIDADE",
+    "significado": "Qualidade de quem demonstra simpatia, respeito e gentileza no trato com outras pessoas.",
+    "exemplo": "\"A cordialidade entre os participantes tornou o encontro agradável.\""
+  },
+  {
+    "palavra": "SOLICITUDE",
+    "significado": "Disposição para ajudar ou atender alguém com cuidado e atenção.",
+    "exemplo": "\"Ela tratou os visitantes com grande solicitude.\""
+  },
+  {
+    "palavra": "COMISERAÇÃO",
+    "significado": "Sentimento de pena ou compaixão diante do sofrimento de alguém.",
+    "exemplo": "\"Ele demonstrou comiseração ao conhecer a situação da família.\""
+  },
+  {
+    "palavra": "CONDOLÊNCIA",
+    "significado": "Expressão de solidariedade diante da morte ou do sofrimento de alguém.",
+    "exemplo": "\"A família recebeu mensagens de condolência após a perda.\""
+  },
+  {
+    "palavra": "COMPAIXÃO",
+    "significado": "Sentimento de solidariedade diante do sofrimento de outra pessoa, acompanhado do desejo de ajudar.",
+    "exemplo": "\"A compaixão pode transformar uma simples observação em uma atitude de ajuda.\""
+  },
+  {
+    "palavra": "BENEVOLÊNCIA",
+    "significado": "Disposição para agir com bondade, compreensão e generosidade.",
+    "exemplo": "\"Ele tratava seus adversários com uma surpreendente benevolência.\""
+  },
+  {
+    "palavra": "MAGNANIMIDADE",
+    "significado": "Grandeza de espírito demonstrada por generosidade, nobreza e capacidade de perdoar.",
+    "exemplo": "\"Sua magnanimidade ficou evidente quando decidiu perdoar o antigo rival.\""
+  },
+  {
+    "palavra": "MUNIFICÊNCIA",
+    "significado": "Generosidade extraordinária, especialmente ao oferecer recursos ou benefícios.",
+    "exemplo": "\"A instituição foi criada graças à munificência de diversos apoiadores.\""
+  },
+  {
+    "palavra": "GENEROSIDADE",
+    "significado": "Disposição para oferecer ajuda, recursos ou atenção sem buscar benefício próprio.",
+    "exemplo": "\"A generosidade dos moradores permitiu que a campanha alcançasse muitas famílias.\""
+  },
+  {
+    "palavra": "DESPRETENSIOSO",
+    "significado": "Que não busca parecer mais importante, sofisticado ou grandioso do que realmente é.",
+    "exemplo": "\"O restaurante tem um ambiente simples e uma proposta despre­tensiosa.\""
+  },
+  {
+    "palavra": "SOFISTICADO",
+    "significado": "Que apresenta elevado grau de complexidade, refinamento ou desenvolvimento.",
+    "exemplo": "\"O sistema utiliza uma tecnologia sofisticada para analisar os dados.\""
+  },
+  {
+    "palavra": "REFINADO",
+    "significado": "Que apresenta grande cuidado, qualidade ou delicadeza em seus detalhes.",
+    "exemplo": "\"O escritor possui um estilo refinado e muito particular.\""
+  },
+  {
+    "palavra": "SUBLIME",
+    "significado": "Que alcança um nível extraordinário de beleza, qualidade ou grandeza.",
+    "exemplo": "\"A apresentação proporcionou um momento sublime ao público.\""
+  },
+  {
+    "palavra": "MAGNÍFICO",
+    "significado": "Que possui grande beleza, qualidade ou grandiosidade.",
+    "exemplo": "\"A paisagem ao amanhecer era magnífica.\""
+  },
+  {
+    "palavra": "EXUBERANTE",
+    "significado": "Que apresenta grande riqueza, intensidade ou abundância.",
+    "exemplo": "\"A floresta possui uma vegetação exuberante.\""
+  },
+  {
+    "palavra": "VASTO",
+    "significado": "Que possui grande extensão, quantidade ou amplitude.",
+    "exemplo": "\"O pesquisador possui um vasto conhecimento sobre o assunto.\""
+  },
+  {
+    "palavra": "AMPLO",
+    "significado": "Que possui grande extensão ou abrange muitos aspectos.",
+    "exemplo": "\"O estudo apresenta uma análise ampla do problema.\""
+  },
+  {
+    "palavra": "ABRANGENTE",
+    "significado": "Que inclui muitos aspectos ou elementos de determinado assunto.",
+    "exemplo": "\"O curso oferece uma visão abrangente da área.\""
+  },
+  {
+    "palavra": "OMNICOMPREENSIVO",
+    "significado": "Que procura abranger ou compreender todos os aspectos de determinado assunto.",
+    "exemplo": "\"O relatório apresenta uma análise omnicompreensiva do fenômeno.\""
+  },
+  {
+    "palavra": "SISTÊMICO",
+    "significado": "Que considera um conjunto como um todo, levando em conta a relação entre suas diferentes partes.",
+    "exemplo": "\"O problema exige uma abordagem sistêmica, e não apenas uma solução isolada.\""
+  },
+  {
+    "palavra": "HOLÍSTICO",
+    "significado": "Que considera algo em sua totalidade, observando a relação entre suas diferentes partes.",
+    "exemplo": "\"A abordagem holística procura compreender o problema de maneira integrada.\""
+  },
+  {
+    "palavra": "INTEGRADOR",
+    "significado": "Que une diferentes elementos, pessoas ou ideias em um conjunto.",
+    "exemplo": "\"O projeto possui um caráter integrador e reúne diferentes áreas.\""
+  },
+  {
+    "palavra": "TRANSVERSAL",
+    "significado": "Que atravessa diferentes áreas ou temas, relacionando aspectos distintos.",
+    "exemplo": "\"A comunicação é um tema transversal presente em várias áreas do conhecimento.\""
+  },
+  {
+    "palavra": "INTERDISCIPLINAR",
+    "significado": "Que envolve ou combina conhecimentos de diferentes áreas.",
+    "exemplo": "\"A pesquisa utiliza uma abordagem interdisciplinar para analisar o problema.\""
+  },
+  {
+    "palavra": "CORRELACIONAR",
+    "significado": "Estabelecer ou identificar uma relação entre diferentes elementos.",
+    "exemplo": "\"Os pesquisadores tentaram correlacionar os resultados com os hábitos dos participantes.\""
+  },
+  {
+    "palavra": "ASSÍDUO",
+    "significado": "Que comparece ou participa de algo com frequência e regularidade.",
+    "exemplo": "\"Ele é um frequentador assíduo daquela biblioteca.\""
+  },
+  {
+    "palavra": "PONTUAL",
+    "significado": "Que acontece no momento exato ou no prazo estabelecido; também pode indicar algo específico e preciso.",
+    "exemplo": "\"A crítica foi pontual e ajudou a corrigir o problema.\""
+  },
+  {
+    "palavra": "PERIFÉRICO",
+    "significado": "Que está nas margens ou que possui importância secundária em relação ao centro de algo.",
+    "exemplo": "\"O debate acabou se concentrando em questões periféricas.\""
+  },
+  {
+    "palavra": "CENTRAL",
+    "significado": "Que ocupa posição principal ou possui grande importância em determinada situação.",
+    "exemplo": "\"A confiança é um elemento central para qualquer parceria.\""
+  },
+  {
+    "palavra": "NÚCLEO",
+    "significado": "Parte central ou principal de algo, em torno da qual outras partes se organizam.",
+    "exemplo": "\"A família formava o núcleo da comunidade.\""
+  },
+  {
+    "palavra": "ÂMAGO",
+    "significado": "Parte mais profunda, essencial ou central de algo.",
+    "exemplo": "\"A pergunta toca o âmago do problema.\""
+  },
+  {
+    "palavra": "CERNE",
+    "significado": "Parte central ou essencial de algo.",
+    "exemplo": "\"O cerne da discussão era a falta de comunicação.\""
+  },
+  {
+    "palavra": "FULCRO",
+    "significado": "Ponto central ou principal em torno do qual algo se desenvolve.",
+    "exemplo": "\"A confiança tornou-se o fulcro da relação entre os dois grupos.\""
+  },
+  {
+    "palavra": "ESCÓLIO",
+    "significado": "Comentário ou observação explicativa acrescentada a um texto ou ideia.",
+    "exemplo": "\"O pesquisador adicionou um escólio para esclarecer aquela passagem.\""
+  },
+  {
+    "palavra": "EPÍTETO",
+    "significado": "Palavra ou expressão usada para caracterizar alguém ou alguma coisa.",
+    "exemplo": "\"O personagem recebeu o epíteto de 'o destemido' após suas conquistas.\""
+  },
+  {
+    "palavra": "APÓCRIFO",
+    "significado": "Que não possui autenticidade comprovada ou cuja autoria é duvidosa.",
+    "exemplo": "\"Aquela citação circula na internet, mas sua origem parece ser apócrifa.\""
+  },
+  {
+    "palavra": "AUTÊNTICO",
+    "significado": "Que é verdadeiro, genuíno ou corresponde realmente ao que afirma ser.",
+    "exemplo": "\"O documento foi analisado para verificar se era autêntico.\""
+  },
+  {
+    "palavra": "ESPÚRIO",
+    "significado": "Que é falso, ilegítimo ou não possui a origem que afirma ter.",
+    "exemplo": "\"O pesquisador identificou como espúria a suposta assinatura encontrada no documento.\""
+  },
+  {
+    "palavra": "GENUÍNO",
+    "significado": "Que é verdadeiro, autêntico e não falsificado.",
+    "exemplo": "\"A reação demonstrava um interesse genuíno pelo assunto.\""
+  },
+  {
+    "palavra": "VEROSSÍMIL",
+    "significado": "Que parece verdadeiro ou possível por apresentar características coerentes com a realidade.",
+    "exemplo": "\"O autor criou uma explicação verossímil para o acontecimento fictício.\""
+  },
+  {
+    "palavra": "INVEROSSÍMIL",
+    "significado": "Que parece pouco provável ou difícil de acreditar.",
+    "exemplo": "\"A história apresenta uma reviravolta tão inverossímil que surpreendeu o público.\""
+  },
+  {
+    "palavra": "INTEGRIDADE",
+    "significado": "Qualidade de quem age de acordo com princípios de honestidade e retidão.",
+    "exemplo": "\"Sua integridade fez com que conquistasse a confiança da equipe.\""
+  },
+  {
+    "palavra": "RETIDÃO",
+    "significado": "Qualidade de quem age de maneira correta, justa e honesta.",
+    "exemplo": "\"Sua retidão era reconhecida por todos que trabalhavam com ele.\""
+  },
+  {
+    "palavra": "DEFERÊNCIA",
+    "significado": "Respeito ou consideração demonstrada em relação a alguém.",
+    "exemplo": "\"Ele tratou a professora com grande deferência.\""
+  },
+  {
+    "palavra": "REVERÊNCIA",
+    "significado": "Profundo respeito ou admiração demonstrado por alguém ou algo.",
+    "exemplo": "\"O público recebeu o artista com reverência.\""
+  },
+  {
+    "palavra": "VENERAÇÃO",
+    "significado": "Sentimento de profundo respeito, admiração ou devoção.",
+    "exemplo": "\"O escritor era tratado com grande veneração por seus admiradores.\""
+  },
+  {
+    "palavra": "ADMIRAÇÃO",
+    "significado": "Sentimento de respeito ou estima provocado pelas qualidades de alguém ou algo.",
+    "exemplo": "\"Sua dedicação despertou a admiração de todos.\""
+  },
+  {
+    "palavra": "ESTIMA",
+    "significado": "Sentimento de consideração, apreço ou amizade por alguém.",
+    "exemplo": "\"Ele conquistou a estima de seus colegas ao longo dos anos.\""
+  },
+  {
+    "palavra": "AFEIÇÃO",
+    "significado": "Sentimento de carinho, amizade ou ligação emocional por alguém ou algo.",
+    "exemplo": "\"Ela desenvolveu grande afeição pelo lugar onde cresceu.\""
+  },
+  {
+    "palavra": "SAUDADE",
+    "significado": "Sentimento causado pela ausência ou lembrança de alguém, algo ou algum momento querido.",
+    "exemplo": "\"Sentiu saudade dos amigos que havia deixado para trás.\""
+  },
+  {
+    "palavra": "NOSTALGIA",
+    "significado": "Sentimento de saudade ou melancolia provocado pela lembrança de um período passado.",
+    "exemplo": "\"A música despertou uma forte nostalgia da infância.\""
+  },
+  {
+    "palavra": "DESALENTO",
+    "significado": "Estado de falta de ânimo, esperança ou motivação diante de dificuldades.",
+    "exemplo": "\"Depois de tantas tentativas frustradas, ele sentiu um profundo desalento.\""
+  },
+  {
+    "palavra": "DESÂNIMO",
+    "significado": "Falta de disposição, entusiasmo ou esperança para continuar fazendo algo.",
+    "exemplo": "\"O primeiro fracasso não foi suficiente para causar desânimo.\""
+  },
+  {
+    "palavra": "ELEGIA",
+    "significado": "Composição literária ou musical marcada por reflexão e lamentação, frequentemente relacionada à perda.",
+    "exemplo": "\"O poema assume a forma de uma elegia dedicada à memória do amigo.\""
+  },
+  {
+    "palavra": "ODE",
+    "significado": "Poema ou composição dedicada a exaltar alguém, algo ou determinado tema.",
+    "exemplo": "\"O poeta escreveu uma ode à liberdade.\""
+  },
+  {
+    "palavra": "EPIFANIA",
+    "significado": "Momento repentino de compreensão ou descoberta de algo importante.",
+    "exemplo": "\"Durante a leitura, ele teve uma epifania e finalmente entendeu o conceito.\""
+  },
+  {
+    "palavra": "INSIGHT",
+    "significado": "Percepção ou compreensão repentina e profunda sobre determinado assunto.",
+    "exemplo": "\"A conversa trouxe um insight importante para o desenvolvimento do projeto.\""
+  },
+  {
+    "palavra": "INTUIÇÃO",
+    "significado": "Percepção ou compreensão imediata de algo sem depender de um raciocínio consciente detalhado.",
+    "exemplo": "\"Por intuição, ela percebeu que havia algo errado.\""
+  },
+  {
+    "palavra": "COGNIÇÃO",
+    "significado": "Conjunto de processos mentais envolvidos na aquisição e utilização do conhecimento.",
+    "exemplo": "\"A atividade estimula diferentes processos de cognição.\""
+  },
+  {
+    "palavra": "ABSTRAÇÃO",
+    "significado": "Processo de separar mentalmente características específicas para compreender uma ideia de maneira mais geral.",
+    "exemplo": "\"A matemática exige frequentemente um alto nível de abstração.\""
+  },
+  {
+    "palavra": "RACIONALIZAR",
+    "significado": "Organizar ou explicar algo de maneira lógica e racional; também pode significar buscar justificativas para determinada ação.",
+    "exemplo": "\"Ele tentou racionalizar a decisão antes de explicar seus motivos.\""
+  },
+  {
+    "palavra": "REFLEXÃO",
+    "significado": "Análise cuidadosa e profunda sobre uma ideia, situação ou experiência.",
+    "exemplo": "\"O livro provoca uma reflexão sobre nossas escolhas.\""
+  },
+  {
+    "palavra": "CONTEMPLAÇÃO",
+    "significado": "Observação atenta e profunda, geralmente acompanhada de reflexão.",
+    "exemplo": "\"Passou alguns minutos em contemplação diante da paisagem.\""
+  },
+  {
+    "palavra": "INTROSPECÇÃO",
+    "significado": "Observação e análise dos próprios pensamentos, sentimentos e experiências internas.",
+    "exemplo": "\"O período de introspecção ajudou-o a compreender melhor suas próprias escolhas.\""
+  },
+  {
+    "palavra": "AUTOCONHECIMENTO",
+    "significado": "Conhecimento que uma pessoa desenvolve sobre seus próprios pensamentos, sentimentos, características e comportamentos.",
+    "exemplo": "\"O autoconhecimento pode ajudar na tomada de decisões mais conscientes.\""
+  },
+  {
+    "palavra": "CONSCIÊNCIA",
+    "significado": "Capacidade de perceber, compreender e refletir sobre si mesmo e sobre o que acontece ao redor.",
+    "exemplo": "\"A consciência das próprias limitações pode ajudar no processo de aprendizado.\""
+  },
+  {
+    "palavra": "PERCEPÇÃO",
+    "significado": "Capacidade de notar, compreender ou interpretar algo por meio dos sentidos ou da mente.",
+    "exemplo": "\"Sua percepção dos detalhes ajudou a encontrar o erro.\""
+  },
+  {
+    "palavra": "SENSIBILIDADE",
+    "significado": "Capacidade de perceber e reagir de maneira intensa a sentimentos, situações ou estímulos.",
+    "exemplo": "\"A obra demonstra grande sensibilidade ao tratar do tema.\""
+  },
+  {
+    "palavra": "ACUIDADE",
+    "significado": "Capacidade de perceber ou compreender algo com precisão e atenção.",
+    "exemplo": "\"Sua acuidade visual permitiu identificar o detalhe a distância.\""
+  },
+  {
+    "palavra": "ASTENIA",
+    "significado": "Estado caracterizado por sensação de fraqueza ou falta de energia.",
+    "exemplo": "\"Após o esforço prolongado, ele relatou uma forte sensação de astenia.\""
+  },
+  {
+    "palavra": "VIGÍLIA",
+    "significado": "Estado de atenção e observação cuidadosa; também pode indicar período em que alguém permanece acordado.",
+    "exemplo": "\"A equipe permaneceu em vigília durante toda a noite.\""
+  },
+  {
+    "palavra": "CAUTELA",
+    "significado": "Cuidado adotado para evitar riscos, erros ou consequências indesejadas.",
+    "exemplo": "\"Ele analisou a situação com cautela antes de responder.\""
+  },
+  {
+    "palavra": "CAUTELOSO",
+    "significado": "Que age com cuidado para evitar riscos ou erros.",
+    "exemplo": "\"O pesquisador foi cauteloso ao apresentar suas conclusões.\""
+  },
+  {
+    "palavra": "TEMERÁRIO",
+    "significado": "Que age de maneira excessivamente ousada, ignorando possíveis riscos.",
+    "exemplo": "\"Foi uma decisão temerária diante dos perigos envolvidos.\""
+  },
+  {
+    "palavra": "AUDACIOSO",
+    "significado": "Que demonstra coragem para realizar algo arriscado ou inovador.",
+    "exemplo": "\"O projeto apresenta uma proposta audaciosa para resolver o problema.\""
+  },
+  {
+    "palavra": "ARROJO",
+    "significado": "Coragem ou ousadia para enfrentar situações difíceis ou realizar algo inovador.",
+    "exemplo": "\"O empreendimento exigiu muito arrojo por parte dos fundadores.\""
+  },
+  {
+    "palavra": "BRAVURA",
+    "significado": "Coragem demonstrada diante de situações perigosas ou difíceis.",
+    "exemplo": "\"Ele demonstrou bravura ao enfrentar aquela situação inesperada.\""
+  },
+  {
+    "palavra": "DESTEMIDO",
+    "significado": "Que não demonstra medo diante de situações perigosas ou difíceis.",
+    "exemplo": "\"O explorador era conhecido por seu espírito destemido.\""
+  },
+  {
+    "palavra": "INTRÉPIDO",
+    "significado": "Que demonstra coragem e disposição para enfrentar perigos ou dificuldades.",
+    "exemplo": "\"O intrépido viajante decidiu seguir por uma rota desconhecida.\""
+  },
+  {
+    "palavra": "CAUTELAR",
+    "significado": "Que busca prevenir riscos ou preservar algo antes que ocorra um possível problema.",
+    "exemplo": "\"A equipe adotou medidas cautelares para evitar novos danos.\""
+  },
+  {
+    "palavra": "PREVENÇÃO",
+    "significado": "Conjunto de medidas tomadas para evitar que algo indesejado aconteça.",
+    "exemplo": "\"A prevenção é fundamental para reduzir os riscos.\""
+  },
+  {
+    "palavra": "PROVIDÊNCIA",
+    "significado": "Medida ou ação tomada para resolver ou prevenir determinado problema.",
+    "exemplo": "\"A direção tomou as providências necessárias após receber a denúncia.\""
+  },
+  {
+    "palavra": "CONTINGÊNCIA",
+    "significado": "Situação possível, mas incerta, que pode exigir uma preparação ou resposta específica.",
+    "exemplo": "\"O plano inclui medidas para situações de contingência.\""
+  },
+  {
+    "palavra": "IMPREVISIBILIDADE",
+    "significado": "Característica daquilo que não pode ser previsto ou antecipado com segurança.",
+    "exemplo": "\"A imprevisibilidade do clima dificultou o planejamento da viagem.\""
+  },
+  {
+    "palavra": "CASUÍSTICA",
+    "significado": "Conjunto de casos ou situações concretas analisadas em determinada área.",
+    "exemplo": "\"O estudo apresenta uma casuística ampla de casos semelhantes.\""
+  },
+  {
+    "palavra": "PARCIMÔNIA",
+    "significado": "Moderação e economia no uso de recursos ou na realização de algo.",
+    "exemplo": "\"Os recursos precisam ser utilizados com parcimônia.\""
+  },
+  {
+    "palavra": "MODERAÇÃO",
+    "significado": "Comportamento de quem evita excessos e procura manter equilíbrio.",
+    "exemplo": "\"Ele defendeu a necessidade de moderação durante o debate.\""
+  },
+  {
+    "palavra": "EQUANIMIDADE",
+    "significado": "Estado de equilíbrio e serenidade diante de situações favoráveis ou desfavoráveis.",
+    "exemplo": "\"Ela recebeu tanto os elogios quanto as críticas com equanimidade.\""
+  },
+  {
+    "palavra": "SERENIDADE",
+    "significado": "Estado de tranquilidade, calma e equilíbrio emocional.",
+    "exemplo": "\"Mesmo sob pressão, ele manteve a serenidade.\""
+  },
+  {
+    "palavra": "COMEDIMENTO",
+    "significado": "Moderação e controle no comportamento, nas palavras ou nas ações.",
+    "exemplo": "\"O assunto exigia comedimento para evitar conflitos desnecessários.\""
+  },
+  {
+    "palavra": "AUTOCONTROLE",
+    "significado": "Capacidade de controlar as próprias emoções, impulsos e comportamentos.",
+    "exemplo": "\"Ele demonstrou grande autocontrole durante a discussão.\""
+  },
+  {
+    "palavra": "IMPULSIVIDADE",
+    "significado": "Tendência a agir rapidamente sem avaliar suficientemente as consequências.",
+    "exemplo": "\"A impulsividade pode levar a decisões das quais nos arrependemos depois.\""
+  },
+  {
+    "palavra": "PRUDENTE",
+    "significado": "Que age com cuidado e bom senso, considerando possíveis consequências.",
+    "exemplo": "\"Foi prudente esperar por mais informações antes de decidir.\""
+  },
+  {
+    "palavra": "SENSATO",
+    "significado": "Que demonstra bom senso, equilíbrio e capacidade de tomar decisões razoáveis.",
+    "exemplo": "\"A escolha mais sensata era analisar os dados antes de agir.\""
+  },
+  {
+    "palavra": "INSENSATO",
+    "significado": "Que age sem bom senso ou sem considerar adequadamente as consequências.",
+    "exemplo": "\"Seria insensato ignorar os riscos apresentados.\""
+  },
+  {
+    "palavra": "INCAUTO",
+    "significado": "Que age sem cautela ou não percebe facilmente os riscos de uma situação.",
+    "exemplo": "\"O viajante incauto acabou seguindo por um caminho perigoso.\""
+  },
+  {
+    "palavra": "NEGLIGENCIAR",
+    "significado": "Deixar de dar a atenção ou o cuidado necessários a algo.",
+    "exemplo": "\"Não devemos negligenciar pequenos problemas quando eles ainda podem ser resolvidos facilmente.\""
+  },
+  {
+    "palavra": "COTEJAR",
+    "significado": "Comparar duas ou mais coisas para identificar diferenças e semelhanças.",
+    "exemplo": "\"O pesquisador decidiu cotejar os dois documentos antes de chegar a uma conclusão.\""
+  },
+  {
+    "palavra": "CORRELATO",
+    "significado": "Que possui relação ou conexão com outro assunto, fato ou elemento.",
+    "exemplo": "\"O curso aborda programação e outros temas correlatos.\""
+  },
+  {
+    "palavra": "INFERÊNCIA",
+    "significado": "Conclusão obtida a partir de informações, evidências ou raciocínio.",
+    "exemplo": "\"A conclusão foi uma inferência baseada nos dados disponíveis.\""
+  },
+  {
+    "palavra": "ILACÃO",
+    "significado": "Conclusão ou consequência obtida a partir de determinado raciocínio ou conjunto de informações.",
+    "exemplo": "\"A ilação apresentada pelo autor depende de várias informações anteriores.\""
+  },
+  {
+    "palavra": "AXIOMÁTICO",
+    "significado": "Que é considerado evidente ou verdadeiro sem necessidade de demonstração dentro de determinado contexto.",
+    "exemplo": "\"Naquele sistema, o princípio é tratado como uma verdade axiomática.\""
+  },
+  {
+    "palavra": "INCONTESTÁVEL",
+    "significado": "Que não pode ser facilmente questionado ou negado.",
+    "exemplo": "\"As evidências apresentadas eram praticamente incontestáveis.\""
+  },
+  {
+    "palavra": "IRREFUTÁVEL",
+    "significado": "Que não pode ser refutado ou contestado com argumentos convincentes.",
+    "exemplo": "\"O investigador apresentou uma prova irrefutável.\""
+  },
+  {
+    "palavra": "INQUESTIONÁVEL",
+    "significado": "Que não deixa margem razoável para dúvida ou contestação.",
+    "exemplo": "\"Sua dedicação ao projeto é inquestionável.\""
+  },
+  {
+    "palavra": "CONTROVERSO",
+    "significado": "Que provoca opiniões diferentes, debates ou desacordos.",
+    "exemplo": "\"O tema continua controverso entre os especialistas.\""
+  },
+  {
+    "palavra": "POLÊMICO",
+    "significado": "Que provoca discussão, divergência ou opiniões intensamente diferentes.",
+    "exemplo": "\"O livro aborda um assunto polêmico e divide opiniões.\""
+  },
+  {
+    "palavra": "DISCUTÍVEL",
+    "significado": "Que pode ser questionado, debatido ou interpretado de diferentes maneiras.",
+    "exemplo": "\"A conclusão apresentada é discutível e exige mais evidências.\""
+  },
+  {
+    "palavra": "QUESTIONÁVEL",
+    "significado": "Que pode ser colocado em dúvida ou considerado pouco confiável.",
+    "exemplo": "\"A origem daquela informação é questionável.\""
+  },
+  {
+    "palavra": "DUBITÁVEL",
+    "significado": "Que pode ser colocado em dúvida ou que não apresenta certeza suficiente.",
+    "exemplo": "\"A autenticidade do documento continua dubitável.\""
+  },
+  {
+    "palavra": "INCIPIENTE",
+    "significado": "Que está no início de seu desenvolvimento ou ainda não está plenamente desenvolvido.",
+    "exemplo": "\"O projeto ainda está em uma fase incipiente.\""
+  },
+  {
+    "palavra": "EMBRIONÁRIO",
+    "significado": "Que está em estágio inicial de desenvolvimento.",
+    "exemplo": "\"A ideia ainda está em estado embrionário e precisa de muitos ajustes.\""
+  },
+  {
+    "palavra": "CONSOLIDADO",
+    "significado": "Que já está estabelecido, fortalecido ou reconhecido após um processo de desenvolvimento.",
+    "exemplo": "\"A empresa possui uma presença consolidada no mercado.\""
+  },
+  {
+    "palavra": "ASCENDENTE",
+    "significado": "Que está crescendo, aumentando ou ganhando importância.",
+    "exemplo": "\"O artista pertence a uma geração ascendente de novos talentos.\""
+  },
+  {
+    "palavra": "DECLÍNIO",
+    "significado": "Processo de perda gradual de força, importância, qualidade ou quantidade.",
+    "exemplo": "\"A cidade enfrentou um período de declínio econômico.\""
+  },
+  {
+    "palavra": "PROGRESSÃO",
+    "significado": "Desenvolvimento ou avanço gradual de algo ao longo do tempo.",
+    "exemplo": "\"A progressão dos resultados mostrou que o método estava funcionando.\""
+  },
+  {
+    "palavra": "RETROCESSO",
+    "significado": "Movimento ou processo de retorno a uma condição anterior, geralmente considerada menos avançada.",
+    "exemplo": "\"A falta de investimentos representou um retrocesso para o projeto.\""
+  },
+  {
+    "palavra": "PROLIFERAÇÃO",
+    "significado": "Aumento rápido e significativo na quantidade de algo.",
+    "exemplo": "\"A proliferação de informações falsas dificulta a busca por fontes confiáveis.\""
+  },
+  {
+    "palavra": "DISSEMINAÇÃO",
+    "significado": "Ato ou processo de espalhar algo por diferentes lugares ou entre várias pessoas.",
+    "exemplo": "\"A internet acelerou a disseminação de informações.\""
+  },
+  {
+    "palavra": "PROPAGAÇÃO",
+    "significado": "Processo de espalhamento ou transmissão de algo para diferentes lugares ou pessoas.",
+    "exemplo": "\"A propagação da notícia foi extremamente rápida.\""
+  },
+  {
+    "palavra": "PULVERIZAÇÃO",
+    "significado": "Distribuição de algo em muitas partes ou entre diversos pontos; também pode indicar fragmentação.",
+    "exemplo": "\"A pulverização dos investimentos dificultou a concentração de recursos.\""
+  },
+  {
+    "palavra": "FRAGMENTAÇÃO",
+    "significado": "Processo de dividir ou separar algo em partes menores.",
+    "exemplo": "\"A fragmentação das informações dificultou a compreensão do problema.\""
+  },
+  {
+    "palavra": "AGLUTINAÇÃO",
+    "significado": "União ou agrupamento de diferentes elementos em um conjunto.",
+    "exemplo": "\"A aglutinação de diferentes ideias deu origem ao novo projeto.\""
+  },
+  {
+    "palavra": "CONCATENAÇÃO",
+    "significado": "Ligação ou encadeamento de elementos de maneira ordenada.",
+    "exemplo": "\"A concatenação das ideias tornou o argumento mais convincente.\""
+  },
+  {
+    "palavra": "ENCADear",
+    "significado": "Ligar ou organizar acontecimentos, ideias ou elementos em sequência.",
+    "exemplo": "\"O autor soube encadear os acontecimentos de maneira envolvente.\""
+  },
+  {
+    "palavra": "SEQUENCIAL",
+    "significado": "Que segue uma ordem ou sequência determinada.",
+    "exemplo": "\"O curso apresenta um método sequencial de aprendizado.\""
+  },
+  {
+    "palavra": "SIMULTÂNEO",
+    "significado": "Que acontece ao mesmo tempo que outra coisa.",
+    "exemplo": "\"Os dois eventos ocorreram de maneira simultânea.\""
+  },
+  {
+    "palavra": "SUBSEQUENTE",
+    "significado": "Que acontece depois de algo anterior.",
+    "exemplo": "\"As etapas subsequentes dependerão dos resultados desta fase.\""
+  },
+  {
+    "palavra": "ANTERIORIDADE",
+    "significado": "Condição daquilo que aconteceu ou existiu antes de outra coisa.",
+    "exemplo": "\"A anterioridade daquele documento foi confirmada pelos registros.\""
+  },
+  {
+    "palavra": "POSTERIORIDADE",
+    "significado": "Condição daquilo que acontece ou existe depois de outra coisa.",
+    "exemplo": "\"A posterioridade dos acontecimentos foi importante para compreender a sequência dos fatos.\""
+  },
+  {
+    "palavra": "PRECEDER",
+    "significado": "Acontecer ou existir antes de outra coisa.",
+    "exemplo": "\"Uma breve explicação deve preceder a apresentação dos resultados.\""
+  },
+  {
+    "palavra": "SUCEDER",
+    "significado": "Acontecer depois de algo ou alguém; também pode significar substituir alguém em determinada posição.",
+    "exemplo": "\"Diversas mudanças sucederam a decisão inicial.\""
+  },
+  {
+    "palavra": "ADVENTO",
+    "significado": "Chegada ou aparecimento de algo novo e significativo.",
+    "exemplo": "\"O advento da internet transformou profundamente a comunicação.\""
+  },
+  {
+    "palavra": "GÊNESE",
+    "significado": "Origem ou processo de formação de algo.",
+    "exemplo": "\"O estudo busca compreender a gênese daquele movimento cultural.\""
+  },
+  {
+    "palavra": "PRIMÓRDIO",
+    "significado": "Período inicial ou começo de algo.",
+    "exemplo": "\"Nos primórdios da fotografia, os processos eram muito mais demorados.\""
+  },
+  {
+    "palavra": "EPÍLOGO",
+    "significado": "Parte final de uma obra ou acontecimento que apresenta o encerramento ou as consequências da história.",
+    "exemplo": "\"O epílogo revelou o destino dos personagens anos depois.\""
+  },
+  {
+    "palavra": "PRÓLOGO",
+    "significado": "Parte inicial de uma obra que introduz o assunto ou prepara o leitor para a história.",
+    "exemplo": "\"O prólogo apresenta os acontecimentos que antecederam a trama principal.\""
+  },
+  {
+    "palavra": "CLÍMAX",
+    "significado": "Ponto de maior intensidade ou tensão de uma situação, narrativa ou acontecimento.",
+    "exemplo": "\"A perseguição chega ao clímax nos minutos finais do filme.\""
+  },
+  {
+    "palavra": "DESFECHO",
+    "significado": "Parte final de uma história ou situação em que os acontecimentos são concluídos.",
+    "exemplo": "\"O desfecho surpreendeu o público que esperava outro final.\""
+  },
+  {
+    "palavra": "RECRUDESCIMENTO",
+    "significado": "Aumento ou agravamento da intensidade de algo que já existia.",
+    "exemplo": "\"O período foi marcado pelo recrudescimento das tensões entre os grupos.\""
+  },
+  {
+    "palavra": "APAZIGUAR",
+    "significado": "Tornar uma situação menos tensa ou fazer cessar um conflito.",
+    "exemplo": "\"O mediador tentou apaziguar os ânimos durante a discussão.\""
+  },
+  {
+    "palavra": "DIRIMIR",
+    "significado": "Resolver uma dúvida, conflito ou questão.",
+    "exemplo": "\"A reunião foi convocada para dirimir as diferenças entre as partes.\""
+  },
+  {
+    "palavra": "PACIFICAR",
+    "significado": "Restabelecer a paz ou reduzir conflitos entre pessoas ou grupos.",
+    "exemplo": "\"O acordo ajudou a pacificar a região após meses de tensão.\""
+  },
+  {
+    "palavra": "CONCILIADOR",
+    "significado": "Que busca aproximar pessoas ou posições diferentes para alcançar um acordo.",
+    "exemplo": "\"Sua postura conciliadora ajudou a resolver o conflito.\""
+  },
+  {
+    "palavra": "MEDIADOR",
+    "significado": "Pessoa que intervém entre partes para facilitar o diálogo e buscar um acordo.",
+    "exemplo": "\"O mediador ouviu os dois lados antes de apresentar uma proposta.\""
+  },
+  {
+    "palavra": "ARBITRAGEM",
+    "significado": "Processo de resolução de uma disputa por meio da decisão de uma pessoa ou grupo escolhido para isso.",
+    "exemplo": "\"As partes optaram pela arbitragem para resolver o conflito.\""
+  },
+  {
+    "palavra": "LITÍGIO",
+    "significado": "Disputa ou conflito que pode ser levado à Justiça.",
+    "exemplo": "\"As empresas permanecem envolvidas em um longo litígio.\""
+  },
+  {
+    "palavra": "CONTENDA",
+    "significado": "Conflito, disputa ou discussão entre pessoas ou grupos.",
+    "exemplo": "\"A contenda entre os dois grupos durou vários meses.\""
+  },
+  {
+    "palavra": "QUERELA",
+    "significado": "Discussão, reclamação ou disputa entre pessoas.",
+    "exemplo": "\"A antiga querela entre as famílias voltou a ser discutida.\""
+  },
+  {
+    "palavra": "ESCARAMUÇA",
+    "significado": "Confronto ou conflito breve e de pequena escala.",
+    "exemplo": "\"Houve uma pequena escaramuça entre os grupos antes do acordo.\""
+  },
+  {
+    "palavra": "HOSTILIDADE",
+    "significado": "Atitude ou sentimento de oposição, agressividade ou antipatia.",
+    "exemplo": "\"A hostilidade entre os grupos dificultava qualquer tentativa de diálogo.\""
+  },
+  {
+    "palavra": "ANTAGONISMO",
+    "significado": "Oposição ou conflito intenso entre pessoas, ideias ou grupos.",
+    "exemplo": "\"O antagonismo entre os personagens movimenta grande parte da história.\""
+  },
+  {
+    "palavra": "RIVALIDADE",
+    "significado": "Competição ou oposição entre pessoas ou grupos que disputam algo.",
+    "exemplo": "\"A rivalidade entre as equipes tornou o campeonato ainda mais disputado.\""
+  },
+  {
+    "palavra": "EMULAÇÃO",
+    "significado": "Esforço para igualar ou superar alguém, geralmente por meio de competição ou inspiração.",
+    "exemplo": "\"A competição saudável estimulou a emulação entre os estudantes.\""
+  },
+  {
+    "palavra": "PROEZA",
+    "significado": "Ação difícil ou extraordinária realizada com habilidade ou coragem.",
+    "exemplo": "\"Completar a travessia foi uma verdadeira proeza.\""
+  },
+  {
+    "palavra": "FAÇANHA",
+    "significado": "Feito extraordinário ou difícil de realizar.",
+    "exemplo": "\"A equipe realizou uma façanha ao concluir o projeto em tempo recorde.\""
+  },
+  {
+    "palavra": "EPÍTOPE",
+    "significado": "Forma rara ou incorreta em alguns contextos; não deve ser confundida com 'epíteto', que significa designação ou característica atribuída a alguém.",
+    "exemplo": "\"O termo correto para uma designação característica é epíteto.\""
+  }
+]
