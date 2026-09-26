@@ -5274,6 +5274,19 @@ function listenBattleEngine(){
   }, 500);
 }
 
+
+
+  // se a aba voltar do segundo plano, força releitura da fase atual
+document.addEventListener('visibilitychange', ()=>{
+  if(document.visibilityState === 'visible' && currentBattleId){
+    get(ref(db, `battles/${currentBattleId}/engine`)).then(snap=>{
+      const eng = snap.val();
+      if(eng){ lastEngine = eng; renderBattleEngine(eng); }
+    });
+  }
+});
+  
+
 function renderBattleEngine(eng){
   const label = document.getElementById('voice-turn-label');
   const status = document.getElementById('voice-battle-status');
@@ -5285,7 +5298,7 @@ function renderBattleEngine(eng){
   if(vw0 && eng.phase!== 'voting') vw0.style.display = 'none';
 
   if(eng.phase === 'warmup'){
-    if(label){ label.innerText = '🎤 SE PREPAREM... A BATALHA VAI COMEÇAR'; label.style.color = '#FBBF24'; }
+    if(label){ label.innerText = ' SE PREPAREM... A BATALHA VAI COMEÇAR'; label.style.color = '#FBBF24'; }
     if(status){ status.innerText = 'PREPARAÇÃO'; status.style.color = 'var(--warning)'; }
     return;
   }
@@ -5294,7 +5307,7 @@ function renderBattleEngine(eng){
   if(eng.phase === 'battle'){
     const minhaVez = eng.turn === mySide;
     if(label){
-      label.innerText = minhaVez? '🔴 SUA VEZ DE RIMAR' : 'VEZ DE ' + (names[eng.turn] || '').toUpperCase();
+      label.innerText = minhaVez? ' SUA VEZ DE RIMAR' : 'VEZ DE ' + (names[eng.turn] || '').toUpperCase();
       label.style.color = minhaVez? '#EF4444' : 'var(--text-secondary)';
     }
     if(status){ status.innerText = 'BATALHA ROLANDO'; status.style.color = 'var(--success)'; }
@@ -5469,6 +5482,8 @@ function handleOpponentLeft(){
   const remoteName = document.getElementById('voice-remote-name');
   if(status){ status.innerText = 'ADVERSÁRIO SAIU'; status.style.color = 'var(--danger)'; }
   if(label){ label.innerText = '🚫 BATALHA CANCELADA — sem ponto pra ninguém'; label.style.color = 'var(--text-secondary)'; }
+    const vw = document.getElementById('mc-vote-wait');
+  if(vw) vw.style.display = 'none';
   if(remoteAvatar) remoteAvatar.parentElement.style.opacity = '0.3';
   if(remoteName) remoteName.innerText = 'Saiu da batalha';
   // some com a sala pra não virar lixo na plateia (SEM dar ponto — anti-farm)
