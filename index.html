@@ -2001,6 +2001,10 @@
       30
     </div>
 
+        <div id="voice-turn-label" style="margin-top:8px; font-size:0.85rem; font-weight:800; color:var(--text-secondary); letter-spacing:0.5px;">
+      AGUARDANDO INÍCIO...
+        </div>
+
   </div>
 
   <div class="battle-vs-container">
@@ -2181,6 +2185,20 @@
     <style>
     @keyframes pulsePlateia { 0% { transform:scale(1); } 50% { transform:scale(1.1); } 100% { transform:scale(1); } }
     </style>
+
+
+
+      <!-- OVERLAY: VOTAÇÃO DA PLATEIA -->
+    <div id="vote-overlay" style="display:none; position:fixed; inset:0; background:rgba(9,10,15,0.96); z-index:999999; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center;">
+      <span class="tag" style="background:rgba(251,191,36,0.15); color:#FBBF24; margin-bottom:12px;">VOTAÇÃO ENCERRANDO</span>
+      <h2 style="color:white; font-size:1.4rem; font-weight:800; margin-bottom:4px;">Quem venceu a batalha?</h2>
+      <div id="vote-countdown" style="font-family:var(--font-mono); font-size:2.5rem; font-weight:800; color:#FBBF24; margin:8px 0 20px 0;">15</div>
+      <button id="vote-btn-mc1" onclick="castVote('mc1')" style="width:100%; max-width:320px; background:var(--bg-card); border:1px solid var(--border-active); color:white; padding:14px; border-radius:12px; font-weight:800; margin-bottom:10px; font-size:1rem;">MC 1</button>
+      <button id="vote-btn-mc2" onclick="castVote('mc2')" style="width:100%; max-width:320px; background:var(--bg-card); border:1px solid var(--border-active); color:white; padding:14px; border-radius:12px; font-weight:800; margin-bottom:10px; font-size:1rem;">MC 2</button>
+      <button onclick="castVote('tie')" style="width:100%; max-width:320px; background:rgba(251,191,36,0.1); border:1px solid rgba(251,191,36,0.4); color:#FBBF24; padding:14px; border-radius:12px; font-weight:800; font-size:1rem;">🤝 Empatou</button>
+      <p style="color:#6b7280; font-size:0.75rem; margin-top:16px;">Você só pode votar uma vez</p>
+    </div>
+  
 
     <!-- BOTTOM NAVIGATION BAR -->
     <nav class="app-nav">
@@ -3816,6 +3834,22 @@ let currentOpponent = null;
 let voiceCandidateListeners = [];
 let creatingBattle = false;
 
+
+
+  let battleEngineInterval = null; // loop do motor (só o criador roda)
+let battleCountdownInterval = null; // atualiza o cronômetro na tela
+let battleStateListener = null; // ouve mudanças da batalha
+let spectatorEngineListener = null;
+let lastEngine = null; // último estado recebido
+let myVoteCast = false; // plateia: já votou?
+let oppSeenOnline = false; // oponente já apareceu online?
+  
+
+      // --- CONFIG DA BATALHA (mude os segundos aqui pra testar) ---
+const ROUND_SECONDS = 30; // duração de cada vez de rima
+const INTERVAL_SECONDS = 5; // intervalo entre as viradas
+const VOTE_SECONDS = 15; // duração da votação
+
 const rtcConfig = {
   iceServers: [
     { urls: "stun:stun.l.google.com:19302" },
@@ -4538,6 +4572,9 @@ window.joinAsSpectator = async function(battleId) {
   document.getElementById('spectator-overlay').classList.add('active');
   lucide.createIcons();
 
+    myVoteCast = false;
+  listenSpectatorEngine(battleId);
+
   connectSpectatorToMC(battleId, b.player1.uid);
   connectSpectatorToMC(battleId, b.player2.uid);
 };
@@ -4573,6 +4610,8 @@ async function connectSpectatorToMC(battleId, mcUid) {
 }
 
 window.closeSpectator = async function() {
+    if(spectatorEngineListener){ spectatorEngineListener(); spectatorEngineListener = null; }
+  document.getElementById('vote-overlay').style.display = 'none';
   if(currentSpectatingId) {
     const myUid = window.rhymexUser? window.rhymexUser.uid : anonId;
     await remove(ref(db, `battles/${currentSpectatingId}/spectators/${myUid}`));
@@ -4797,6 +4836,20 @@ async function(
   }
     // Ativa escuta da plateia
   listenForSpectators();
+
+  // Define meu lado, liga o motor e a presença
+  window.myBattleSide = isCaller? 'player1' : 'player2';
+  try {
+    const bsnap = await get(ref(db, `battles/${battleId}`));
+    const bdata = bsnap.val() || {};
+    window.battleNames = {
+      player1: (bdata.player1 && bdata.player1.name) || 'MC 1',
+      player2: (bdata.player2 && bdata.player2.name) || 'MC 2'
+    };
+  } catch(e){ window.battleNames = { player1:'MC 1', player2:'MC 2' }; }
+  listenBattleEngine();
+  registerBattlePresence();
+  if (isCaller) startBattleEngine();
 
 };
 
@@ -5078,6 +5131,237 @@ function listenForSpectators() {
 
 
 
+
+  // ==========================================
+// MOTOR DA BATALHA — rounds, timer e votação
+// (só o player1/criador executa; os outros obedecem)
+// ==========================================
+
+function startBattleEngine(){
+  const battleId = currentBattleId;
+  if(!battleId) return;
+  update(ref(db, `battles/${battleId}`), { status: 'live' });
+  set(ref(db, `battles/${battleId}/engine`), {
+    phase: 'battle',
+    round: 1,
+    turn: 'player1',
+    turnEndsAt: Date.now() + ROUND_SECONDS*1000
+  });
+  battleEngineInterval = setInterval(checkBattleEngine, 500);
+}
+
+async function checkBattleEngine(){
+  const battleId = currentBattleId;
+  if(!battleId){ clearInterval(battleEngineInterval); return; }
+  const snap = await get(ref(db, `battles/${battleId}/engine`));
+  const eng = snap.val();
+  if(!eng || eng.phase === 'finished'){ clearInterval(battleEngineInterval); return; }
+  if(Date.now() < eng.turnEndsAt) return;
+
+  const now = Date.now();
+  const base = `battles/${battleId}/engine`;
+
+  if(eng.phase === 'battle'){
+    await set(ref(db, base), {
+      phase: 'interval', round: eng.round, turn: eng.turn,
+      turnEndsAt: now + INTERVAL_SECONDS*1000,
+      nextTurn: eng.turn === 'player1'? 'player2' : 'player1',
+      nextRound: eng.turn === 'player2'? eng.round + 1 : eng.round
+    });
+  } else if(eng.phase === 'interval'){
+    if(eng.nextRound > 2){
+      await set(ref(db, base), {
+        phase: 'voting', round: 2,
+        turnEndsAt: now + VOTE_SECONDS*1000,
+        votes: { mc1: 0, mc2: 0, tie: 0 }
+      });
+    } else {
+      await set(ref(db, base), {
+        phase: 'battle', round: eng.nextRound, turn: eng.nextTurn,
+        turnEndsAt: now + ROUND_SECONDS*1000
+      });
+    }
+  } else if(eng.phase === 'voting'){
+    await finishBattle(eng.votes || { mc1:0, mc2:0, tie:0 });
+  }
+}
+
+async function finishBattle(votes){
+  clearInterval(battleEngineInterval);
+  const battleId = currentBattleId;
+  const v = { mc1: votes.mc1||0, mc2: votes.mc2||0, tie: votes.tie||0 };
+  const max = Math.max(v.mc1, v.mc2, v.tie);
+  const tops = [];
+  if(v.mc1 === max) tops.push('mc1');
+  if(v.mc2 === max) tops.push('mc2');
+  if(v.tie === max) tops.push('tie');
+  // qualquer empate no topo = empate, ponto pros dois
+  const winner = tops.length === 1? tops[0] : 'tie';
+
+  const bsnap = await get(ref(db, `battles/${battleId}`));
+  const b = bsnap.val() || {};
+  let winnerUids = [];
+  if(winner === 'mc1') winnerUids = [b.player1 && b.player1.uid];
+  else if(winner === 'mc2') winnerUids = [b.player2 && b.player2.uid];
+  else winnerUids = [b.player1 && b.player1.uid, b.player2 && b.player2.uid];
+
+  await update(ref(db, `battles/${battleId}/engine`), {
+    phase: 'finished', winner: winner,
+    winnerUids: winnerUids.filter(Boolean),
+    turnEndsAt: Date.now() + 10000
+  });
+}
+
+// ---------- QUEM OBEDECE (os 2 MCs) ----------
+
+function listenBattleEngine(){
+  if(battleStateListener) battleStateListener();
+  battleStateListener = onValue(ref(db, `battles/${currentBattleId}/engine`), (snap)=>{
+    const eng = snap.val();
+    if(!eng) return;
+    lastEngine = eng;
+    renderBattleEngine(eng);
+  });
+  clearInterval(battleCountdownInterval);
+  battleCountdownInterval = setInterval(()=>{
+    if(!lastEngine) return;
+    const rest = Math.max(0, Math.ceil((lastEngine.turnEndsAt - Date.now())/1000));
+    const tEl = document.getElementById('voice-battle-timer');
+    if(tEl) tEl.innerText = rest;
+  }, 500);
+}
+
+function renderBattleEngine(eng){
+  const label = document.getElementById('voice-turn-label');
+  const status = document.getElementById('voice-battle-status');
+  const roundEl = document.getElementById('voice-battle-round');
+  if(roundEl) roundEl.innerText = eng.round || 1;
+  const mySide = window.myBattleSide;
+  const names = window.battleNames || { player1:'MC 1', player2:'MC 2' };
+
+  if(eng.phase === 'battle'){
+    const minhaVez = eng.turn === mySide;
+    if(label){
+      label.innerText = minhaVez? '🔴 SUA VEZ DE RIMAR' : 'VEZ DE ' + (names[eng.turn] || '').toUpperCase();
+      label.style.color = minhaVez? '#EF4444' : 'var(--text-secondary)';
+    }
+    if(status){ status.innerText = 'BATALHA ROLANDO'; status.style.color = 'var(--success)'; }
+  } else if(eng.phase === 'interval'){
+    const proximo = eng.nextTurn === mySide? 'SUA VEZ' : 'VEZ DE ' + (names[eng.nextTurn] || '').toUpperCase();
+    if(label){ label.innerText = '⏳ PREPARE-SE... ' + proximo; label.style.color = '#FBBF24'; }
+  } else if(eng.phase === 'voting'){
+    if(label){ label.innerText = '🗳️ VOTAÇÃO DA PLATEIA'; label.style.color = '#FBBF24'; }
+    if(status){ status.innerText = 'AGUARDANDO VOTAÇÃO DA PLATEIA...'; status.style.color = 'var(--warning)'; }
+  } else if(eng.phase === 'finished'){
+    clearInterval(battleCountdownInterval);
+    let texto = '';
+    if(eng.winner === 'tie') texto = '🤝 EMPATE! Ponto pros dois MCs';
+    else {
+      const nomeV = eng.winner === 'mc1'? names.player1 : names.player2;
+      texto = '🏆 VENCEDOR: ' + (nomeV || '').toUpperCase();
+    }
+    if(label){ label.innerText = texto; label.style.color = '#10B981'; }
+    if(status){ status.innerText = 'BATALHA ENCERRADA'; status.style.color = 'var(--text-secondary)'; }
+    // premia: se eu sou um dos vencedores, soma no perfil
+    const myUid = window.rhymexUser && window.rhymexUser.uid;
+    if(myUid && eng.winnerUids && eng.winnerUids.includes(myUid)){
+      if(window.addBattleWin) window.addBattleWin();
+    }
+  }
+}
+
+// ---------- VOTAÇÃO (plateia) ----------
+
+window.castVote = async function(choice){
+  if(myVoteCast ||!currentSpectatingId) return;
+  myVoteCast = true;
+  const myUid = window.rhymexUser? window.rhymexUser.uid : anonId;
+  const voterRef = ref(db, `battles/${currentSpectatingId}/engine/voters/${myUid}`);
+  const vsnap = await get(voterRef);
+  if(vsnap.exists()) return; // já votou
+  await set(voterRef, true);
+  await runTransaction(ref(db, `battles/${currentSpectatingId}/engine/votes/${choice}`), c => (c||0)+1);
+  document.getElementById('vote-overlay').style.display = 'none';
+};
+
+function listenSpectatorEngine(battleId){
+  if(spectatorEngineListener) spectatorEngineListener();
+  // Se a batalha for apagada, expulsa a plateia (problema 5)
+  const battleGone = onValue(ref(db, `battles/${battleId}`), (snap)=>{
+    if(!snap.exists() && currentSpectatingId){
+      window.closeSpectator();
+      showRhymexModal({ icon:'swords', title:'Batalha encerrada', text:'A batalha terminou. Valeu por assistir! 🎤' });
+    }
+  });
+  spectatorEngineListener = onValue(ref(db, `battles/${battleId}/engine`), (snap)=>{
+    const eng = snap.val();
+    if(!eng ||!currentSpectatingId) return;
+    const names = { player1:'MC 1', player2:'MC 2' };
+    // pega nomes reais uma vez
+    get(ref(db, `battles/${battleId}`)).then(bs=>{
+      const b = bs.val(); if(!b) return;
+      document.getElementById('spec-mc1-name').textContent = b.player1.name;
+      document.getElementById('spec-mc2-name').textContent = b.player2.name;
+      if(eng.phase === 'voting' &&!myVoteCast){
+        document.getElementById('vote-btn-mc1').innerText = b.player1.name;
+        document.getElementById('vote-btn-mc2').innerText = b.player2.name;
+        document.getElementById('vote-overlay').style.display = 'flex';
+        const cd = setInterval(()=>{
+          const rest = Math.max(0, Math.ceil((eng.turnEndsAt - Date.now())/1000));
+          document.getElementById('vote-countdown').innerText = rest;
+          if(rest <= 0) clearInterval(cd);
+        }, 500);
+      }
+      if(eng.phase === 'finished'){
+        document.getElementById('vote-overlay').style.display = 'none';
+        let texto = '🤝 Deu empate! Ponto pros dois MCs';
+        if(eng.winner === 'mc1') texto = '🏆 ' + b.player1.name + ' venceu a batalha!';
+        if(eng.winner === 'mc2') texto = '🏆 ' + b.player2.name + ' venceu a batalha!';
+        showRhymexModal({ icon:'trophy', title:'Fim da batalha', text: texto });
+        setTimeout(()=>{ if(currentSpectatingId) window.closeSpectator(); }, 6000);
+      }
+    });
+  });
+  // guarda o segundo listener junto pra limpar depois
+  const old = spectatorEngineListener;
+  spectatorEngineListener = ()=>{ old(); battleGone(); };
+}
+
+// ---------- PRESENÇA NA BATALHA (problema 4: oponente saiu) ----------
+
+function registerBattlePresence(){
+  const battleId = currentBattleId;
+  const myUid = window.rhymexUser.uid;
+  const mySide = window.myBattleSide;
+  const oppSide = mySide === 'player1'? 'player2' : 'player1';
+  const myPresRef = ref(db, `battles/${battleId}/presence/${mySide}`);
+  set(myPresRef, { uid: myUid, online: true });
+  onDisconnect(myPresRef).remove();
+
+  onValue(ref(db, `battles/${battleId}/presence/${oppSide}`), (snap)=>{
+    if(snap.exists()){ oppSeenOnline = true; return; }
+    if(!oppSeenOnline) return; // ele ainda nem entrou, não é saída
+    handleOpponentLeft();
+  });
+}
+
+function handleOpponentLeft(){
+  clearInterval(battleEngineInterval);
+  clearInterval(battleCountdownInterval);
+  const status = document.getElementById('voice-battle-status');
+  const label = document.getElementById('voice-turn-label');
+  const remoteAvatar = document.getElementById('voice-remote-avatar');
+  const remoteName = document.getElementById('voice-remote-name');
+  if(status){ status.innerText = 'ADVERSÁRIO SAIU DA BATALHA'; status.style.color = 'var(--danger)'; }
+  if(label){ label.innerText = '🏆 VITÓRIA POR WO — ponto pra você'; label.style.color = '#10B981'; }
+  if(remoteAvatar) remoteAvatar.parentElement.style.opacity = '0.3';
+  if(remoteName) remoteName.innerText = 'Saiu da batalha';
+  if(window.addBattleWin) window.addBattleWin(); // WO conta como vitória
+}
+
+
+
+  
   
 
 // ==========================================
@@ -5267,7 +5551,7 @@ window.enableEditName = function() {
 
 window.saveNewName = async function() {
   const input = document.getElementById('edit-name-input');
-  const newName = input.value.trim();
+    const newName = limparNomeMC(input.value);
 
   if (!newName || newName.length < 3) {
     alert("O nome precisa ter pelo menos 3 letras, MC!");
@@ -5306,6 +5590,27 @@ window.saveNewName = async function() {
   }
 }
 
+
+
+// --- PROTEÇÃO DO NOME DO MC (anti-XSS + limite) ---
+function limparNomeMC(nome){
+  return nome
+    .replace(/[<>"'`]/g, '')  // remove < > " ' ` — mata qualquer tag HTML/script
+    .replace(/\s+/g, ' ')     // vários espaços seguidos viram um só
+    .trim()                   // tira espaço do começo e do fim
+    .slice(0, 20);            // trava em 20 caracteres, mesmo no PC
+}
+
+function escapeHtml(texto){
+  const div = document.createElement('div');
+  div.textContent = texto || 'MC';
+  return div.innerHTML;
+}
+  
+
+
+
+  
 
 window.logoutRhymex = async function() {
   showRhymexModal({
@@ -5360,9 +5665,9 @@ function initPlateiaReal(){
       div.style.cssText = "background:var(--bg-card); border:1px solid var(--border-color); border-radius:16px; padding:16px; margin-bottom:12px;";
       div.innerHTML = `
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-          <div><div style="font-weight:700;">${b.player1.name}</div></div>
+                    <div><div style="font-weight:700;">${escapeHtml(b.player1.name)}</div></div>
           <div style="color:#6b7280; font-weight:800;">VS</div>
-          <div style="text-align:right;"><div style="font-weight:700;">${b.player2.name}</div></div>
+          <div style="text-align:right;"><div style="font-weight:700;">${escapeHtml(b.player2.name)}</div></div>
         </div>
         <div style="font-size:0.75rem; color:${vagas>0?'#10B981':'#EF4444'}; margin-bottom:8px;">${vagas>0? vagas+' vagas na plateia' : 'LOTADA'}</div>
         <button onclick="window.joinAsSpectator('${id}')" style="width:100%; background:#2a2a35; border:1px solid var(--border-color); color:white; padding:12px; border-radius:12px; font-weight:600;">Assistir como Plateia</button>
@@ -5469,7 +5774,7 @@ window.loadRanking = async function(){
       const pos = i+1;
       const pat = getPatente(u.wins);
       const isVoce = window.rhymexUser && u.uid === window.rhymexUser.uid;
-      const nome = isVoce? (u.name + ' (Você)') : u.name;
+      const nome = escapeHtml(isVoce? (u.name + ' (Você)') : u.name);
       const topClass = pos===1? 'top-1' : pos===2? 'top-2' : pos===3? 'top-3' : '';
       html += `
       <div class="rank-item" ${isVoce? 'style="border-color: var(--accent-purple);"' : ''}>
