@@ -2005,6 +2005,11 @@
       AGUARDANDO INÍCIO...
         </div>
 
+            <div style="margin-top:12px; display:flex; flex-direction:column; align-items:center; gap:6px;">
+          <div id="battle-spec-avatars" style="display:flex; align-items:center;"></div>
+          <div id="battle-spec-count" style="font-size:0.7rem; color:var(--text-muted); font-weight:700;">👁 0 assistindo</div>
+            </div>
+
   </div>
 
   <div class="battle-vs-container">
@@ -2161,6 +2166,12 @@
       <div class="audio-wave"><div class="audio-bar"></div><div class="audio-bar"></div></div>
     </div>
   </div>
+
+    <div style="display:flex; flex-direction:column; align-items:center; gap:6px; margin-top:16px;">
+    <div id="spect-spec-avatars" style="display:flex; align-items:center;"></div>
+    <div id="spect-spec-count" style="font-size:0.7rem; color:var(--text-muted); font-weight:700;">👁 0 assistindo</div>
+    </div>
+  
   <div style="margin-top: auto;">
     <p style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-bottom: 10px;">Você está assistindo como plateia (sem microfone)</p>
   </div>
@@ -3849,6 +3860,7 @@ let oppSeenOnline = false; // oponente já apareceu online?
 const ROUND_SECONDS = 30; // duração de cada vez de rima
 const INTERVAL_SECONDS = 5; // intervalo entre as viradas
 const VOTE_SECONDS = 15; // duração da votação
+  const WARMUP_SECONDS = 15; // contagem inicial de preparação
 
 const rtcConfig = {
   iceServers: [
@@ -4478,10 +4490,11 @@ window.watchRandomBattle = async function() {
         const d = child.val();
         if(!d) return;
         if(d.createdAt && (Date.now() - d.createdAt > 10*60*1000)) return;
-        if(d.status==='waiting' || d.status==='live'){
+                if(d.status==='waiting' || d.status==='live'){
+          if(d.engine && d.engine.phase==='finished') return; // já acabou
           temBatalhaValida = true;
           comVaga.push(child.key);
-        }
+  }
       });
 
       if(!temBatalhaValida){
@@ -4550,13 +4563,12 @@ window.joinAsSpectator = async function(battleId) {
     } catch(e){ console.log("Spectator count falhou, entrando mesmo assim", e); }
   }
 
-  if (!isGuest) {
     try {
-      const mySpecRef = ref(db, `battles/${battleId}/spectators/${myUid}`);
-      await set(mySpecRef, { joinedAt: Date.now() });
-      onDisconnect(mySpecRef).remove();
-    } catch(e){ console.log("Spectator set falhou", e); }
-  }
+    const mySpecRef = ref(db, `battles/${battleId}/spectators/${myUid}`);
+    const myName = isGuest? 'Visitante' : (window.rhymexUser.displayName || 'MC');
+    await set(mySpecRef, { name: myName, joinedAt: Date.now() });
+    onDisconnect(mySpecRef).remove();
+  } catch(e){ console.log("Spectator set falhou", e); }
   // O decremento automático via onDisconnect não funciona bem com transaction, 
   // o closeSpectator já cuida disso. Aqui só garantimos que o nó do espectador suma.
 
@@ -4572,8 +4584,10 @@ window.joinAsSpectator = async function(battleId) {
   document.getElementById('spectator-overlay').classList.add('active');
   lucide.createIcons();
 
-    myVoteCast = false;
+        myVoteCast = false;
+  window.spectatorResultShown = false;
   listenSpectatorEngine(battleId);
+  listenSpectatorList(battleId, 'spect-spec-avatars', 'spect-spec-count');
 
   connectSpectatorToMC(battleId, b.player1.uid);
   connectSpectatorToMC(battleId, b.player2.uid);
@@ -4611,6 +4625,7 @@ async function connectSpectatorToMC(battleId, mcUid) {
 
 window.closeSpectator = async function() {
     if(spectatorEngineListener){ spectatorEngineListener(); spectatorEngineListener = null; }
+    if(spectatorListListener){ spectatorListListener(); spectatorListListener = null; }
   document.getElementById('vote-overlay').style.display = 'none';
   if(currentSpectatingId) {
     const myUid = window.rhymexUser? window.rhymexUser.uid : anonId;
@@ -4849,6 +4864,8 @@ async function(
   } catch(e){ window.battleNames = { player1:'MC 1', player2:'MC 2' }; }
   listenBattleEngine();
   registerBattlePresence();
+  window.battleWinAwarded = false;
+  listenSpectatorList(currentBattleId, 'battle-spec-avatars', 'battle-spec-count');
   if (isCaller) startBattleEngine();
 
 };
@@ -5141,11 +5158,10 @@ function startBattleEngine(){
   const battleId = currentBattleId;
   if(!battleId) return;
   update(ref(db, `battles/${battleId}`), { status: 'live' });
-  set(ref(db, `battles/${battleId}/engine`), {
-    phase: 'battle',
+    set(ref(db, `battles/${battleId}/engine`), {
+    phase: 'warmup',
     round: 1,
-    turn: 'player1',
-    turnEndsAt: Date.now() + ROUND_SECONDS*1000
+    turnEndsAt: Date.now() + WARMUP_SECONDS*1000
   });
   battleEngineInterval = setInterval(checkBattleEngine, 500);
 }
@@ -5161,7 +5177,12 @@ async function checkBattleEngine(){
   const now = Date.now();
   const base = `battles/${battleId}/engine`;
 
-  if(eng.phase === 'battle'){
+    if(eng.phase === 'warmup'){
+    await set(ref(db, base), {
+      phase: 'battle', round: 1, turn: 'player1',
+      turnEndsAt: now + ROUND_SECONDS*1000
+    });
+  } else if(eng.phase === 'battle'){
     await set(ref(db, base), {
       phase: 'interval', round: eng.round, turn: eng.turn,
       turnEndsAt: now + INTERVAL_SECONDS*1000,
@@ -5190,13 +5211,19 @@ async function finishBattle(votes){
   clearInterval(battleEngineInterval);
   const battleId = currentBattleId;
   const v = { mc1: votes.mc1||0, mc2: votes.mc2||0, tie: votes.tie||0 };
-  const max = Math.max(v.mc1, v.mc2, v.tie);
-  const tops = [];
-  if(v.mc1 === max) tops.push('mc1');
-  if(v.mc2 === max) tops.push('mc2');
-  if(v.tie === max) tops.push('tie');
-  // qualquer empate no topo = empate, ponto pros dois
-  const winner = tops.length === 1? tops[0] : 'tie';
+    const total = v.mc1 + v.mc2 + v.tie;
+  let winner;
+  if(total === 0){
+    winner = 'none'; // ninguém votou: sem resultado, sem ponto (anti-farm)
+  } else {
+    const max = Math.max(v.mc1, v.mc2, v.tie);
+    const tops = [];
+    if(v.mc1 === max) tops.push('mc1');
+    if(v.mc2 === max) tops.push('mc2');
+    if(v.tie === max) tops.push('tie');
+    // qualquer empate no topo = empate, ponto pros dois
+    winner = tops.length === 1? tops[0] : 'tie';
+  }
 
   const bsnap = await get(ref(db, `battles/${battleId}`));
   const b = bsnap.val() || {};
@@ -5237,7 +5264,13 @@ function renderBattleEngine(eng){
   const roundEl = document.getElementById('voice-battle-round');
   if(roundEl) roundEl.innerText = eng.round || 1;
   const mySide = window.myBattleSide;
-  const names = window.battleNames || { player1:'MC 1', player2:'MC 2' };
+    const names = window.battleNames || { player1:'MC 1', player2:'MC 2' };
+
+  if(eng.phase === 'warmup'){
+    if(label){ label.innerText = '🎤 SE PREPAREM... A BATALHA VAI COMEÇAR'; label.style.color = '#FBBF24'; }
+    if(status){ status.innerText = 'PREPARAÇÃO'; status.style.color = 'var(--warning)'; }
+    return;
+  }
 
   if(eng.phase === 'battle'){
     const minhaVez = eng.turn === mySide;
@@ -5254,19 +5287,21 @@ function renderBattleEngine(eng){
     if(status){ status.innerText = 'AGUARDANDO VOTAÇÃO DA PLATEIA...'; status.style.color = 'var(--warning)'; }
   } else if(eng.phase === 'finished'){
     clearInterval(battleCountdownInterval);
-    let texto = '';
-    if(eng.winner === 'tie') texto = '🤝 EMPATE! Ponto pros dois MCs';
+        let texto = '';
+    if(eng.winner === 'none') texto = '😶 SEM VOTOS — batalha sem resultado';
+    else if(eng.winner === 'tie') texto = '🤝 EMPATE! Ponto pros dois MCs';
     else {
       const nomeV = eng.winner === 'mc1'? names.player1 : names.player2;
       texto = '🏆 VENCEDOR: ' + (nomeV || '').toUpperCase();
     }
-    if(label){ label.innerText = texto; label.style.color = '#10B981'; }
+    if(label){ label.innerText = texto; label.style.color = eng.winner === 'none'? 'var(--text-secondary)' : '#10B981'; }
     if(status){ status.innerText = 'BATALHA ENCERRADA'; status.style.color = 'var(--text-secondary)'; }
-    // premia: se eu sou um dos vencedores, soma no perfil
+    // premia: se eu sou um dos vencedores, soma no perfil (só uma vez)
     const myUid = window.rhymexUser && window.rhymexUser.uid;
-    if(myUid && eng.winnerUids && eng.winnerUids.includes(myUid)){
+    if(!window.battleWinAwarded && myUid && eng.winnerUids && eng.winnerUids.includes(myUid)){
+      window.battleWinAwarded = true;
       if(window.addBattleWin) window.addBattleWin();
-    }
+         }
   }
 }
 
@@ -5274,14 +5309,30 @@ function renderBattleEngine(eng){
 
 window.castVote = async function(choice){
   if(myVoteCast ||!currentSpectatingId) return;
-  myVoteCast = true;
-  const myUid = window.rhymexUser? window.rhymexUser.uid : anonId;
-  const voterRef = ref(db, `battles/${currentSpectatingId}/engine/voters/${myUid}`);
-  const vsnap = await get(voterRef);
-  if(vsnap.exists()) return; // já votou
-  await set(voterRef, true);
-  await runTransaction(ref(db, `battles/${currentSpectatingId}/engine/votes/${choice}`), c => (c||0)+1);
-  document.getElementById('vote-overlay').style.display = 'none';
+  const overlay = document.getElementById('vote-overlay');
+  // feedback imediato: escurece os 3 botões
+  overlay.querySelectorAll('button').forEach(b=>{
+    b.style.opacity = '0.35';
+    b.style.pointerEvents = 'none';
+  });
+  try {
+    const myUid = window.rhymexUser? window.rhymexUser.uid : anonId;
+    const voterRef = ref(db, `battles/${currentSpectatingId}/engine/voters/${myUid}`);
+    const vsnap = await get(voterRef);
+    if(vsnap.exists()){ overlay.style.display = 'none'; myVoteCast = true; return; }
+    await set(voterRef, true);
+    await runTransaction(ref(db, `battles/${currentSpectatingId}/engine/votes/${choice}`), c => (c||0)+1);
+    myVoteCast = true; // só marca depois que deu certo
+    overlay.style.display = 'none';
+  } catch(e){
+    console.error('Erro ao votar:', e);
+    // falhou: devolve os botões pra tentar de novo
+    overlay.querySelectorAll('button').forEach(b=>{
+      b.style.opacity = '1';
+      b.style.pointerEvents = 'auto';
+    });
+    alert('Não foi possível registrar seu voto. Tente novamente.');
+  }
 };
 
 function listenSpectatorEngine(battleId){
@@ -5314,7 +5365,10 @@ function listenSpectatorEngine(battleId){
       }
       if(eng.phase === 'finished'){
         document.getElementById('vote-overlay').style.display = 'none';
+                if(window.spectatorResultShown) return;
+        window.spectatorResultShown = true;
         let texto = '🤝 Deu empate! Ponto pros dois MCs';
+        if(eng.winner === 'none') texto = '😶 Ninguém votou — batalha sem resultado.';
         if(eng.winner === 'mc1') texto = '🏆 ' + b.player1.name + ' venceu a batalha!';
         if(eng.winner === 'mc2') texto = '🏆 ' + b.player2.name + ' venceu a batalha!';
         showRhymexModal({ icon:'trophy', title:'Fim da batalha', text: texto });
@@ -5326,6 +5380,40 @@ function listenSpectatorEngine(battleId){
   const old = spectatorEngineListener;
   spectatorEngineListener = ()=>{ old(); battleGone(); };
 }
+
+
+  // ---------- PLATEIA: bolinhas de quem tá assistindo ----------
+let spectatorListListener = null;
+
+function listenSpectatorList(battleId, avatarsId, countId){
+  if(spectatorListListener) spectatorListListener();
+  spectatorListListener = onValue(ref(db, `battles/${battleId}/spectators`), (snap)=>{
+    const av = document.getElementById(avatarsId);
+    const ct = document.getElementById(countId);
+    const specs = snap.val() || {};
+    const uids = Object.keys(specs);
+    if(ct) ct.innerText = '👁 ' + uids.length + ' assistindo';
+    if(av){
+      av.innerHTML = '';
+      uids.slice(0, 8).forEach(uid=>{
+        const name = (specs[uid] && specs[uid].name) || 'Visitante';
+        const initials = name.split(' ').map(p=>p[0]).join('').substring(0,2).toUpperCase();
+        const b = document.createElement('div');
+        b.style.cssText = 'width:28px;height:28px;border-radius:50%;background:var(--bg-card-hover);border:1px solid var(--border-active);display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:800;color:var(--accent-purple-bright);margin-right:-8px;';
+        b.innerText = initials;
+        b.title = name;
+        av.appendChild(b);
+      });
+      if(uids.length > 8){
+        const more = document.createElement('div');
+        more.style.cssText = 'width:28px;height:28px;border-radius:50%;background:var(--accent-purple-glow);display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:800;color:white;';
+        more.innerText = '+' + (uids.length - 8);
+        av.appendChild(more);
+      }
+    }
+  });
+}
+
 
 // ---------- PRESENÇA NA BATALHA (problema 4: oponente saiu) ----------
 
@@ -5348,15 +5436,17 @@ function registerBattlePresence(){
 function handleOpponentLeft(){
   clearInterval(battleEngineInterval);
   clearInterval(battleCountdownInterval);
+  if(battleStateListener){ battleStateListener(); battleStateListener = null; }
   const status = document.getElementById('voice-battle-status');
   const label = document.getElementById('voice-turn-label');
   const remoteAvatar = document.getElementById('voice-remote-avatar');
   const remoteName = document.getElementById('voice-remote-name');
-  if(status){ status.innerText = 'ADVERSÁRIO SAIU DA BATALHA'; status.style.color = 'var(--danger)'; }
-  if(label){ label.innerText = '🏆 VITÓRIA POR WO — ponto pra você'; label.style.color = '#10B981'; }
+  if(status){ status.innerText = 'ADVERSÁRIO SAIU'; status.style.color = 'var(--danger)'; }
+  if(label){ label.innerText = '🚫 BATALHA CANCELADA — sem ponto pra ninguém'; label.style.color = 'var(--text-secondary)'; }
   if(remoteAvatar) remoteAvatar.parentElement.style.opacity = '0.3';
   if(remoteName) remoteName.innerText = 'Saiu da batalha';
-  if(window.addBattleWin) window.addBattleWin(); // WO conta como vitória
+  // some com a sala pra não virar lixo na plateia (SEM dar ponto — anti-farm)
+  if(currentBattleId){ remove(ref(db, `battles/${currentBattleId}`)).catch(()=>{}); }
 }
 
 
@@ -5448,6 +5538,15 @@ async function() {
     "RHYMEX: saindo da batalha..."
   );
 
+
+  clearInterval(battleEngineInterval);
+  clearInterval(battleCountdownInterval);
+  if(battleStateListener){ battleStateListener(); battleStateListener = null; }
+  if(spectatorListListener){ spectatorListListener(); spectatorListListener = null; }
+  lastEngine = null;
+  oppSeenOnline = false;
+  window.battleWinAwarded = false;
+  
 
   // Parar microfone
   if (voiceLocalStream) {
@@ -5657,6 +5756,7 @@ function initPlateiaReal(){
         snapshot.forEach(child=>{
       const id = child.key; const b = child.val();
       if(b.status!=='waiting' && b.status!=='live') return;
+      if(b.engine && b.engine.phase==='finished') return; // já acabou, não mostra
       // Ignora batalha velha com mais de 15 minutos (lixo)
       if(b.createdAt && (Date.now() - b.createdAt > 15*60*1000)) return;
       achou = true;
