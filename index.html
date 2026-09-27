@@ -2110,7 +2110,7 @@
 
 
     <!-- TELA DE ESPERA DA VOTAÇÃO (MCs) -->
-  <div id="mc-vote-wait" style="display:none; position:absolute; inset:0; background:rgba(9,10,15,0.97); z-index:120; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center;">
+<div id="mc-vote-wait" style="display:none; position:absolute; inset:0; background:rgba(9,10,15,0.97); z-index:120; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center; pointer-events:none;">
     <span class="tag" style="background:var(--accent-purple-glow); color:var(--accent-purple-bright); margin-bottom:12px;">VOTAÇÃO EM ANDAMENTO</span>
     <h2 style="color:white; font-size:1.3rem; font-weight:800; margin-bottom:8px;">AGUARDE A VOTAÇÃO</h2>
     <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:16px;">A plateia está decidindo o vencedor...</p>
@@ -3863,6 +3863,8 @@ let creatingBattle = false;
 let battleCountdownInterval = null; // atualiza o cronômetro na tela
 let battleStateListener = null; // ouve mudanças da batalha
 let spectatorEngineListener = null;
+let spectVoteCdInterval = null;
+let spectLastPhase = null;
 let lastEngine = null; // último estado recebido
 let myVoteCast = false; // plateia: já votou?
 let oppSeenOnline = false; // oponente já apareceu online?
@@ -4072,7 +4074,7 @@ async function createRealBattle(
 
 
       // Se os 2 MCs fecharem a aba, a sala se apaga sozinha em ~60s
-  onDisconnect(battleRef).remove();
+  
 
 
   // Marca os dois jogadores com o mesmo battleId
@@ -4597,6 +4599,8 @@ window.joinAsSpectator = async function(battleId) {
   lucide.createIcons();
 
         myVoteCast = false;
+  spectLastPhase = null;
+if(spectVoteCdInterval){ clearInterval(spectVoteCdInterval); spectVoteCdInterval = null; }
   window.spectatorResultShown = false;
   listenSpectatorEngine(battleId);
   listenSpectatorList(battleId, 'spect-spec-avatars', 'spect-spec-count');
@@ -4638,6 +4642,8 @@ async function connectSpectatorToMC(battleId, mcUid) {
 window.closeSpectator = async function() {
     if(spectatorEngineListener){ spectatorEngineListener(); spectatorEngineListener = null; }
     if(spectatorListListener){ spectatorListListener(); spectatorListListener = null; }
+    if(spectVoteCdInterval){ clearInterval(spectVoteCdInterval); spectVoteCdInterval = null; }
+    spectLastPhase = null;
   document.getElementById('vote-overlay').style.display = 'none';
   if(currentSpectatingId) {
     const myUid = window.rhymexUser? window.rhymexUser.uid : anonId;
@@ -4879,7 +4885,8 @@ async function(
   window.battleWinAwarded = false;
     window.mcResultShown = false;
   listenSpectatorList(currentBattleId, 'battle-spec-avatars', 'battle-spec-count');
-  if (isCaller) startBattleEngine();
+// Os dois MCs ligam o motor. Se o criador cair/minimizar, o outro assume sozinho.
+startBattleEngine();
 
 };
 
@@ -5167,15 +5174,22 @@ function listenForSpectators() {
 // (só o player1/criador executa; os outros obedecem)
 // ==========================================
 
-function startBattleEngine(){
+async function startBattleEngine(){
   const battleId = currentBattleId;
   if(!battleId) return;
-  update(ref(db, `battles/${battleId}`), { status: 'live' });
-      set(ref(db, `battles/${battleId}/engine`), {
-    phase: 'warmup',
-    round: 1,
-    turnEndsAt: Date.now() + WARMUP_SECONDS*1000
-  });
+  if(battleEngineInterval) clearInterval(battleEngineInterval);
+  try {
+    // Só cria o motor se ainda não existir (os dois MCs chamam; é idempotente)
+    const snap = await get(ref(db, `battles/${battleId}/engine`));
+    if(!snap.exists()){
+      await update(ref(db, `battles/${battleId}`), { status: 'live' });
+      await set(ref(db, `battles/${battleId}/engine`), {
+        phase: 'warmup',
+        round: 1,
+        turnEndsAt: Date.now() + WARMUP_SECONDS*1000
+      });
+    }
+  } catch(e){ console.log('Engine:', e); }
   battleEngineInterval = setInterval(checkBattleEngine, 500);
 }
 
@@ -5216,26 +5230,41 @@ async function checkBattleEngine(){
       });
     }
   } else if(eng.phase === 'voting'){
-    await finishBattle(eng.votes || { mc1:0, mc2:0, tie:0 });
-  }
+  await finishBattle();
+      }
 }
 
-async function finishBattle(votes){
+async function finishBattle(){
   clearInterval(battleEngineInterval);
+  battleEngineInterval = null;
   const battleId = currentBattleId;
-  const v = { mc1: votes.mc1||0, mc2: votes.mc2||0, tie: votes.tie||0 };
+  if(!battleId) return;
+
+  // TRAVA ANTI-DUPLA: só um dos MCs finaliza (o outro aborta aqui)
+  const lockRef = ref(db, `battles/${battleId}/engine/finishLock`);
+  const lockRes = await runTransaction(lockRef, (atual)=>{
+    if(atual) return; // alguém já finalizou
+    return { by: window.rhymexUser ? window.rhymexUser.uid : 'unknown', at: Date.now() };
+  });
+  if(!lockRes.committed) return;
+
+  // Re-lê os votos na última hora (pega votos de último segundo)
+  const vsnap = await get(ref(db, `battles/${battleId}/engine/votes`));
+  const vv = vsnap.val() || {};
+  const v = { mc1: vv.mc1||0, mc2: vv.mc2||0, tie: vv.tie||0 };
   const total = v.mc1 + v.mc2 + v.tie;
+
   let winner;
   if(total === 0){
-    winner = 'none'; // ninguém votou: sem resultado, sem ponto (anti-farm)
+    winner = 'none'; // ninguém votou: sem resultado, sem ponto
   } else {
     const max = Math.max(v.mc1, v.mc2, v.tie);
     const tops = [];
     if(v.mc1 === max) tops.push('mc1');
     if(v.mc2 === max) tops.push('mc2');
     if(v.tie === max) tops.push('tie');
-    // qualquer empate no topo = empate, ponto pros dois
-    winner = tops.length === 1? tops[0] : 'tie';
+    // ANTI-FARM: qualquer empate no topo = 'tie', e empate NÃO dá ponto
+    winner = tops.length === 1 ? tops[0] : 'tie';
   }
 
   const bsnap = await get(ref(db, `battles/${battleId}`));
@@ -5243,15 +5272,24 @@ async function finishBattle(votes){
   let winnerUids = [];
   if(winner === 'mc1') winnerUids = [b.player1 && b.player1.uid];
   else if(winner === 'mc2') winnerUids = [b.player2 && b.player2.uid];
-  else if(winner === 'tie') winnerUids = [b.player1 && b.player1.uid, b.player2 && b.player2.uid];
-  // 'none' → lista vazia, ninguém ganha ponto
+  // 'tie' e 'none' → lista vazia, ninguém ganha ponto
+  winnerUids = winnerUids.filter(Boolean);
 
   await update(ref(db, `battles/${battleId}/engine`), {
     phase: 'finished', winner: winner,
-    winnerUids: winnerUids.filter(Boolean),
+    winnerUids: winnerUids,
     turnEndsAt: Date.now() + 10000
   });
-                                          }
+
+  // Premia DIRETO NO BANCO via transação: não depende da aba do vencedor
+  for(const uid of winnerUids){
+    try {
+      await runTransaction(ref(db, `users/${uid}/wins`), c => (c||0)+1);
+      await update(ref(db, `users/${uid}`), { lastWinAt: Date.now() });
+    } catch(e){ console.log('Erro ao premiar:', e); }
+  }
+      }
+                                          
 
 // ---------- QUEM OBEDECE (os 2 MCs) ----------
 
@@ -5323,19 +5361,22 @@ function renderBattleEngine(eng){
     clearInterval(battleCountdownInterval);
     let texto = '';
     if(eng.winner === 'none') texto = 'SEM VOTOS — BATALHA SEM RESULTADO';
-    else if(eng.winner === 'tie') texto = 'EMPATE! PONTO PROS DOIS MCS';
+    else if(eng.winner === 'tie') texto = 'EMPATE! NINGUÉM PONTUOU DESSA VEZ';
     else {
       const nomeV = eng.winner === 'mc1'? names.player1 : names.player2;
       texto = 'VENCEDOR: ' + (nomeV || '').toUpperCase();
     }
     if(label){ label.innerText = texto; label.style.color = eng.winner === 'none'? 'var(--text-secondary)' : '#10B981'; }
     if(status){ status.innerText = 'BATALHA ENCERRADA'; status.style.color = 'var(--text-secondary)'; }
-    // premia: se eu sou um dos vencedores, soma no perfil (só uma vez)
-    const myUid = window.rhymexUser && window.rhymexUser.uid;
-    if(!window.battleWinAwarded && myUid && eng.winnerUids && eng.winnerUids.includes(myUid)){
-      window.battleWinAwarded = true;
-      if(window.addBattleWin) window.addBattleWin();
-    }
+// O ponto oficial já foi gravado pelo motor (finishBattle) via transação.
+// Aqui só sincronizamos o contador local pra atualizar o perfil na hora.
+const myUid = window.rhymexUser && window.rhymexUser.uid;
+if(!window.battleWinAwarded && myUid && eng.winnerUids && eng.winnerUids.includes(myUid)){
+  window.battleWinAwarded = true;
+  const atual = parseInt(localStorage.getItem('rhymex_battles_won') || '0') + 1;
+  localStorage.setItem('rhymex_battles_won', String(atual));
+  if(typeof loadRealStats === 'function') loadRealStats();
+  }
     // modal de resultado pros MCs (só mostra uma vez)
     if(!window.mcResultShown){
       window.mcResultShown = true;
@@ -5349,27 +5390,45 @@ function renderBattleEngine(eng){
 window.castVote = async function(choice){
   if(myVoteCast ||!currentSpectatingId) return;
   const overlay = document.getElementById('vote-overlay');
-  // feedback imediato: escurece os 3 botões
   overlay.querySelectorAll('button').forEach(b=>{
     b.style.opacity = '0.35';
     b.style.pointerEvents = 'none';
   });
-  try {
-    const myUid = window.rhymexUser? window.rhymexUser.uid : anonId;
-    const voterRef = ref(db, `battles/${currentSpectatingId}/engine/voters/${myUid}`);
-    const vsnap = await get(voterRef);
-    if(vsnap.exists()){ overlay.style.display = 'none'; myVoteCast = true; return; }
-    await set(voterRef, true);
-    await runTransaction(ref(db, `battles/${currentSpectatingId}/engine/votes/${choice}`), c => (c||0)+1);
-    myVoteCast = true; // só marca depois que deu certo
-    overlay.style.display = 'none';
-  } catch(e){
-    console.error('Erro ao votar:', e);
-    // falhou: devolve os botões pra tentar de novo
+  const restoreButtons = ()=>{
     overlay.querySelectorAll('button').forEach(b=>{
       b.style.opacity = '1';
       b.style.pointerEvents = 'auto';
     });
+  };
+  try {
+    const battleId = currentSpectatingId;
+    // 1) Confere se a votação ainda está aberta ANTES de votar
+    const engSnap = await get(ref(db, `battles/${battleId}/engine/phase`));
+    if(engSnap.val() !== 'voting'){
+      alert('A votação já foi encerrada.');
+      overlay.style.display = 'none';
+      myVoteCast = true;
+      return;
+    }
+    const myUid = window.rhymexUser? window.rhymexUser.uid : anonId;
+    // 2) Marca o voto de forma ATÔMICA: se já votou, a transação aborta sozinha
+    const voterRef = ref(db, `battles/${battleId}/engine/voters/${myUid}`);
+    const voteResult = await runTransaction(voterRef, (atual)=>{
+      if(atual !== null) return; // aborta: esse usuário já votou
+      return { choice: choice, at: Date.now() };
+    });
+    if(!voteResult.committed){
+      overlay.style.display = 'none';
+      myVoteCast = true;
+      return;
+    }
+    // 3) Só soma o voto se a marcação foi confirmada
+    await runTransaction(ref(db, `battles/${battleId}/engine/votes/${choice}`), c => (c||0)+1);
+    myVoteCast = true;
+    overlay.style.display = 'none';
+  } catch(e){
+    console.error('Erro ao votar:', e);
+    restoreButtons();
     alert('Não foi possível registrar seu voto. Tente novamente.');
   }
 };
@@ -5385,7 +5444,12 @@ function listenSpectatorEngine(battleId){
   });
   spectatorEngineListener = onValue(ref(db, `battles/${battleId}/engine`), (snap)=>{
     const eng = snap.val();
-    if(!eng ||!currentSpectatingId) return;
+if(!eng ||!currentSpectatingId) return;
+// Se a fase mudou, limpa o countdown antigo (anti-vazamento)
+if(eng.phase !== spectLastPhase){
+  spectLastPhase = eng.phase;
+  if(spectVoteCdInterval){ clearInterval(spectVoteCdInterval); spectVoteCdInterval = null; }
+}
     const names = { player1:'MC 1', player2:'MC 2' };
     // pega nomes reais uma vez
     get(ref(db, `battles/${battleId}`)).then(bs=>{
@@ -5393,20 +5457,33 @@ function listenSpectatorEngine(battleId){
       document.getElementById('spec-mc1-name').textContent = b.player1.name;
       document.getElementById('spec-mc2-name').textContent = b.player2.name;
       if(eng.phase === 'voting' &&!myVoteCast){
-        document.getElementById('vote-btn-mc1').innerText = b.player1.name;
-        document.getElementById('vote-btn-mc2').innerText = b.player2.name;
-        document.getElementById('vote-overlay').style.display = 'flex';
-        const cd = setInterval(()=>{
-          const rest = Math.max(0, Math.ceil((eng.turnEndsAt - Date.now())/1000));
-          document.getElementById('vote-countdown').innerText = rest;
-          if(rest <= 0) clearInterval(cd);
-        }, 500);
+  document.getElementById('vote-btn-mc1').innerText = b.player1.name;
+  document.getElementById('vote-btn-mc2').innerText = b.player2.name;
+  document.getElementById('vote-overlay').style.display = 'flex';
+  if(spectVoteCdInterval){ clearInterval(spectVoteCdInterval); }
+  let zerosSeguidos = 0;
+  spectVoteCdInterval = setInterval(()=>{
+    const rest = Math.max(0, Math.ceil((eng.turnEndsAt - Date.now())/1000));
+    const cdEl = document.getElementById('vote-countdown');
+    if(cdEl) cdEl.innerText = rest;
+    if(rest <= 0){
+      zerosSeguidos++;
+      // Passou ~20s do fim e nada mudou: o motor morreu, não trava a plateia
+      if(zerosSeguidos > 40){
+        clearInterval(spectVoteCdInterval); spectVoteCdInterval = null;
+        document.getElementById('vote-overlay').style.display = 'none';
+        showRhymexModal({ icon:'swords', title:'Votação encerrada', text:'A votação foi encerrada sem resultado oficial.' });
+        setTimeout(()=>{ if(currentSpectatingId) window.closeSpectator(); }, 4000);
+      }
+    } else { zerosSeguidos = 0; }
+  }, 500);
       }
             if(eng.phase === 'finished'){
-        document.getElementById('vote-overlay').style.display = 'none';
+if(spectVoteCdInterval){ clearInterval(spectVoteCdInterval); spectVoteCdInterval = null; }
+document.getElementById('vote-overlay').style.display = 'none';
         if(window.spectatorResultShown) return;
         window.spectatorResultShown = true;
-        let texto = 'Deu empate! Ponto pros dois MCs';
+        let texto = 'Deu empate! Ninguém pontuou dessa vez.';
         if(eng.winner === 'none') texto = 'Ninguém votou — batalha sem resultado.';
         if(eng.winner === 'mc1') texto = b.player1.name + ' venceu a batalha!';
         if(eng.winner === 'mc2') texto = b.player2.name + ' venceu a batalha!';
@@ -5472,24 +5549,53 @@ function registerBattlePresence(){
   });
 }
 
-function handleOpponentLeft(){
+async function handleOpponentLeft(){
   clearInterval(battleEngineInterval);
+  battleEngineInterval = null;
   clearInterval(battleCountdownInterval);
   if(battleStateListener){ battleStateListener(); battleStateListener = null; }
   const status = document.getElementById('voice-battle-status');
   const label = document.getElementById('voice-turn-label');
   const remoteAvatar = document.getElementById('voice-remote-avatar');
   const remoteName = document.getElementById('voice-remote-name');
-  if(status){ status.innerText = 'ADVERSÁRIO SAIU'; status.style.color = 'var(--danger)'; }
-  if(label){ label.innerText = '🚫 BATALHA CANCELADA — sem ponto pra ninguém'; label.style.color = 'var(--text-secondary)'; }
-    const vw = document.getElementById('mc-vote-wait');
+  const vw = document.getElementById('mc-vote-wait');
   if(vw) vw.style.display = 'none';
   if(remoteAvatar) remoteAvatar.parentElement.style.opacity = '0.3';
   if(remoteName) remoteName.innerText = 'Saiu da batalha';
-  // some com a sala pra não virar lixo na plateia (SEM dar ponto — anti-farm)
-  if(currentBattleId){ remove(ref(db, `battles/${currentBattleId}`)).catch(()=>{}); }
-}
 
+  const phase = (lastEngine && lastEngine.phase) || null;
+
+  // Se a votação já estava rolando ou terminou: NÃO cancela nada.
+  // Você assume o motor sozinho e o resultado sai normalmente.
+  if(phase === 'voting' || phase === 'finished'){
+    if(status){ status.innerText = 'ADVERSÁRIO SAIU'; status.style.color = 'var(--warning)'; }
+    if(label){ label.innerText = 'ADVERSÁRIO SAIU — AGUARDANDO RESULTADO DA VOTAÇÃO'; label.style.color = '#FBBF24'; }
+    if(currentBattleId){
+      listenBattleEngine(); // reativa escuta + cronômetro da tela
+      startBattleEngine();  // garante o motor rodando aqui
+    }
+    return;
+  }
+
+  if(status){ status.innerText = 'ADVERSÁRIO SAIU'; status.style.color = 'var(--danger)'; }
+  if(label){ label.innerText = '🚫 BATALHA CANCELADA — sem ponto pra ninguém'; label.style.color = 'var(--text-secondary)'; }
+
+  // Marca como encerrada em vez de APAGAR (a plateia já filtra 'finished' sozinha)
+  if(currentBattleId){
+    try {
+      const bsnap = await get(ref(db, `battles/${currentBattleId}`));
+      if(bsnap.exists()){
+        const engSnap = await get(ref(db, `battles/${currentBattleId}/engine/phase`));
+        if(engSnap.val() !== 'finished'){
+          await update(ref(db, `battles/${currentBattleId}/engine`), {
+            phase: 'finished', winner: 'none', winnerUids: [], turnEndsAt: Date.now()
+          });
+          await update(ref(db, `battles/${currentBattleId}`), { status: 'finished' });
+        }
+      }
+    } catch(e){}
+  }
+        }
 
 
   
@@ -5647,10 +5753,21 @@ async function() {
     matchmakingListener = null;
   }
 
-    // Apaga a sala pra não virar lixo na plateia
-  if (currentBattleId) {
-    try { await remove(ref(db, `battles/${currentBattleId}`)); } catch(e){}
-  }
+// NÃO apaga mais a sala (apagar durante a votação anulava votos e resultado).
+// Saiu no meio da batalha (antes da votação): encerra sem pontos, sem apagar.
+// Saiu durante/depois da votação: não toca em nada, o outro MC conclui.
+if (currentBattleId) {
+  try {
+    const engSnap = await get(ref(db, `battles/${currentBattleId}/engine`));
+    const eng = engSnap.val();
+    if(eng && eng.phase !== 'finished' && eng.phase !== 'voting'){
+      await update(ref(db, `battles/${currentBattleId}/engine`), {
+        phase: 'finished', winner: 'none', winnerUids: [], turnEndsAt: Date.now()
+      });
+      await update(ref(db, `battles/${currentBattleId}`), { status: 'finished' });
+    }
+  } catch(e){}
+          }
 
   currentBattleId = null;
   currentOpponent = null;
