@@ -3847,6 +3847,7 @@ let matchmakingRef = null;
 let matchmakingListener = null;
 let ownQueueListener = null;
 let matchmakingTimeout = null;
+let battlePresenceListener = null; // unsubscribe da presença (evita fantasmas entre batalhas)
 
 let voicePeerConnection = null;
 let voiceLocalStream = null;
@@ -4884,6 +4885,7 @@ async function(
   registerBattlePresence();
   window.battleWinAwarded = false;
     window.mcResultShown = false;
+window.lastVoteWaitPhase = null;
   listenSpectatorList(currentBattleId, 'battle-spec-avatars', 'battle-spec-count');
 // Os dois MCs ligam o motor. Se o criador cair/minimizar, o outro assume sozinho.
 startBattleEngine();
@@ -5217,13 +5219,21 @@ async function checkBattleEngine(){
       nextRound: eng.turn === 'player2'? eng.round + 1 : eng.round
     });
   } else if(eng.phase === 'interval'){
-    if(eng.nextRound > 2){
-      await set(ref(db, base), {
-        phase: 'voting', round: 2,
+  if(eng.nextRound > 2){
+    // Só UM dos MCs faz a transição (transação atômica na fase).
+    // O outro aborta aqui e nunca zera os votos.
+    const phaseRes = await runTransaction(ref(db, base + '/phase'), (fase)=>{
+      if(fase !== 'interval') return; // alguém já avançou
+      return 'voting';
+    });
+    if(phaseRes.committed){
+      await update(ref(db, base), {
+        round: 2,
         turnEndsAt: now + VOTE_SECONDS*1000,
         votes: { mc1: 0, mc2: 0, tie: 0 }
       });
-    } else {
+    }
+  } else {
       await set(ref(db, base), {
         phase: 'battle', round: eng.nextRound, turn: eng.nextTurn,
         turnEndsAt: now + ROUND_SECONDS*1000
@@ -5234,7 +5244,8 @@ async function checkBattleEngine(){
       }
 }
 
-async function finishBattle(){
+
+  async function finishBattle(){
   clearInterval(battleEngineInterval);
   battleEngineInterval = null;
   const battleId = currentBattleId;
@@ -5288,7 +5299,9 @@ async function finishBattle(){
       await update(ref(db, `users/${uid}`), { lastWinAt: Date.now() });
     } catch(e){ console.log('Erro ao premiar:', e); }
   }
-      }
+  }
+  
+  
                                           
 
 // ---------- QUEM OBEDECE (os 2 MCs) ----------
@@ -5333,7 +5346,13 @@ function renderBattleEngine(eng){
   const mySide = window.myBattleSide;
       const names = window.battleNames || { player1:'MC 1', player2:'MC 2' };
     const vw0 = document.getElementById('mc-vote-wait');
-  if(vw0 && eng.phase!== 'voting') vw0.style.display = 'none';
+if(vw0){
+  // Só mexe no display quando a fase MUDA (não a cada voto → anti-piscada)
+  if(eng.phase !== window.lastVoteWaitPhase){
+    window.lastVoteWaitPhase = eng.phase;
+    vw0.style.display = (eng.phase === 'voting') ? 'flex' : 'none';
+  }
+  }
 
   if(eng.phase === 'warmup'){
     if(label){ label.innerText = ' SE PREPAREM... A BATALHA VAI COMEÇAR'; label.style.color = '#FBBF24'; }
@@ -5353,10 +5372,10 @@ function renderBattleEngine(eng){
     const proximo = eng.nextTurn === mySide? 'SUA VEZ' : 'VEZ DE ' + (names[eng.nextTurn] || '').toUpperCase();
     if(label){ label.innerText = ' PREPARE-SE... ' + proximo; label.style.color = '#FBBF24'; }
     } else if(eng.phase === 'voting'){
-    if(label){ label.innerText = 'VOTAÇÃO DA PLATEIA'; label.style.color = '#FBBF24'; }
-    if(status){ status.innerText = 'AGUARDANDO VOTAÇÃO DA PLATEIA...'; status.style.color = 'var(--warning)'; }
-    const vw = document.getElementById('mc-vote-wait');
-    if(vw) vw.style.display = 'flex';
+  if(label){ label.innerText = 'VOTAÇÃO DA PLATEIA'; label.style.color = '#FBBF24'; }
+  if(status){ status.innerText = 'AGUARDANDO VOTAÇÃO DA PLATEIA...'; status.style.color = 'var(--warning)'; }
+  // (a exibição do #mc-vote-wait é controlada pelo guarda de transição no topo)
+  
   } else if(eng.phase === 'finished'){
     clearInterval(battleCountdownInterval);
     let texto = '';
@@ -5542,11 +5561,27 @@ function registerBattlePresence(){
   set(myPresRef, { uid: myUid, online: true });
   onDisconnect(myPresRef).remove();
 
-  onValue(ref(db, `battles/${battleId}/presence/${oppSide}`), (snap)=>{
+  // Desliga o listener da batalha anterior (fantasma que escondia a tela de votação)
+  if(battlePresenceListener) battlePresenceListener();
+  battlePresenceListener = onValue(ref(db, `battles/${battleId}/presence/${oppSide}`), (snap)=>{
+    if(battleId !== currentBattleId) return; // evento de batalha velha, ignora
     if(snap.exists()){ oppSeenOnline = true; return; }
     if(!oppSeenOnline) return; // ele ainda nem entrou, não é saída
     handleOpponentLeft();
   });
+
+  // Se a internet cair e voltar, recadastra a presença
+  // (sem isso, o oponente te enxerga como "saiu" pra sempre)
+  if(!window.rhymexReconnectWatch){
+    window.rhymexReconnectWatch = true;
+    onValue(ref(db, '.info/connected'), (snap)=>{
+      if(snap.val() === true && currentBattleId && window.rhymexUser && window.myBattleSide){
+        const pr = ref(db, `battles/${currentBattleId}/presence/${window.myBattleSide}`);
+        set(pr, { uid: window.rhymexUser.uid, online: true }).catch(()=>{});
+        onDisconnect(pr).remove();
+      }
+    });
+  }
 }
 
 async function handleOpponentLeft(){
@@ -5690,7 +5725,8 @@ async function() {
   clearInterval(battleCountdownInterval);
   if(battleStateListener){ battleStateListener(); battleStateListener = null; }
   if(spectatorListListener){ spectatorListListener(); spectatorListListener = null; }
-  lastEngine = null;
+if(battlePresenceListener){ battlePresenceListener(); battlePresenceListener = null; }
+lastEngine = null;
   oppSeenOnline = false;
   window.battleWinAwarded = false;
   
