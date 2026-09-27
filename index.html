@@ -3873,6 +3873,13 @@ let oppSeenOnline = false; // oponente já apareceu online?
 
       // --- CONFIG DA BATALHA (mude os segundos aqui pra testar) ---
 const ROUND_SECONDS = 30; // duração de cada vez de rima
+
+// Relógio do SERVIDOR como referência (conserta o "atraso" entre celulares).
+// Cada celular tem seu próprio relógio; se um está 2s adiantado, o cronômetro
+// mostra 2s de diferença. Com o servidor como base, os dois concordam.
+let serverTimeOffset = 0;
+onValue(ref(db, '.info/serverTimeOffset'), (snap)=>{ serverTimeOffset = snap.val() || 0; });
+function srvNow(){ return Date.now() + serverTimeOffset; }
 const INTERVAL_SECONDS = 5; // intervalo entre as viradas
 const VOTE_SECONDS = 15; // duração da votação
   const WARMUP_SECONDS = 15; // contagem inicial de preparação
@@ -5188,7 +5195,7 @@ async function startBattleEngine(){
       await set(ref(db, `battles/${battleId}/engine`), {
         phase: 'warmup',
         round: 1,
-        turnEndsAt: Date.now() + WARMUP_SECONDS*1000
+        turnEndsAt: srvNow() + WARMUP_SECONDS*1000
       });
     }
   } catch(e){ console.log('Engine:', e); }
@@ -5201,10 +5208,10 @@ async function checkBattleEngine(){
   const snap = await get(ref(db, `battles/${battleId}/engine`));
   const eng = snap.val();
   if(!eng || eng.phase === 'finished'){ clearInterval(battleEngineInterval); return; }
-  if(Date.now() < eng.turnEndsAt) return;
+if(srvNow() < eng.turnEndsAt) return;
 
-  const now = Date.now();
-  const base = `battles/${battleId}/engine`;
+const now = srvNow();
+const base = `battles/${battleId}/engine`;
 
       if(eng.phase === 'warmup'){
     await set(ref(db, base), {
@@ -5218,22 +5225,22 @@ async function checkBattleEngine(){
       nextTurn: eng.turn === 'player1'? 'player2' : 'player1',
       nextRound: eng.turn === 'player2'? eng.round + 1 : eng.round
     });
-  } else if(eng.phase === 'interval'){
-  if(eng.nextRound > 2){
-    // Só UM dos MCs faz a transição (transação atômica na fase).
-    // O outro aborta aqui e nunca zera os votos.
-    const phaseRes = await runTransaction(ref(db, base + '/phase'), (fase)=>{
-      if(fase !== 'interval') return; // alguém já avançou
-      return 'voting';
-    });
-    if(phaseRes.committed){
-      await update(ref(db, base), {
-        round: 2,
-        turnEndsAt: now + VOTE_SECONDS*1000,
-        votes: { mc1: 0, mc2: 0, tie: 0 }
-      });
-    }
-  } else {
+} else if(eng.phase === 'interval'){
+if(eng.nextRound > 2){
+  // Transição ATÔMICA no nó inteiro: fase + prazo + votos saem juntos,
+  // numa escrita só. Só um dos MCs vence; o outro aborta e não faz nada.
+  // (Antes eram 2 escritas separadas e o outro celular lia um prazo velho
+  //  no meio do caminho — por isso a votação durava 1 segundo.)
+  await runTransaction(ref(db, base), (atual)=>{
+    if(!atual || atual.phase !== 'interval') return; // alguém já avançou
+    return {
+      phase: 'voting',
+      round: 2,
+      turnEndsAt: srvNow() + VOTE_SECONDS*1000,
+      votes: { mc1: 0, mc2: 0, tie: 0 }
+    };
+  });
+} else {
       await set(ref(db, base), {
         phase: 'battle', round: eng.nextRound, turn: eng.nextTurn,
         turnEndsAt: now + ROUND_SECONDS*1000
@@ -5317,7 +5324,7 @@ function listenBattleEngine(){
   clearInterval(battleCountdownInterval);
     battleCountdownInterval = setInterval(()=>{
     if(!lastEngine) return;
-    const rest = Math.max(0, Math.ceil((lastEngine.turnEndsAt - Date.now())/1000));
+    const rest = Math.max(0, Math.ceil((lastEngine.turnEndsAt - srvNow())/1000));
     const tEl = document.getElementById('voice-battle-timer');
     if(tEl) tEl.innerText = rest;
     const wEl = document.getElementById('mc-vote-wait-count');
@@ -5482,7 +5489,7 @@ if(eng.phase !== spectLastPhase){
   if(spectVoteCdInterval){ clearInterval(spectVoteCdInterval); }
   let zerosSeguidos = 0;
   spectVoteCdInterval = setInterval(()=>{
-    const rest = Math.max(0, Math.ceil((eng.turnEndsAt - Date.now())/1000));
+    const rest = Math.max(0, Math.ceil((eng.turnEndsAt - srvNow())/1000));
     const cdEl = document.getElementById('vote-countdown');
     if(cdEl) cdEl.innerText = rest;
     if(rest <= 0){
