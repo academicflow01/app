@@ -5335,7 +5335,12 @@ function listenBattleEngine(){
     const tEl = document.getElementById('voice-battle-timer');
     if(tEl) tEl.innerText = rest;
     const wEl = document.getElementById('mc-vote-wait-count');
-    if(wEl) wEl.innerText = rest;
+if(wEl){
+  const atual = parseInt(wEl.innerText) || 999;
+  // O cronômetro da votação NUNCA anda pra trás: só atualiza se o
+  // número diminuiu. Ignora pulos pra 15 causados por leitura velha.
+  if(rest <= atual) wEl.innerText = rest;
+}
   }, 500);
 }
 
