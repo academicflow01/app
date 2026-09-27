@@ -5210,45 +5210,52 @@ async function checkBattleEngine(){
   if(!eng || eng.phase === 'finished'){ clearInterval(battleEngineInterval); return; }
 if(srvNow() < eng.turnEndsAt) return;
 
-const now = srvNow();
 const base = `battles/${battleId}/engine`;
 
+// TODAS as transições de fase são ATÔMICAS (transação com trava de fase).
+// Motivo: o motor roda nos 2 MCs a cada 500ms. Se um tick ler um dado VELHO
+// (internet lenta) e fizer um set() cego, ele APAGA a fase atual do servidor
+// — inclusive uma votação em andamento — e a tela fica piscando.
+// A transação confere a fase ATUAL no servidor (atual.phase) e aborta sozinha
+// se alguém já avançou. Só uma transição vence por vez. Dentro da transação,
+// usa sempre o 'atual' (fresquinho), nunca o 'eng' (que pode estar velho).
       if(eng.phase === 'warmup'){
-    await set(ref(db, base), {
-      phase: 'battle', round: 1, turn: 'player1',
-      turnEndsAt: now + ROUND_SECONDS*1000
+    await runTransaction(ref(db, base), (atual)=>{
+      if(!atual || atual.phase !== 'warmup') return; // alguém já avançou
+      return {
+        phase: 'battle', round: 1, turn: 'player1',
+        turnEndsAt: srvNow() + ROUND_SECONDS*1000
+      };
     });
   } else if(eng.phase === 'battle'){
-  await set(ref(db, base), {
-    phase: 'interval', round: eng.round, turn: eng.turn,
-    turnEndsAt: now + INTERVAL_SECONDS*1000,
-    nextTurn: eng.turn === 'player1'? 'player2' : 'player1',
-    nextRound: eng.turn === 'player2'? eng.round + 1 : eng.round
-  });
-} else if(eng.phase === 'interval'){
-if(eng.nextRound > 2){
-  // Transição ATÔMICA no nó inteiro: fase + prazo + votos saem juntos,
-  // numa escrita só. Só um dos MCs vence; o outro aborta e não faz nada.
-  // (Antes eram 2 escritas separadas e o outro celular lia um prazo velho
-  //  no meio do caminho — por isso a votação durava 1 segundo.)
-  await runTransaction(ref(db, base), (atual)=>{
-    if(!atual || atual.phase !== 'interval') return; // alguém já avançou
-    return {
-      phase: 'voting',
-      round: 2,
-      turnEndsAt: srvNow() + VOTE_SECONDS*1000,
-      votes: { mc1: 0, mc2: 0, tie: 0 }
-    };
-  });
-} else {
-      await set(ref(db, base), {
-        phase: 'battle', round: eng.nextRound, turn: eng.nextTurn,
-        turnEndsAt: now + ROUND_SECONDS*1000
-      });
-    }
-  } else if(eng.phase === 'voting'){
-  await finishBattle();
+    await runTransaction(ref(db, base), (atual)=>{
+      if(!atual || atual.phase !== 'battle') return; // alguém já avançou
+      return {
+        phase: 'interval', round: atual.round, turn: atual.turn,
+        turnEndsAt: srvNow() + INTERVAL_SECONDS*1000,
+        nextTurn: atual.turn === 'player1'? 'player2' : 'player1',
+        nextRound: atual.turn === 'player2'? atual.round + 1 : atual.round
+      };
+    });
+  } else if(eng.phase === 'interval'){
+    await runTransaction(ref(db, base), (atual)=>{
+      if(!atual || atual.phase !== 'interval') return; // alguém já avançou
+      if(atual.nextRound > 2){
+        return {
+          phase: 'voting',
+          round: 2,
+          turnEndsAt: srvNow() + VOTE_SECONDS*1000,
+          votes: { mc1: 0, mc2: 0, tie: 0 }
+        };
       }
+      return {
+        phase: 'battle', round: atual.nextRound, turn: atual.nextTurn,
+        turnEndsAt: srvNow() + ROUND_SECONDS*1000
+      };
+    });
+  } else if(eng.phase === 'voting'){
+    await finishBattle();
+  }
 }
 
 
@@ -5607,7 +5614,13 @@ async function handleOpponentLeft(){
   const remoteAvatar = document.getElementById('voice-remote-avatar');
   const remoteName = document.getElementById('voice-remote-name');
   const vw = document.getElementById('mc-vote-wait');
-  if(vw) vw.style.display = 'none';
+if(vw){
+  vw.style.display = 'none';
+  // Reseta a trava: a escuta reativada abaixo vai reavaliar a fase atual
+  // e MOSTRAR o overlay de novo se a votação ainda estiver rolando
+  // (era só uma oscilação da internet, não saída de verdade).
+  window.lastVoteWaitPhase = null;
+    }
   if(remoteAvatar) remoteAvatar.parentElement.style.opacity = '0.3';
   if(remoteName) remoteName.innerText = 'Saiu da batalha';
 
