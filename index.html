@@ -5361,12 +5361,23 @@ function renderBattleEngine(eng){
       const names = window.battleNames || { player1:'MC 1', player2:'MC 2' };
     const vw0 = document.getElementById('mc-vote-wait');
 if(vw0){
-  // Só mexe no display quando a fase MUDA (não a cada voto → anti-piscada)
-  if(eng.phase !== window.lastVoteWaitPhase){
-    window.lastVoteWaitPhase = eng.phase;
-    vw0.style.display = (eng.phase === 'voting') ? 'flex' : 'none';
+  // ANTI-PISCADA DEFINITIVO: overlay "grudento".
+  // Entrou em votação → mostra. Só esconde quando terminar ('finished').
+  // Se a fase voltar pra trás (voting → interval/battle) por leitura velha
+  // ou oscilação, IGNORA — a tela não pisca.
+  if(eng.phase === 'voting'){
+    if(window.lastVoteWaitPhase !== 'voting'){
+      window.lastVoteWaitPhase = 'voting';
+      vw0.style.display = 'flex';
+    }
+  } else if(eng.phase === 'finished'){
+    if(window.lastVoteWaitPhase !== 'finished'){
+      window.lastVoteWaitPhase = 'finished';
+      vw0.style.display = 'none';
+    }
   }
-  }
+  // warmup/battle/interval: não toca no overlay, mantém como está
+}
 
   if(eng.phase === 'warmup'){
     if(label){ label.innerText = ' SE PREPAREM... A BATALHA VAI COMEÇAR'; label.style.color = '#FBBF24'; }
@@ -5583,12 +5594,27 @@ function registerBattlePresence(){
 
   // Desliga o listener da batalha anterior (fantasma que escondia a tela de votação)
   if(battlePresenceListener) battlePresenceListener();
-  battlePresenceListener = onValue(ref(db, `battles/${battleId}/presence/${oppSide}`), (snap)=>{
-    if(battleId !== currentBattleId) return; // evento de batalha velha, ignora
-    if(snap.exists()){ oppSeenOnline = true; return; }
-    if(!oppSeenOnline) return; // ele ainda nem entrou, não é saída
-    handleOpponentLeft();
-  });
+  if(window.oppLeftTimer){ clearTimeout(window.oppLeftTimer); window.oppLeftTimer = null; }
+battlePresenceListener = onValue(ref(db, `battles/${battleId}/presence/${oppSide}`), (snap)=>{
+  if(battleId !== currentBattleId) return; // evento de batalha velha, ignora
+  if(snap.exists()){
+    oppSeenOnline = true;
+    if(window.oppLeftTimer){ clearTimeout(window.oppLeftTimer); window.oppLeftTimer = null; }
+    return;
+  }
+  if(!oppSeenOnline) return; // ele ainda nem entrou, não é saída
+  // DEBOUNCE: espera 4s e reconfere antes de declarar saída.
+  // Filtra oscilações rápidas de internet.
+  if(window.oppLeftTimer) clearTimeout(window.oppLeftTimer);
+  window.oppLeftTimer = setTimeout(async ()=>{
+    window.oppLeftTimer = null;
+    if(battleId !== currentBattleId) return;
+    try {
+      const recheck = await get(ref(db, `battles/${battleId}/presence/${oppSide}`));
+      if(!recheck.exists() && battleId === currentBattleId) handleOpponentLeft();
+    } catch(e){}
+  }, 4000);
+});
 
   // Se a internet cair e voltar, recadastra a presença
   // (sem isso, o oponente te enxerga como "saiu" pra sempre)
