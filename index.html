@@ -5219,12 +5219,12 @@ const base = `battles/${battleId}/engine`;
       turnEndsAt: now + ROUND_SECONDS*1000
     });
   } else if(eng.phase === 'battle'){
-    await set(ref(db, base), {
-      phase: 'interval', round: eng.round, turn: eng.turn,
-      turnEndsAt: now + INTERVAL_SECONDS*1000,
-      nextTurn: eng.turn === 'player1'? 'player2' : 'player1',
-      nextRound: eng.turn === 'player2'? eng.round + 1 : eng.round
-    });
+  await set(ref(db, base), {
+    phase: 'interval', round: eng.round, turn: eng.turn,
+    turnEndsAt: now + INTERVAL_SECONDS*1000,
+    nextTurn: eng.turn === 'player1'? 'player2' : 'player1',
+    nextRound: eng.turn === 'player2'? eng.round + 1 : eng.round
+  });
 } else if(eng.phase === 'interval'){
 if(eng.nextRound > 2){
   // Transição ATÔMICA no nó inteiro: fase + prazo + votos saem juntos,
@@ -5483,9 +5483,15 @@ if(eng.phase !== spectLastPhase){
       document.getElementById('spec-mc1-name').textContent = b.player1.name;
       document.getElementById('spec-mc2-name').textContent = b.player2.name;
       if(eng.phase === 'voting' &&!myVoteCast){
-  document.getElementById('vote-btn-mc1').innerText = b.player1.name;
-  document.getElementById('vote-btn-mc2').innerText = b.player2.name;
-  document.getElementById('vote-overlay').style.display = 'flex';
+document.getElementById('vote-btn-mc1').innerText = b.player1.name;
+document.getElementById('vote-btn-mc2').innerText = b.player2.name;
+// Reativa os botões (se votou numa batalha anterior, eles ficaram desligados
+// no castVote e nunca religaram — por isso o clique "não funcionava").
+document.querySelectorAll('#vote-overlay button').forEach(b=>{
+  b.style.opacity = '1';
+  b.style.pointerEvents = 'auto';
+});
+document.getElementById('vote-overlay').style.display = 'flex';
   if(spectVoteCdInterval){ clearInterval(spectVoteCdInterval); }
   let zerosSeguidos = 0;
   spectVoteCdInterval = setInterval(()=>{
