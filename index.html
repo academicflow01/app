@@ -1560,7 +1560,7 @@
 
       <div class="stat-box">
         <div class="stat-value" id="stat-battles-won">0</div>
-        <div class="stat-label">Batalhas Vencidas</div>
+        <div class="stat-label">Batalhas Disputadas</div>
       </div>
         </div>
 
@@ -1621,7 +1621,7 @@
         <div style="font-weight:800; font-size:0.95rem;">Nosso Propósito</div>
       </div>
       <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.5;">
-        O Academic Flow nasceu para ser a primeira academia de freestyle do Brasil. Queremos tirar o MC do improviso puro e levar para o estudo técnico, com repertório, métrica e flow. A rua ensina, a gente organiza.
+        O Academic Flow nasceu para ser a academia definitiva do freestyle no Brasil. Queremos tirar o MC do improviso puro e levar para o estudo técnico, com repertório, métrica e flow.
       </p>
       <p style="font-size:0.7rem; color:var(--text-muted); margin-top:10px;">v1.0 • Feito por MCs, para MCs 🎤</p>
     </div>
@@ -3879,6 +3879,13 @@ const rtcConfig = {
 };
 
 
+         // SINCRONIA DE RELÓGIO — os 2 MCs usam o horário do servidor Firebase
+let rhymexServerOffset = 0;
+onValue(ref(db, '.info/serverTimeOffset'), (snap)=>{
+  rhymexServerOffset = snap.val() || 0;
+});
+function serverNow(){ return Date.now() + rhymexServerOffset; }
+
 // ==========================================
 // MICROFONE
 // ==========================================
@@ -3887,9 +3894,13 @@ async function startVoiceMicrophone() {
 
   try {
 
-    voiceLocalStream =
+        voiceLocalStream =
       await navigator.mediaDevices.getUserMedia({
-        audio: true,
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          autoGainControl: true
+        },
         video: false
       });
 
@@ -5242,10 +5253,10 @@ function startBattleEngine(){
   const battleId = currentBattleId;
   if(!battleId) return;
   update(ref(db, `battles/${battleId}`), { status: 'live' });
-      set(ref(db, `battles/${battleId}/engine`), {
+            set(ref(db, `battles/${battleId}/engine`), {
     phase: 'warmup',
     round: 1,
-    turnEndsAt: Date.now() + WARMUP_SECONDS*1000
+    turnEndsAt: serverNow() + WARMUP_SECONDS*1000
   });
   battleEngineInterval = setInterval(checkBattleEngine, 500);
 }
@@ -5260,10 +5271,10 @@ async function checkBattleEngine(){
     if(!battleId){ clearInterval(battleEngineInterval); return; }
     const snap = await get(ref(db, `battles/${battleId}/engine`));
     const eng = snap.val();
-    if(!eng || eng.phase === 'finished'){ clearInterval(battleEngineInterval); return; }
-    if(Date.now() < eng.turnEndsAt) return;
+        if(!eng || eng.phase === 'finished'){ clearInterval(battleEngineInterval); return; }
+    if(serverNow() < eng.turnEndsAt) return;
 
-    const now = Date.now();
+    const now = serverNow();
     const base = `battles/${battleId}/engine`;
 
     if(eng.phase === 'warmup'){
@@ -5271,13 +5282,26 @@ async function checkBattleEngine(){
         phase: 'battle', round: 1, turn: 'player1',
         turnEndsAt: now + ROUND_SECONDS*1000
       });
-    } else if(eng.phase === 'battle'){
-      await set(ref(db, base), {
-        phase: 'interval', round: eng.round, turn: eng.turn,
-        turnEndsAt: now + INTERVAL_SECONDS*1000,
-        nextTurn: eng.turn === 'player1'? 'player2' : 'player1',
-        nextRound: eng.turn === 'player2'? eng.round + 1 : eng.round
-      });
+          } else if(eng.phase === 'battle'){
+      const nextTurn = eng.turn === 'player1'? 'player2' : 'player1';
+      const nextRound = eng.turn === 'player2'? eng.round + 1 : eng.round;
+      if(nextRound > 2){
+        // Última rima acabou — vai direto pro fim, sem intervalo fantasma
+        await finishBattle();
+      } else if(nextRound > eng.round){
+        // Fim do round 1 — direto pra pausa do round, sem intervalo no meio
+        await set(ref(db, base), {
+          phase: 'roundbreak', round: eng.round,
+          turnEndsAt: now + ROUNDBREAK_SECONDS*1000,
+          nextRound: nextRound, nextTurn: nextTurn
+        });
+      } else {
+        await set(ref(db, base), {
+          phase: 'interval', round: eng.round, turn: eng.turn,
+          turnEndsAt: now + INTERVAL_SECONDS*1000,
+          nextTurn: nextTurn, nextRound: nextRound
+        });
+      }
     } else if(eng.phase === 'interval'){
       if(eng.nextRound > 2){
         await finishBattle();
@@ -5334,7 +5358,7 @@ function listenBattleEngine(){
   clearInterval(battleCountdownInterval);
     battleCountdownInterval = setInterval(()=>{
     if(!lastEngine) return;
-    const rest = Math.max(0, Math.ceil((lastEngine.turnEndsAt - Date.now())/1000));
+    const rest = Math.max(0, Math.ceil((lastEngine.turnEndsAt - serverNow())/1000));
     const tEl = document.getElementById('voice-battle-timer');
     if(tEl) tEl.innerText = rest;
   }, 500);
@@ -5915,7 +5939,7 @@ window.loadRanking = async function(){
     let lista = [];
     snap.forEach(child=>{
       const u = child.val();
-      if(u.battles && u.battles >= 1) lista.push(u);
+      if(u.battles && u.battles >= 5) lista.push(u);
     });
     // Ordena por batalhas completas disputadas
     lista.sort((a,b)=>{
@@ -5924,7 +5948,7 @@ window.loadRanking = async function(){
     lista = lista.slice(0, 10); // TOP 10
 
     if(lista.length === 0){
-      container.innerHTML = `<div style="text-align:center;padding:40px 20px;"><p style="color:white;font-weight:700;">Nenhum MC no ranking ainda</p><p style="color:#6b7280;font-size:0.85rem;margin-top:8px;">Vence 3 batalhas pra entrar no TOP 10!</p></div>`;
+      container.innerHTML = `<div style="text-align:center;padding:40px 20px;"><p style="color:white;font-weight:700;">Nenhum MC no ranking ainda</p><p style="color:#6b7280;font-size:0.85rem;margin-top:8px;">Vence 5 batalhas pra entrar no TOP 10!</p></div>`;
       return;
     }
 
