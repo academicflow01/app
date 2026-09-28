@@ -634,6 +634,29 @@
       100% { height: 20px; }
     }
 
+          /* ANÉIS DE VOZ — estilo TikTok */
+   .voice-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid var(--accent-purple-bright);
+      box-shadow: 0 0 14px rgba(168, 85, 247, 0.55);
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, -50%) scale(1);
+    }
+   .voice-ring.ring-2 {
+      border-width: 1px;
+      box-shadow: 0 0 8px rgba(168, 85, 247, 0.3);
+    }
+   .avatar-lg > span {
+      position: relative;
+      z-index: 2;
+      }
+
     /* ==========================================
        VOCABULARY & DICTIONARY
        ========================================== */
@@ -1270,7 +1293,7 @@
             </h3>
             <span class="tag" style="background: rgba(239, 68, 68, 0.15); color: var(--danger);">AO VIVO</span>
           </div>
-          <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 14px;">Assista uma batalha aleatória acontecendo agora e vote no seu MC favorito.</p>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 14px;">Assista uma batalha aleatória acontecendo agora, ao vivo.</p>
           <button class="btn btn-secondary" onclick="watchRandomBattle()">
             <i data-lucide="play" style="width: 18px;"></i> Ver Batalha Aleatória
           </button>
@@ -1442,7 +1465,7 @@
 
         <!-- Filter tabs -->
         <div class="mode-pills">
-          <div class="mode-pill active">Top 10 - Por Vitórias</div>
+                    <div class="mode-pill active">Top 10 - Por Batalhas</div>
         </div>
 
         <div id="ranking-list">
@@ -1965,7 +1988,7 @@
     </div>
   
   
-  <!-- OVERLAY: BATALHA POR VOZ REAL -->
+    <!-- OVERLAY: BATALHA POR VOZ REAL -->
 <div id="voice-battle-overlay" class="session-arena" style="background: var(--bg-main);">
 
   <div class="arena-header">
@@ -2017,27 +2040,21 @@
     <!-- VOCÊ -->
     <div class="mc-profile-card">
 
-      <div class="avatar-lg"
+            <div class="avatar-lg"
            style="border-color:var(--accent-purple-bright);">
 
+        <div class="voice-ring ring-1" id="ring-local-1"></div>
+        <div class="voice-ring ring-2" id="ring-local-2"></div>
         <span id="voice-local-avatar">EU</span>
 
-      </div>
+            </div>
 
       <span id="voice-local-name"
             style="font-size:0.9rem; font-weight:700;">
         Você
       </span>
 
-      <div id="local-audio-wave"
-           class="audio-wave"
-           style="opacity:0.35;">
-
-        <div class="audio-bar"></div>
-        <div class="audio-bar"></div>
-        <div class="audio-bar"></div>
-
-      </div>
+      
 
     </div>
 
@@ -2055,27 +2072,21 @@
     <!-- ADVERSÁRIO -->
     <div class="mc-profile-card">
 
-      <div class="avatar-lg"
+            <div class="avatar-lg"
            style="border-color:var(--border-color);">
 
+        <div class="voice-ring ring-1" id="ring-remote-1"></div>
+        <div class="voice-ring ring-2" id="ring-remote-2"></div>
         <span id="voice-remote-avatar">??</span>
 
-      </div>
+            </div>
 
       <span id="voice-remote-name"
             style="font-size:0.9rem; font-weight:700;">
         Adversário
       </span>
 
-      <div id="remote-audio-wave"
-           class="audio-wave"
-           style="opacity:0.35;">
-
-        <div class="audio-bar"></div>
-        <div class="audio-bar"></div>
-        <div class="audio-bar"></div>
-
-      </div>
+      
 
     </div>
 
@@ -2109,15 +2120,7 @@
 
 
 
-    <!-- TELA DE ESPERA DA VOTAÇÃO (MCs) -->
-  <div id="mc-vote-wait" style="display:none; position:absolute; inset:0; background:rgba(9,10,15,0.97); z-index:120; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center;">
-    <span class="tag" style="background:var(--accent-purple-glow); color:var(--accent-purple-bright); margin-bottom:12px;">VOTAÇÃO EM ANDAMENTO</span>
-    <h2 style="color:white; font-size:1.3rem; font-weight:800; margin-bottom:8px;">AGUARDE A VOTAÇÃO</h2>
-    <p style="color:var(--text-secondary); font-size:0.85rem; margin-bottom:16px;">A plateia está decidindo o vencedor...</p>
-    <div id="mc-vote-wait-count" style="font-family:var(--font-mono); font-size:3rem; font-weight:800; color:var(--accent-purple-bright);">15</div>
-    <p style="color:var(--text-muted); font-size:0.75rem; margin-top:8px;">O resultado aparece em instantes</p>
-  </div>
-</div>
+    
 
 
 
@@ -2164,19 +2167,21 @@
   </div>
   <div class="battle-vs-container">
     <div class="mc-profile-card">
-      <div class="avatar-lg" style="border-color: var(--accent-purple-bright);">
+            <div class="avatar-lg" style="border-color: var(--accent-purple-bright);">
+        <div class="voice-ring ring-1" id="ring-spec-mc1-1"></div>
+        <div class="voice-ring ring-2" id="ring-spec-mc1-2"></div>
         <span id="spec-mc1-avatar">??</span>
       </div>
       <span id="spec-mc1-name" style="font-size: 0.9rem; font-weight: 700;">Carregando...</span>
-      <div class="audio-wave"><div class="audio-bar"></div><div class="audio-bar"></div></div>
     </div>
     <div style="font-family: var(--font-mono); font-size: 1.5rem; font-weight: 800; color: var(--accent-purple-bright);">VS</div>
     <div class="mc-profile-card">
-      <div class="avatar-lg" style="border-color: var(--border-color);">
+            <div class="avatar-lg" style="border-color: var(--border-color);">
+        <div class="voice-ring ring-1" id="ring-spec-mc2-1"></div>
+        <div class="voice-ring ring-2" id="ring-spec-mc2-2"></div>
         <span id="spec-mc2-avatar">??</span>
       </div>
       <span id="spec-mc2-name" style="font-size: 0.9rem; font-weight: 700;">Carregando...</span>
-      <div class="audio-wave"><div class="audio-bar"></div><div class="audio-bar"></div></div>
     </div>
   </div>
 
@@ -2212,17 +2217,7 @@
 
 
 
-      <!-- OVERLAY: VOTAÇÃO DA PLATEIA -->
-    <div id="vote-overlay" style="display:none; position:fixed; inset:0; background:rgba(9,10,15,0.96); z-index:999999; flex-direction:column; align-items:center; justify-content:center; padding:24px; text-align:center;">
-      <span class="tag" style="background:rgba(251,191,36,0.15); color:#FBBF24; margin-bottom:12px;">VOTAÇÃO ENCERRANDO</span>
-      <h2 style="color:white; font-size:1.4rem; font-weight:800; margin-bottom:4px;">Quem venceu a batalha?</h2>
-      <div id="vote-countdown" style="font-family:var(--font-mono); font-size:2.5rem; font-weight:800; color:#FBBF24; margin:8px 0 20px 0;">15</div>
-      <button id="vote-btn-mc1" onclick="castVote('mc1')" style="width:100%; max-width:320px; background:var(--bg-card); border:1px solid var(--border-active); color:white; padding:14px; border-radius:12px; font-weight:800; margin-bottom:10px; font-size:1rem;">MC 1</button>
-      <button id="vote-btn-mc2" onclick="castVote('mc2')" style="width:100%; max-width:320px; background:var(--bg-card); border:1px solid var(--border-active); color:white; padding:14px; border-radius:12px; font-weight:800; margin-bottom:10px; font-size:1rem;">MC 2</button>
-      <button onclick="castVote('tie')" style="width:100%; max-width:320px; background:rgba(251,191,36,0.1); border:1px solid rgba(251,191,36,0.4); color:#FBBF24; padding:14px; border-radius:12px; font-weight:800; font-size:1rem;">🤝 Empatou</button>
-      <p style="color:#6b7280; font-size:0.75rem; margin-top:16px;">Você só pode votar uma vez</p>
-    </div>
-  
+      
 
     <!-- BOTTOM NAVIGATION BAR -->
     <nav class="app-nav">
@@ -3742,15 +3737,17 @@ setPersistence(auth, browserLocalPersistence)
             try {
         const userRef = ref(db, `users/${user.uid}`);
         const userSnap = await get(userRef);
-        if(!userSnap.exists()){
+                if(!userSnap.exists()){
           await set(userRef, {
             uid: user.uid,
             name: user.displayName || 'MC',
             email: user.email.toLowerCase(),
             wins: 0,
+            battles: 0,
             lastWinAt: 0,
             createdAt: Date.now()
           });
+                
         } else {
           await update(userRef, {
             name: user.displayName || 'MC',
@@ -3865,14 +3862,13 @@ let battleCountdownInterval = null; // atualiza o cronômetro na tela
 let battleStateListener = null; // ouve mudanças da batalha
 let spectatorEngineListener = null;
 let lastEngine = null; // último estado recebido
-let myVoteCast = false; // plateia: já votou?
 let oppSeenOnline = false; // oponente já apareceu online?
   
 
       // --- CONFIG DA BATALHA (mude os segundos aqui pra testar) ---
 const ROUND_SECONDS = 30; // duração de cada vez de rima
 const INTERVAL_SECONDS = 5; // intervalo entre as viradas
-const VOTE_SECONDS = 15; // duração da votação
+  const ROUNDBREAK_SECONDS = 10; // pausa entre o round 1 e o round 2
   const WARMUP_SECONDS = 15; // contagem inicial de preparação
 
 const rtcConfig = {
@@ -3961,7 +3957,11 @@ function createVoicePeerConnection() {
       remoteAudio.srcObject =
         event.streams[0];
 
-      remoteAudio.play().catch(() => {});
+            remoteAudio.play().catch(() => {});
+
+      // ANÉIS: mede o volume do oponente de verdade
+      initVoiceRings();
+      attachVoiceMeter('remote', event.streams[0], '#ring-remote-1', '#ring-remote-2');
 
       console.log(
         "RHYMEX: áudio do adversário recebido."
@@ -4037,6 +4037,70 @@ function createVoicePeerConnection() {
   return voicePeerConnection;
 }
 
+
+
+
+  // ==========================================
+// ANÉIS DE VOZ — medidor real (estilo TikTok)
+// ==========================================
+let voiceAudioCtx = null;
+let voiceAnimFrame = null;
+const voiceMeters = {};
+
+function initVoiceRings(){
+  if(voiceAudioCtx) return;
+  try {
+    voiceAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if(voiceAudioCtx.state === 'suspended') voiceAudioCtx.resume();
+  } catch(e){ console.log('AudioContext indisponível', e); }
+}
+
+function attachVoiceMeter(key, stream, sel1, sel2){
+  if(!voiceAudioCtx ||!stream || voiceMeters[key]) return;
+  try {
+    const src = voiceAudioCtx.createMediaStreamSource(stream);
+    const analyser = voiceAudioCtx.createAnalyser();
+    analyser.fftSize = 512;
+    src.connect(analyser);
+    const dataArray = new Uint8Array(analyser.frequencyBinCount);
+    const rings = [document.querySelector(sel1), document.querySelector(sel2)].filter(Boolean);
+    voiceMeters[key] = { analyser, dataArray, rings, level: 0 };
+    if(!voiceAnimFrame) voiceRingLoop();
+  } catch(e){ console.log('ring meter erro', e); }
+}
+
+function voiceRingLoop(){
+  voiceAnimFrame = requestAnimationFrame(voiceRingLoop);
+  for(const key in voiceMeters){
+    const m = voiceMeters[key];
+    m.analyser.getByteTimeDomainData(m.dataArray);
+    let sum = 0;
+    for(let i = 0; i < m.dataArray.length; i++){
+      const v = (m.dataArray[i] - 128) / 128;
+      sum += v * v;
+    }
+    const vol = Math.sqrt(sum / m.dataArray.length);
+    m.level = Math.max(vol, m.level * 0.85);
+    const intensity = Math.min(1, m.level * 4);
+    if(m.rings[0]){
+      m.rings[0].style.opacity = (intensity * 0.9).toFixed(2);
+      m.rings[0].style.transform = 'translate(-50%,-50%) scale(' + (1 + intensity * 0.18).toFixed(3) + ')';
+    }
+    if(m.rings[1]){
+      m.rings[1].style.opacity = (intensity * 0.5).toFixed(2);
+      m.rings[1].style.transform = 'translate(-50%,-50%) scale(' + (1 + intensity * 0.32).toFixed(3) + ')';
+    }
+  }
+}
+
+function stopVoiceRings(){
+  if(voiceAnimFrame){ cancelAnimationFrame(voiceAnimFrame); voiceAnimFrame = null; }
+  for(const k in voiceMeters) delete voiceMeters[k];
+  document.querySelectorAll('.voice-ring').forEach(r => { r.style.opacity = 0; });
+  if(voiceAudioCtx){ voiceAudioCtx.close().catch(()=>{}); voiceAudioCtx = null; }
+}
+
+  
 
 // ==========================================
 // CRIAR BATALHA
@@ -4597,24 +4661,26 @@ window.joinAsSpectator = async function(battleId) {
   document.getElementById('spectator-overlay').classList.add('active');
   lucide.createIcons();
 
-        myVoteCast = false;
+        
   window.spectatorResultShown = false;
   listenSpectatorEngine(battleId);
   listenSpectatorList(battleId, 'spect-spec-avatars', 'spect-spec-count');
 
-  connectSpectatorToMC(battleId, b.player1.uid);
-  connectSpectatorToMC(battleId, b.player2.uid);
+    connectSpectatorToMC(battleId, b.player1.uid, 'mc1');
+  connectSpectatorToMC(battleId, b.player2.uid, 'mc2');
 };
 
-async function connectSpectatorToMC(battleId, mcUid) {
+async function connectSpectatorToMC(battleId, mcUid, side) {
   const pc = new RTCPeerConnection(rtcConfig);
   spectatorPCs.push(pc);
   pc.addTransceiver('audio', { direction: 'recvonly' });
 
-  pc.ontrack = (e) => {
+    pc.ontrack = (e) => {
     const a = new Audio();
     a.srcObject = e.streams[0];
     a.play().catch(()=>{});
+    initVoiceRings();
+    attachVoiceMeter('spec-'+side, e.streams[0], '#ring-spec-'+side+'-1', '#ring-spec-'+side+'-2');
   };
 
   const myUid = window.rhymexUser? window.rhymexUser.uid : anonId;
@@ -4639,14 +4705,14 @@ async function connectSpectatorToMC(battleId, mcUid) {
 window.closeSpectator = async function() {
     if(spectatorEngineListener){ spectatorEngineListener(); spectatorEngineListener = null; }
     if(spectatorListListener){ spectatorListListener(); spectatorListListener = null; }
-  document.getElementById('vote-overlay').style.display = 'none';
   if(currentSpectatingId) {
     const myUid = window.rhymexUser? window.rhymexUser.uid : anonId;
     await remove(ref(db, `battles/${currentSpectatingId}/spectators/${myUid}`));
     await runTransaction(ref(db, `battles/${currentSpectatingId}/spectatorsCount`), c => Math.max(0,(c||1)-1));
   }
-  spectatorPCs.forEach(pc=>pc.close());
+    spectatorPCs.forEach(pc=>pc.close());
   spectatorPCs = [];
+  stopVoiceRings();
   document.getElementById('spectator-overlay').classList.remove('active');
   currentSpectatingId = null;
 };
@@ -4830,8 +4896,12 @@ async function(
   }
 
 
-  // Cria WebRTC
+    // Cria WebRTC
   createVoicePeerConnection();
+
+  // ANÉIS: mede teu microfone de verdade
+  initVoiceRings();
+  if(voiceLocalStream) attachVoiceMeter('local', voiceLocalStream, '#ring-local-1', '#ring-local-2');
 
 
   // Descobre quem é player 1
@@ -5210,10 +5280,12 @@ async function checkBattleEngine(){
       });
     } else if(eng.phase === 'interval'){
       if(eng.nextRound > 2){
+        await finishBattle();
+      } else if(eng.nextRound > eng.round){
         await set(ref(db, base), {
-          phase: 'voting', round: 2,
-          turnEndsAt: now + VOTE_SECONDS*1000,
-          votes: { mc1: 0, mc2: 0, tie: 0 }
+          phase: 'roundbreak', round: eng.round,
+          turnEndsAt: now + ROUNDBREAK_SECONDS*1000,
+          nextRound: eng.nextRound, nextTurn: eng.nextTurn
         });
       } else {
         await set(ref(db, base), {
@@ -5221,60 +5293,41 @@ async function checkBattleEngine(){
           turnEndsAt: now + ROUND_SECONDS*1000
         });
       }
-    } else if(eng.phase === 'voting'){
-      await finishBattle(eng.votes || { mc1:0, mc2:0, tie:0 });
+    } else if(eng.phase === 'roundbreak'){
+      await set(ref(db, base), {
+        phase: 'battle', round: eng.nextRound, turn: eng.nextTurn,
+        turnEndsAt: now + ROUND_SECONDS*1000
+      });
     }
   } finally {
     engineBusy = false;
   }
 }
 
-async function finishBattle(votes){
+async function finishBattle(){
   clearInterval(battleEngineInterval);
   const battleId = currentBattleId;
+  if(!battleId) return;
   try {
-    const v = { mc1: votes.mc1||0, mc2: votes.mc2||0, tie: votes.tie||0 };
-    const total = v.mc1 + v.mc2 + v.tie;
-    let winner;
-    if(total === 0){
-      winner = 'none';
-    } else {
-      const max = Math.max(v.mc1, v.mc2, v.tie);
-      const tops = [];
-      if(v.mc1 === max) tops.push('mc1');
-      if(v.mc2 === max) tops.push('mc2');
-      if(v.tie === max) tops.push('tie');
-      winner = tops.length === 1? tops[0] : 'tie';
-    }
-    const bsnap = await get(ref(db, `battles/${battleId}`));
-    const b = bsnap.val() || {};
-    let winnerUids = [];
-    if(winner === 'mc1') winnerUids = [b.player1 && b.player1.uid];
-    else if(winner === 'mc2') winnerUids = [b.player2 && b.player2.uid];
-    else if(winner === 'tie') winnerUids = [b.player1 && b.player1.uid, b.player2 && b.player2.uid];
     await update(ref(db, `battles/${battleId}/engine`), {
-      phase: 'finished', winner: winner,
-      winnerUids: winnerUids.filter(Boolean),
+      phase: 'finished',
       turnEndsAt: Date.now() + 10000
     });
   } catch(e){
-    console.error('RHYMEX: finishBattle falhou, forçando finished:', e);
-    try {
-      await update(ref(db, `battles/${battleId}/engine`), {
-        phase: 'finished', winner: 'none', winnerUids: [],
-        turnEndsAt: Date.now() + 10000
-      });
-    } catch(e2){ console.error('RHYMEX: nem o fallback salvou:', e2); }
+    console.error('RHYMEX: erro ao finalizar batalha:', e);
   }
-  }
+}
 
 // ---------- QUEM OBEDECE (os 2 MCs) ----------
 
 function listenBattleEngine(){
   if(battleStateListener) battleStateListener();
-  battleStateListener = onValue(ref(db, `battles/${currentBattleId}/engine`), (snap)=>{
+    battleStateListener = onValue(ref(db, `battles/${currentBattleId}/engine`), (snap)=>{
     const eng = snap.val();
-    if(!eng) return;
+    if(!eng){
+      if(window.mcResultShown && currentBattleId) window.leaveVoiceBattle();
+      return;
+    }
     lastEngine = eng;
     renderBattleEngine(eng);
   });
@@ -5284,8 +5337,6 @@ function listenBattleEngine(){
     const rest = Math.max(0, Math.ceil((lastEngine.turnEndsAt - Date.now())/1000));
     const tEl = document.getElementById('voice-battle-timer');
     if(tEl) tEl.innerText = rest;
-    const wEl = document.getElementById('mc-vote-wait-count');
-    if(wEl) wEl.innerText = rest;
   }, 500);
 }
 
@@ -5309,12 +5360,11 @@ function renderBattleEngine(eng){
   if(roundEl) roundEl.innerText = eng.round || 1;
   const mySide = window.myBattleSide;
       const names = window.battleNames || { player1:'MC 1', player2:'MC 2' };
-    const vw0 = document.getElementById('mc-vote-wait');
-  if(vw0 && eng.phase!== 'voting') vw0.style.display = 'none';
+    
 
   if(eng.phase === 'warmup'){
-    if(label){ label.innerText = ' SE PREPAREM... A BATALHA VAI COMEÇAR'; label.style.color = '#FBBF24'; }
-    if(status){ status.innerText = 'PREPARAÇÃO'; status.style.color = 'var(--warning)'; }
+        if(label){ label.innerText = 'PREPARE-SE... A BATALHA VAI COMEÇAR'; label.style.color = 'var(--accent-purple-bright)'; }
+    if(status){ status.innerText = 'AQUECENDO MOTORES...'; status.style.color = 'var(--accent-purple)'; }
     return;
   }
 
@@ -5328,70 +5378,28 @@ function renderBattleEngine(eng){
     if(status){ status.innerText = 'BATALHA ROLANDO'; status.style.color = 'var(--success)'; }
   } else if(eng.phase === 'interval'){
     const proximo = eng.nextTurn === mySide? 'SUA VEZ' : 'VEZ DE ' + (names[eng.nextTurn] || '').toUpperCase();
-    if(label){ label.innerText = ' PREPARE-SE... ' + proximo; label.style.color = '#FBBF24'; }
-    } else if(eng.phase === 'voting'){
-    if(label){ label.innerText = 'VOTAÇÃO DA PLATEIA'; label.style.color = '#FBBF24'; }
-    if(status){ status.innerText = 'AGUARDANDO VOTAÇÃO DA PLATEIA...'; status.style.color = 'var(--warning)'; }
-    const vw = document.getElementById('mc-vote-wait');
-    if(vw) vw.style.display = 'flex';
-  } else if(eng.phase === 'finished'){
+        if(label){ label.innerText = ' PREPARE-SE... ' + proximo; label.style.color = 'var(--accent-purple-bright)'; }
+  } else if(eng.phase === 'roundbreak'){
+    if(label){ label.innerText = 'ROUND 1 FINALIZADO'; label.style.color = 'var(--accent-purple-bright)'; }
+    if(status){ status.innerText = 'PREPARE-SE PARA O ROUND 2...'; status.style.color = 'var(--accent-purple)'; }
+    } else if(eng.phase === 'finished'){
     clearInterval(battleCountdownInterval);
-    let texto = '';
-    if(eng.winner === 'none') texto = 'SEM VOTOS — BATALHA SEM RESULTADO';
-    else if(eng.winner === 'tie') texto = 'EMPATE! PONTO PROS DOIS MCS';
-    else {
-      const nomeV = eng.winner === 'mc1'? names.player1 : names.player2;
-      texto = 'VENCEDOR: ' + (nomeV || '').toUpperCase();
-    }
-    if(label){ label.innerText = texto; label.style.color = eng.winner === 'none'? 'var(--text-secondary)' : '#10B981'; }
+    if(label){ label.innerText = 'FIM DA BATALHA — VALEU PELO SHOW 🎤'; label.style.color = '#10B981'; }
     if(status){ status.innerText = 'BATALHA ENCERRADA'; status.style.color = 'var(--text-secondary)'; }
-    // premia: se eu sou um dos vencedores, soma no perfil (só uma vez)
-    const myUid = window.rhymexUser && window.rhymexUser.uid;
-    if(!window.battleWinAwarded && myUid && eng.winnerUids && eng.winnerUids.includes(myUid)){
-      window.battleWinAwarded = true;
-      if(window.addBattleWin) window.addBattleWin();
-    }
-    // modal de resultado pros MCs (só mostra uma vez)
-    if(!window.mcResultShown){
+                if(!window.mcResultShown){
       window.mcResultShown = true;
-      showRhymexModal({ icon:'trophy', title:'Fim da batalha', text: texto });
-    }
+      // ANTI-FARM: só conta a batalha pra quem ficou até o fim
+      if(window.addBattlePlayed) window.addBattlePlayed();
+      showRhymexModal({ icon:'trophy', title:'Fim da batalha', text:'Os rounds acabaram! Valeu pelo show, MC 🎤' });
+      setTimeout(()=>{ if(currentBattleId) window.leaveVoiceBattle(); }, 6000);
+      }
   }
 }
 
-// ---------- VOTAÇÃO (plateia) ----------
 
-window.castVote = async function(choice){
-  if(myVoteCast ||!currentSpectatingId) return;
-  const overlay = document.getElementById('vote-overlay');
-  // feedback imediato: escurece os 3 botões
-  overlay.querySelectorAll('button').forEach(b=>{
-    b.style.opacity = '0.35';
-    b.style.pointerEvents = 'none';
-  });
-  try {
-    const myUid = window.rhymexUser? window.rhymexUser.uid : anonId;
-    const voterRef = ref(db, `battles/${currentSpectatingId}/engine/voters/${myUid}`);
-    const vsnap = await get(voterRef);
-    if(vsnap.exists()){ overlay.style.display = 'none'; myVoteCast = true; return; }
-    await set(voterRef, true);
-    await runTransaction(ref(db, `battles/${currentSpectatingId}/engine/votes/${choice}`), c => (c||0)+1);
-    myVoteCast = true; // só marca depois que deu certo
-    overlay.style.display = 'none';
-  } catch(e){
-    console.error('Erro ao votar:', e);
-    // falhou: devolve os botões pra tentar de novo
-    overlay.querySelectorAll('button').forEach(b=>{
-      b.style.opacity = '1';
-      b.style.pointerEvents = 'auto';
-    });
-    alert('Não foi possível registrar seu voto. Tente novamente.');
-  }
-};
 
 function listenSpectatorEngine(battleId){
   if(spectatorEngineListener) spectatorEngineListener();
-  // Se a batalha for apagada, expulsa a plateia (problema 5)
   const battleGone = onValue(ref(db, `battles/${battleId}`), (snap)=>{
     if(!snap.exists() && currentSpectatingId){
       window.closeSpectator();
@@ -5401,36 +5409,18 @@ function listenSpectatorEngine(battleId){
   spectatorEngineListener = onValue(ref(db, `battles/${battleId}/engine`), (snap)=>{
     const eng = snap.val();
     if(!eng ||!currentSpectatingId) return;
-    const names = { player1:'MC 1', player2:'MC 2' };
-    // pega nomes reais uma vez
     get(ref(db, `battles/${battleId}`)).then(bs=>{
       const b = bs.val(); if(!b) return;
       document.getElementById('spec-mc1-name').textContent = b.player1.name;
       document.getElementById('spec-mc2-name').textContent = b.player2.name;
-      if(eng.phase === 'voting' &&!myVoteCast){
-        document.getElementById('vote-btn-mc1').innerText = b.player1.name;
-        document.getElementById('vote-btn-mc2').innerText = b.player2.name;
-        document.getElementById('vote-overlay').style.display = 'flex';
-        const cd = setInterval(()=>{
-          const rest = Math.max(0, Math.ceil((eng.turnEndsAt - Date.now())/1000));
-          document.getElementById('vote-countdown').innerText = rest;
-          if(rest <= 0) clearInterval(cd);
-        }, 500);
-      }
-            if(eng.phase === 'finished'){
-        document.getElementById('vote-overlay').style.display = 'none';
+      if(eng.phase === 'finished'){
         if(window.spectatorResultShown) return;
         window.spectatorResultShown = true;
-        let texto = 'Deu empate! Ponto pros dois MCs';
-        if(eng.winner === 'none') texto = 'Ninguém votou — batalha sem resultado.';
-        if(eng.winner === 'mc1') texto = b.player1.name + ' venceu a batalha!';
-        if(eng.winner === 'mc2') texto = b.player2.name + ' venceu a batalha!';
-        showRhymexModal({ icon:'trophy', title:'Fim da batalha', text: texto });
+        showRhymexModal({ icon:'trophy', title:'Fim da batalha', text:'A batalha terminou! Valeu por assistir 🎤' });
         setTimeout(()=>{ if(currentSpectatingId) window.closeSpectator(); }, 6000);
       }
     });
   });
-  // guarda o segundo listener junto pra limpar depois
   const old = spectatorEngineListener;
   spectatorEngineListener = ()=>{ old(); battleGone(); };
 }
@@ -5488,8 +5478,9 @@ function registerBattlePresence(){
 }
 
 function handleOpponentLeft(){
-  clearInterval(battleEngineInterval);
+    clearInterval(battleEngineInterval);
   clearInterval(battleCountdownInterval);
+  stopVoiceRings();
   if(battleStateListener){ battleStateListener(); battleStateListener = null; }
   const status = document.getElementById('voice-battle-status');
   const label = document.getElementById('voice-turn-label');
@@ -5497,8 +5488,6 @@ function handleOpponentLeft(){
   const remoteName = document.getElementById('voice-remote-name');
   if(status){ status.innerText = 'ADVERSÁRIO SAIU'; status.style.color = 'var(--danger)'; }
   if(label){ label.innerText = '🚫 BATALHA CANCELADA — sem ponto pra ninguém'; label.style.color = 'var(--text-secondary)'; }
-    const vw = document.getElementById('mc-vote-wait');
-  if(vw) vw.style.display = 'none';
   if(remoteAvatar) remoteAvatar.parentElement.style.opacity = '0.3';
   if(remoteName) remoteName.innerText = 'Saiu da batalha';
   // some com a sala pra não virar lixo na plateia (SEM dar ponto — anti-farm)
@@ -5885,6 +5874,21 @@ window.addBattleWin = async function(){
   } catch(e){ console.log('Erro win:', e); }
 };
 
+              
+// RANKING ANTI-FARM: +1 batalha só pra quem ficou até o fim
+window.addBattlePlayed = async function(){
+  if(!window.rhymexUser) return;
+  const uid = window.rhymexUser.uid;
+  const userRef = ref(db, `users/${uid}`);
+  try {
+    const snap = await get(userRef);
+    let battles = 1;
+    if(snap.exists() && snap.val().battles) battles = snap.val().battles + 1;
+    await update(userRef, { battles: battles });
+    console.log('Batalha completa registrada:', battles);
+  } catch(e){ console.log('Erro battle played:', e); }
+};
+
 window.loadRanking = async function(){
   const container = document.getElementById('ranking-list');
   if(!container) return;
@@ -5911,12 +5915,11 @@ window.loadRanking = async function(){
     let lista = [];
     snap.forEach(child=>{
       const u = child.val();
-      if(u.wins && u.wins >= 3) lista.push(u);
+      if(u.battles && u.battles >= 1) lista.push(u);
     });
-    // Ordena por vitórias, desempata por mais recente
+    // Ordena por batalhas completas disputadas
     lista.sort((a,b)=>{
-      if(b.wins!== a.wins) return b.wins - a.wins;
-      return (b.lastWinAt||0) - (a.lastWinAt||0);
+      return (b.battles||0) - (a.battles||0);
     });
     lista = lista.slice(0, 10); // TOP 10
 
@@ -5928,7 +5931,7 @@ window.loadRanking = async function(){
     let html = '';
     lista.forEach((u, i)=>{
       const pos = i+1;
-      const pat = getPatente(u.wins);
+      const pat = getPatente(u.battles || 0);
       const isVoce = window.rhymexUser && u.uid === window.rhymexUser.uid;
       const nome = escapeHtml(isVoce? (u.name + ' (Você)') : u.name);
       const topClass = pos===1? 'top-1' : pos===2? 'top-2' : pos===3? 'top-3' : '';
@@ -5937,7 +5940,7 @@ window.loadRanking = async function(){
         <div class="rank-pos ${topClass}">#${pos}</div>
         <div style="flex:1; margin-left: 10px;">
           <div style="font-weight: 700; font-size: 0.9rem;">${nome}</div>
-          <div style="font-size: 0.7rem; color: var(--text-secondary);">${u.wins} vitórias</div>
+          <div style="font-size: 0.7rem; color: var(--text-secondary);">${u.battles || 0} batalhas</div>
         </div>
         <span class="tag" style="background: ${pat.bg}; color: ${pat.cor};">${pat.nome}</span>
       </div>`;
