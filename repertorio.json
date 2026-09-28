@@ -1,0 +1,730 @@
+{
+  "desigualdade_social": [
+    {
+      "word": "ALIENAÇÃO",
+      "def": "Quando você vive uma realidade que foi criada pra você não pensar.",
+      "example": "Ex: Trabalhar 12h e achar normal."
+    },
+    {
+      "word": "DESIGUALDADE",
+      "def": "Diferença brutal de oportunidades entre quem nasce na periferia e no centro.",
+      "example": "Ex: Escola sem professor na quebrada e escola bilíngue no bairro rico."
+    },
+    {
+      "word": "MERITOCRACIA",
+      "def": "Ideia de que quem se esforça mais vence, escondendo que nem todo mundo começa do mesmo lugar.",
+      "example": "Ex: Falar que pobre é pobre porque não trabalha."
+    },
+    {
+      "word": "SEGREGÇÃO",
+      "def": "Separação forçada ou velada de grupos por classe, raça ou território.",
+      "example": "Ex: Rolezinho barrado no shopping."
+    },
+    {
+      "word": "PRECARIZAÇÃO",
+      "def": "Quando o trabalho perde direitos e vira bico sem garantia nenhuma.",
+      "example": "Ex: Entregador sem CLT, sem férias, sem nada."
+    },
+    {
+      "word": "GENTRIFICAÇÃO",
+      "def": "Quando o bairro pobre valoriza e expulsa quem sempre morou lá.",
+      "example": "Ex: Aluguel dobra e a família tem que sair."
+    },
+    {
+      "word": "INVISIBILIDADE",
+      "def": "Quando uma parte da população finge que a outra não existe.",
+      "example": "Ex: Morador de rua tratado como paisagem."
+    },
+    {
+      "word": "PRIVILÉGIO",
+      "def": "Vantagem que você tem só por ter nascido em certo lugar, com certa cor.",
+      "example": "Ex: Ser parado ou não pela polícia."
+    },
+    {
+      "word": "SANEAMENTO",
+      "def": "Acesso básico a água e esgoto que ainda falta em muita quebrada.",
+      "example": ""
+    },
+    {
+      "word": "MOBILIDADE",
+      "def": "Quem mora longe gasta 3h no busão pra chegar no trampo.",
+      "example": ""
+    },
+    {
+      "word": "EVASÃO ESCOLAR",
+      "def": "Quando o moleque larga a escola pra trampar e ajudar em casa.",
+      "example": ""
+    },
+    {
+      "word": "RACISMO ESTRUTURAL",
+      "def": "Racismo que não é só xingamento, tá na estrutura: emprego, salário, abordagem.",
+      "example": ""
+    },
+    {
+  "word": "EXCLUSÃO SOCIAL",
+  "def": "Quando pessoas ou grupos ficam afastados de oportunidades, serviços e participação na sociedade.",
+  "example": "Ex: Uma comunidade sem acesso adequado a escola, saúde e transporte."
+},
+{
+  "word": "VULNERABILIDADE",
+  "def": "Situação em que uma pessoa ou grupo fica mais exposto a riscos por falta de recursos e proteção.",
+  "example": "Ex: Uma família sem renda fixa enfrentando uma doença inesperada."
+},
+{
+  "word": "POBREZA",
+  "def": "Condição em que faltam recursos suficientes para garantir necessidades básicas e uma vida digna.",
+  "example": "Ex: Uma família tendo que escolher entre comprar comida ou pagar uma conta."
+},
+{
+  "word": "POBREZA EXTREMA",
+  "def": "Situação de privação muito intensa, na qual a pessoa não consegue garantir necessidades básicas.",
+  "example": "Ex: Viver sem dinheiro suficiente para alimentação adequada."
+},
+{
+  "word": "CONCENTRAÇÃO DE RENDA",
+  "def": "Quando uma parcela pequena da população concentra uma grande parte da riqueza.",
+  "example": "Ex: Poucas pessoas acumularem fortunas enquanto milhões vivem com renda baixa."
+},
+{
+  "word": "DISTRIBUIÇÃO DE RENDA",
+  "def": "Forma como a renda e os recursos econômicos estão divididos entre a população.",
+  "example": "Ex: Comparar quanto ganha a parcela mais rica e a parcela mais pobre."
+},
+{
+  "word": "LIMITE DA POBREZA",
+  "def": "Critério usado para identificar pessoas ou famílias que vivem abaixo de determinado nível de renda.",
+  "example": "Ex: Uma família ter renda abaixo do valor considerado necessário para suas necessidades básicas."
+},
+{
+  "word": "FOME",
+  "def": "Situação em que uma pessoa não consegue obter alimento suficiente para suas necessidades.",
+  "example": "Ex: Uma criança chegar à escola sem ter feito nenhuma refeição."
+},
+{
+  "word": "INSEGURANÇA ALIMENTAR",
+  "def": "Quando existe dificuldade ou incerteza para conseguir alimentos suficientes e adequados.",
+  "example": "Ex: Uma família diminuir as refeições porque o dinheiro acabou."
+},
+{
+  "word": "DÉFICIT HABITACIONAL",
+  "def": "Falta de moradias adequadas para atender às necessidades da população.",
+  "example": "Ex: Famílias vivendo em condições improvisadas por falta de habitação adequada."
+},
+{
+  "word": "FAVELIZAÇÃO",
+  "def": "Processo de crescimento de áreas urbanas com ocupação precária e infraestrutura insuficiente.",
+  "example": "Ex: Uma cidade crescer sem oferecer moradia e serviços adequados para todos."
+},
+{
+  "word": "PERIFERIZAÇÃO",
+  "def": "Processo em que populações de menor renda acabam concentradas nas áreas mais afastadas dos centros urbanos.",
+  "example": "Ex: Famílias sendo empurradas para regiões cada vez mais distantes do trabalho."
+},
+{
+  "word": "TERRITORIALIDADE",
+  "def": "Relação entre as pessoas, o espaço onde vivem e as formas de poder e organização presentes nesse território.",
+  "example": "Ex: A diferença de oportunidades entre bairros da mesma cidade."
+},
+{
+  "word": "ABANDONO URBANO",
+  "def": "Falta ou insuficiência de investimentos e serviços públicos em determinadas áreas da cidade.",
+  "example": "Ex: Bairro sem iluminação, pavimentação e equipamentos públicos adequados."
+},
+{
+  "word": "INFRAESTRUTURA",
+  "def": "Conjunto de estruturas e serviços necessários para o funcionamento de uma comunidade.",
+  "example": "Ex: Estradas, transporte, energia, escolas e hospitais."
+},
+{
+  "word": "ACESSIBILIDADE",
+  "def": "Condição que permite que diferentes pessoas utilizem espaços, serviços e oportunidades.",
+  "example": "Ex: Uma escola possuir estrutura adequada para estudantes com deficiência."
+},
+{
+  "word": "DIREITO À CIDADE",
+  "def": "Ideia de que todos devem poder acessar e participar dos benefícios e espaços da cidade.",
+  "example": "Ex: Morar longe do centro não deveria significar ficar sem acesso a serviços."
+},
+{
+  "word": "OPORTUNIDADE",
+  "def": "Possibilidade de acesso a condições que permitem desenvolver capacidades e melhorar de vida.",
+  "example": "Ex: Ter acesso a uma boa formação pode abrir portas para um emprego melhor."
+},
+{
+  "word": "ASCENSÃO SOCIAL",
+  "def": "Mudança para uma posição socioeconômica mais favorável em relação à situação anterior.",
+  "example": "Ex: Uma pessoa que cresce em uma família pobre e consegue melhorar significativamente sua condição de vida."
+},
+{
+  "word": "MOBILIDADE SOCIAL",
+  "def": "Mudança da posição de uma pessoa ou família dentro da estrutura socioeconômica.",
+  "example": "Ex: Uma pessoa mudar de classe social ao longo da vida."
+},
+{
+  "word": "CAPITAL SOCIAL",
+  "def": "Recursos obtidos por meio de relações, contatos, confiança e redes de convivência.",
+  "example": "Ex: Conseguir uma oportunidade de emprego através de uma indicação."
+},
+{
+  "word": "CAPITAL CULTURAL",
+  "def": "Conhecimentos, hábitos e referências culturais que podem influenciar oportunidades sociais.",
+  "example": "Ex: Ter contato desde cedo com livros, idiomas e atividades culturais."
+},
+{
+  "word": "HERANÇA SOCIAL",
+  "def": "Vantagens ou desvantagens que podem ser transmitidas entre gerações pelas condições familiares e sociais.",
+  "example": "Ex: Uma família com patrimônio conseguir oferecer mais oportunidades aos filhos."
+},
+{
+  "word": "CICLO DA POBREZA",
+  "def": "Processo em que condições de pobreza se mantêm ou se reproduzem entre gerações.",
+  "example": "Ex: Baixa renda dificultar o acesso à educação, que depois limita oportunidades de trabalho."
+},
+{
+  "word": "TRABALHO INFORMAL",
+  "def": "Atividade profissional realizada sem algumas das proteções e formalidades previstas nas relações de trabalho.",
+  "example": "Ex: Trabalhar por conta própria sem registro formal."
+},
+{
+  "word": "SUBEMPREGO",
+  "def": "Situação de trabalho em que a pessoa está empregada, mas possui condições ou rendimento abaixo do que poderia alcançar.",
+  "example": "Ex: Trabalhar poucas horas porque não consegue encontrar uma oportunidade melhor."
+},
+{
+  "word": "DESEMPREGO",
+  "def": "Situação em que uma pessoa está disponível para trabalhar, mas não encontra ocupação.",
+  "example": "Ex: Alguém procurando emprego durante meses sem conseguir uma vaga."
+},
+{
+  "word": "SALÁRIO MÍNIMO",
+  "def": "Valor mínimo legal que deve ser pago ao trabalhador nas situações previstas pela legislação.",
+  "example": "Ex: Uma família depender de um único salário mínimo para várias despesas."
+},
+{
+  "word": "TRABALHO DOMÉSTICO",
+  "def": "Trabalho relacionado à manutenção da casa e aos cuidados de pessoas, muitas vezes distribuído de maneira desigual.",
+  "example": "Ex: Uma pessoa passar horas cuidando da casa enquanto outra não participa dessas tarefas."
+},
+{
+  "word": "DIVISÃO SOCIAL DO TRABALHO",
+  "def": "Forma como diferentes atividades e funções são distribuídas entre pessoas e grupos na sociedade.",
+  "example": "Ex: Profissões diferentes ocuparem posições distintas na estrutura econômica."
+},
+{
+  "word": "LUTA DE CLASSES",
+  "def": "Conceito que descreve conflitos de interesses entre grupos sociais com diferentes posições econômicas.",
+  "example": "Ex: Trabalhadores e proprietários terem interesses diferentes sobre salários e condições de trabalho."
+},
+{
+  "word": "CLASSE SOCIAL",
+  "def": "Grupo definido por condições econômicas e sociais semelhantes dentro de uma sociedade.",
+  "example": "Ex: Pessoas com níveis de renda e acesso a recursos muito diferentes ocuparem posições sociais distintas."
+},
+{
+  "word": "ESTRATIFICAÇÃO SOCIAL",
+  "def": "Divisão da sociedade em diferentes camadas de acordo com fatores como renda, poder e status.",
+  "example": "Ex: Uma sociedade apresentar grandes diferenças entre grupos ricos, médios e pobres."
+},
+{
+  "word": "ASSIMETRIA",
+  "def": "Desequilíbrio entre grupos que possuem diferentes níveis de recursos, poder ou oportunidades.",
+  "example": "Ex: Uma empresa possuir muito mais poder de negociação que um trabalhador individual."
+},
+{
+  "word": "VULNERABILIDADE ECONÔMICA",
+  "def": "Maior exposição aos problemas causados por perda de renda, aumento de preços ou imprevistos financeiros.",
+  "example": "Ex: Uma família ficar sem conseguir pagar as contas depois de perder uma fonte de renda."
+},
+{
+  "word": "JUSTIÇA SOCIAL",
+  "def": "Busca por condições mais justas de acesso a direitos, oportunidades e recursos na sociedade.",
+  "example": "Ex: Criar políticas para ampliar o acesso de grupos vulneráveis à educação."
+},
+{
+  "word": "EQUIDADE",
+  "def": "Princípio de oferecer condições ou recursos considerando as diferentes necessidades de cada pessoa ou grupo.",
+  "example": "Ex: Destinar mais apoio a quem enfrenta maiores barreiras para alcançar determinado objetivo."
+},
+{
+  "word": "IGUALDADE DE OPORTUNIDADES",
+  "def": "Ideia de garantir que pessoas tenham acesso justo às possibilidades de desenvolvimento, independentemente de sua origem.",
+  "example": "Ex: Garantir acesso à educação de qualidade para crianças de diferentes regiões."
+},
+{
+  "word": "DIREITOS SOCIAIS",
+  "def": "Direitos relacionados a condições básicas de vida, como educação, saúde, trabalho, moradia e assistência.",
+  "example": "Ex: O acesso à educação pública como um direito social."
+},
+{
+  "word": "ASSISTÊNCIA SOCIAL",
+  "def": "Conjunto de políticas e serviços destinados a apoiar pessoas e famílias em situações de vulnerabilidade.",
+  "example": "Ex: Uma família receber apoio de um programa de assistência durante uma situação de vulnerabilidade."
+},
+{
+  "word": "POLÍTICA PÚBLICA",
+  "def": "Ação ou conjunto de ações do poder público voltadas para enfrentar problemas e atender necessidades da sociedade.",
+  "example": "Ex: Criar um programa para ampliar o acesso à moradia."
+},
+{
+  "word": "REDISTRIBUIÇÃO",
+  "def": "Processo de alterar a distribuição de recursos ou renda por meio de mecanismos econômicos e políticas públicas.",
+  "example": "Ex: Uma política pública buscar reduzir diferenças de renda entre grupos."
+},
+{
+  "word": "TRIBUTAÇÃO",
+  "def": "Sistema de cobrança de tributos utilizado para financiar o Estado e suas atividades.",
+  "example": "Ex: Pessoas e empresas pagarem impostos que ajudam a financiar serviços públicos."
+},
+{
+  "word": "JUSTIÇA TRIBUTÁRIA",
+  "def": "Debate sobre como os impostos devem ser distribuídos de maneira justa entre diferentes grupos da sociedade.",
+  "example": "Ex: Discutir quem deve contribuir mais ou menos para financiar o Estado."
+},
+{
+  "word": "BRECHA SOCIAL",
+  "def": "Diferença significativa de acesso a recursos, oportunidades ou condições de vida entre grupos.",
+  "example": "Ex: A distância entre a educação disponível para diferentes regiões."
+},
+{
+  "word": "EXCLUSÃO DIGITAL",
+  "def": "Falta de acesso adequado à internet, dispositivos ou conhecimentos necessários para participar do mundo digital.",
+  "example": "Ex: Um estudante não conseguir acompanhar uma atividade porque não possui internet em casa."
+},
+{
+  "word": "LETRAMENTO DIGITAL",
+  "def": "Capacidade de utilizar tecnologias digitais de maneira adequada, crítica e consciente.",
+  "example": "Ex: Saber pesquisar informações e identificar conteúdos falsos na internet."
+},
+{
+  "word": "ANALFABETISMO",
+  "def": "Situação de quem não possui habilidades básicas de leitura e escrita.",
+  "example": "Ex: Um adulto ter dificuldade para ler uma placa ou preencher um formulário."
+},
+{
+  "word": "ANALFABETISMO FUNCIONAL",
+  "def": "Dificuldade de utilizar leitura, escrita e conhecimentos básicos mesmo tendo frequentado a escola.",
+  "example": "Ex: Conseguir ler uma frase, mas não compreender corretamente seu significado."
+},
+{
+  "word": "RACIALIZAÇÃO",
+  "def": "Processo pelo qual diferenças sociais e históricas são associadas a categorias raciais, influenciando relações e oportunidades.",
+  "example": "Ex: A forma como características raciais podem influenciar a maneira como determinados grupos são percebidos."
+},
+{
+  "word": "DISCRIMINAÇÃO",
+  "def": "Tratamento desigual ou desfavorável dirigido a uma pessoa ou grupo por determinada característica.",
+  "example": "Ex: Negar uma oportunidade profissional por causa da origem de uma pessoa."
+},
+{
+  "word": "XENOFOBIA",
+  "def": "Preconceito, hostilidade ou rejeição contra pessoas consideradas estrangeiras ou de outra nacionalidade.",
+  "example": "Ex: Tratar um imigrante como inferior apenas por ter vindo de outro país."
+},
+{
+  "word": "APOROFOBIA",
+  "def": "Aversão, rejeição ou desprezo direcionado a pessoas pobres ou em situação de pobreza.",
+  "example": "Ex: Tratar alguém de forma diferente simplesmente por aparentar ser pobre."
+},
+{
+  "word": "ETARISMO",
+  "def": "Preconceito ou discriminação baseada na idade de uma pessoa.",
+  "example": "Ex: Recusar uma oportunidade profissional apenas porque alguém é considerado velho demais."
+},
+{
+  "word": "CAPACITISMO",
+  "def": "Preconceito ou discriminação contra pessoas com deficiência.",
+  "example": "Ex: Considerar alguém incapaz de trabalhar apenas por possuir uma deficiência."
+},
+{
+  "word": "PATRIARCADO",
+  "def": "Sistema social historicamente associado à predominância masculina em posições de poder e autoridade.",
+  "example": "Ex: Uma estrutura familiar ou profissional em que homens concentram tradicionalmente as posições de decisão."
+},
+{
+  "word": "FEMINIZAÇÃO DA POBREZA",
+  "def": "Expressão usada para descrever a maior exposição de mulheres, em determinados contextos, a situações de pobreza e vulnerabilidade econômica.",
+  "example": "Ex: Mulheres responsáveis sozinhas pela família enfrentarem maiores dificuldades financeiras."
+},
+{
+  "word": "TRABALHO INFANTIL",
+  "def": "Participação de crianças ou adolescentes em atividades de trabalho proibidas ou prejudiciais ao desenvolvimento.",
+  "example": "Ex: Uma criança abandonar os estudos para trabalhar e ajudar financeiramente a família."
+},
+{
+  "word": "DESENVOLVIMENTO HUMANO",
+  "def": "Conceito que considera não apenas renda, mas também fatores como saúde, educação e condições de vida.",
+  "example": "Ex: Comparar países considerando educação e expectativa de vida além do dinheiro."
+},
+{
+  "word": "ÍNDICE DE GINI",
+  "def": "Indicador utilizado para medir o grau de desigualdade na distribuição de renda.",
+  "example": "Ex: Comparar o nível de desigualdade de renda entre diferentes países ou regiões."
+},
+{
+  "word": "IDH",
+  "def": "Índice que reúne indicadores relacionados a saúde, educação e renda para avaliar o desenvolvimento humano.",
+  "example": "Ex: Comparar o desenvolvimento de diferentes países considerando mais que apenas o PIB."
+},
+{
+  "word": "PIB PER CAPITA",
+  "def": "Valor do PIB de uma região dividido pelo número de habitantes, usado como uma medida média de produção por pessoa.",
+  "example": "Ex: Um país ter PIB per capita alto sem que isso signifique que todos os habitantes sejam ricos."
+}
+  ],
+  "poder_corrupcao": [
+    {
+      "word": "DEMAGOGIA",
+      "def": "Quando o político promete o que o povo quer ouvir, mesmo sabendo que não vai cumprir.",
+      "example": "Ex: Prometer picanha todo dia sabendo que não tem dinheiro."
+    },
+    {
+      "word": "POPULISMO",
+      "def": "Estratégia de se aproximar do povo pra ganhar voto, fingindo ser igual a ele.",
+      "example": "Ex: Ir pra favela e falar gíria só na época de eleição."
+    },
+    {
+      "word": "CLIENTELISMO",
+      "def": "Troca de favores por voto. Te dou um saco de cimento, você me dá seu voto.",
+      "example": ""
+    },
+    {
+      "word": "NEPOTISMO",
+      "def": "Colocar parente em cargo público sem concurso nem capacidade.",
+      "example": ""
+    },
+    {
+      "word": "LOBBY",
+      "def": "Pressão de empresas sobre políticos pra aprovar lei que favorece elas.",
+      "example": ""
+    },
+    {
+      "word": "CAIXA 2",
+      "def": "Dinheiro não declarado de campanha, fora da conta oficial.",
+      "example": ""
+    },
+    {
+      "word": "IMUNIDADE",
+      "def": "Proteção que político usa pra não ser julgado como cidadão comum.",
+      "example": ""
+    },
+    {
+      "word": "OLIGARQUIA",
+      "def": "Quando poucas famílias mandam na política de uma cidade ou estado há décadas.",
+      "example": ""
+    },
+    {
+      "word": "CENSURA",
+      "def": "Quando o poder tenta calar imprensa, arte ou quem critica.",
+      "example": ""
+    },
+    {
+      "word": "AUTORITARISMO",
+      "def": "Governo que concentra poder, persegue oposição e enfraquece a democracia.",
+      "example": ""
+    },
+    {
+  "word": "ABUSO DE PODER",
+  "def": "Quando alguém usa uma posição de poder de forma indevida para obter vantagem ou influenciar uma disputa.",
+  "example": "Ex: Usar a influência do cargo para favorecer uma candidatura."
+},
+{
+  "word": "ABUSO ECONÔMICO",
+  "def": "Uso excessivo de recursos econômicos para beneficiar uma candidatura e desequilibrar uma eleição.",
+  "example": "Ex: Gastar recursos de forma irregular para dominar uma campanha."
+},
+{
+  "word": "ABUSO POLÍTICO",
+  "def": "Uso da posição política ou da estrutura pública para influenciar o eleitorado de maneira indevida.",
+  "example": "Ex: Usar a máquina pública para favorecer uma candidatura."
+},
+{
+  "word": "COMPRA DE VOTOS",
+  "def": "Oferecer ou entregar vantagem pessoal a alguém com a intenção de obter seu voto.",
+  "example": "Ex: Oferecer dinheiro ou um benefício em troca do voto."
+},
+{
+  "word": "IMPROBIDADE",
+  "def": "Conduta ilícita ou desonesta relacionada ao exercício de uma função pública, conforme as regras legais aplicáveis.",
+  "example": "Ex: Usar recursos públicos em benefício particular."
+},
+{
+  "word": "PECULATO",
+  "def": "Crime relacionado à apropriação ou desvio de dinheiro ou bem público por funcionário público, nas situações previstas em lei.",
+  "example": "Ex: Desviar dinheiro público que estava sob responsabilidade do funcionário."
+},
+{
+  "word": "LAVAGEM DE DINHEIRO",
+  "def": "Processo usado para ocultar ou disfarçar a origem ilícita de dinheiro ou bens.",
+  "example": "Ex: Esconder a origem de dinheiro ilegal por meio de operações financeiras."
+},
+{
+  "word": "CORRUPÇÃO ATIVA",
+  "def": "Oferecer ou prometer vantagem indevida a um funcionário público para influenciar sua atuação.",
+  "example": "Ex: Oferecer dinheiro a um agente público para conseguir um favorecimento."
+},
+{
+  "word": "CORRUPÇÃO PASSIVA",
+  "def": "Quando um funcionário público solicita, recebe ou aceita vantagem indevida em razão da função, conforme previsto em lei.",
+  "example": "Ex: Pedir dinheiro para realizar um ato relacionado ao cargo."
+},
+{
+  "word": "TRÁFICO DE INFLUÊNCIA",
+  "def": "Solicitar ou obter vantagem alegando que pode influenciar uma decisão de funcionário público.",
+  "example": "Ex: Cobrar dinheiro dizendo ter influência sobre determinada autoridade."
+},
+{
+  "word": "CONFLITO DE INTERESSES",
+  "def": "Situação em que um interesse privado pode interferir no exercício imparcial de uma função pública.",
+  "example": "Ex: Participar de uma decisão pública que beneficia diretamente um interesse particular."
+},
+{
+  "word": "FAVORECIMENTO",
+  "def": "Dar vantagem ou tratamento privilegiado a alguém de forma indevida.",
+  "example": "Ex: Beneficiar uma empresa específica em uma decisão pública."
+},
+{
+  "word": "DESVIO DE VERBAS",
+  "def": "Destinar recursos financeiros públicos para finalidade diferente daquela prevista.",
+  "example": "Ex: Usar dinheiro destinado à saúde para outra finalidade sem autorização legal."
+},
+{
+  "word": "SUPERFATURAMENTO",
+  "def": "Cobrar por um produto, serviço ou obra pública um valor artificialmente superior ao adequado.",
+  "example": "Ex: Uma obra pública custar muito mais do que o valor justificável."
+},
+{
+  "word": "LICITAÇÃO",
+  "def": "Procedimento usado pelo poder público para contratar obras, serviços ou compras seguindo regras legais.",
+  "example": "Ex: Uma prefeitura abrir um processo para contratar uma empresa para construir uma escola."
+},
+{
+  "word": "FRAUDE ELEITORAL",
+  "def": "Prática de enganar ou manipular procedimentos eleitorais para obter uma vantagem indevida.",
+  "example": "Ex: Criar uma situação falsa para burlar uma regra eleitoral."
+},
+{
+  "word": "DESINFORMAÇÃO",
+  "def": "Informação falsa ou enganosa divulgada de maneira que pode afetar a compreensão das pessoas sobre um assunto.",
+  "example": "Ex: Espalhar uma notícia falsa sobre um candidato durante uma eleição."
+},
+{
+  "word": "FAKE NEWS",
+  "def": "Expressão popular usada para se referir a conteúdos apresentados como notícias, mas que contêm informações falsas ou enganosas.",
+  "example": "Ex: Compartilhar uma notícia inventada como se fosse verdadeira."
+},
+{
+  "word": "PROPAGANDA ELEITORAL",
+  "def": "Comunicação destinada a apresentar candidaturas e propostas dentro das regras eleitorais.",
+  "example": "Ex: Um candidato divulgar suas propostas durante o período permitido."
+},
+{
+  "word": "MARKETING POLÍTICO",
+  "def": "Uso de estratégias de comunicação para construir a imagem pública de um político ou candidatura.",
+  "example": "Ex: Criar uma campanha para apresentar um candidato ao eleitorado."
+},
+{
+  "word": "COALIZÃO",
+  "def": "Aliança entre diferentes grupos ou partidos para alcançar objetivos políticos comuns.",
+  "example": "Ex: Partidos diferentes se unirem para apoiar uma candidatura."
+},
+{
+  "word": "OPOSIÇÃO",
+  "def": "Grupo político que faz contraponto ao governo ou à maioria que está no poder.",
+  "example": "Ex: Parlamentares questionarem as decisões do governo."
+},
+{
+  "word": "SITUAÇÃO",
+  "def": "Grupo político que apoia o governo ou a administração que está no poder.",
+  "example": "Ex: Deputados aliados defenderem uma proposta do governo."
+},
+{
+  "word": "MANDATO",
+  "def": "Período durante o qual uma pessoa eleita exerce oficialmente seu cargo político.",
+  "example": "Ex: Um prefeito exercer o mandato durante o período determinado pela lei."
+},
+{
+  "word": "PLEBISCITO",
+  "def": "Consulta popular realizada para que a população se manifeste sobre determinada questão antes de uma decisão.",
+  "example": "Ex: A população ser consultada antes da criação de uma determinada medida."
+},
+{
+  "word": "REFERENDO",
+  "def": "Consulta popular realizada para que a população decida sobre a aprovação ou rejeição de uma questão já submetida ao processo legislativo.",
+  "example": "Ex: Eleitores votarem para aprovar ou rejeitar uma medida."
+},
+{
+  "word": "REPRESENTATIVIDADE",
+  "def": "Ideia de que os representantes políticos devem refletir os interesses e a diversidade da população que representam.",
+  "example": "Ex: Um parlamento ter representantes de diferentes grupos da sociedade."
+},
+{
+  "word": "ACCOUNTABILITY",
+  "def": "Princípio de prestação de contas e responsabilização de quem exerce uma função pública.",
+  "example": "Ex: Um gestor explicar como utilizou os recursos públicos."
+},
+{
+  "word": "TRANSPARÊNCIA",
+  "def": "Prática de tornar informações públicas acessíveis para permitir o acompanhamento da administração.",
+  "example": "Ex: Publicar gastos públicos em um portal de transparência."
+},
+{
+  "word": "FISCALIZAÇÃO",
+  "def": "Acompanhamento e controle das ações do poder público para verificar se estão seguindo as regras.",
+  "example": "Ex: Um órgão verificar como uma prefeitura gastou seu orçamento."
+},
+{
+  "word": "OPINIÃO PÚBLICA",
+  "def": "Conjunto de percepções e opiniões existentes na sociedade sobre questões de interesse coletivo.",
+  "example": "Ex: A reação da população a uma nova política pública."
+},
+{
+  "word": "DEMOCRACIA",
+  "def": "Sistema político baseado na participação popular, nas eleições e em instituições e direitos previstos pelas regras democráticas.",
+  "example": "Ex: A população escolher seus representantes por meio de eleições."
+},
+{
+  "word": "ESTADO DE DIREITO",
+  "def": "Princípio segundo o qual o exercício do poder público deve obedecer às leis e à Constituição.",
+  "example": "Ex: Uma autoridade também estar sujeita às regras previstas na lei."
+},
+{
+  "word": "SEPARAÇÃO DE PODERES",
+  "def": "Divisão das funções do Estado entre diferentes poderes para evitar a concentração de autoridade.",
+  "example": "Ex: Executivo, Legislativo e Judiciário exercerem funções distintas."
+},
+{
+  "word": "CONSTITUIÇÃO",
+  "def": "Lei fundamental que organiza o Estado e estabelece direitos, deveres e regras para o exercício do poder.",
+  "example": "Ex: Uma lei precisar respeitar os princípios estabelecidos pela Constituição."
+},
+{
+  "word": "EMENDA CONSTITUCIONAL",
+  "def": "Alteração formal feita no texto da Constituição seguindo um procedimento específico.",
+  "example": "Ex: O Congresso aprovar uma mudança em determinada regra constitucional."
+},
+{
+  "word": "LOBBYING",
+  "def": "Atuação organizada para tentar influenciar decisões de autoridades e o processo de formulação de políticas.",
+  "example": "Ex: Uma entidade apresentar argumentos a parlamentares para defender determinada proposta."
+},
+{
+  "word": "CORONELISMO",
+  "def": "Fenômeno histórico brasileiro marcado pela influência de chefes locais sobre a política e o eleitorado.",
+  "example": "Ex: Um líder local exercer forte influência política sobre uma região."
+},
+{
+  "word": "VOTO DE CABRESTO",
+  "def": "Expressão histórica associada ao controle ou pressão exercidos sobre eleitores, especialmente no contexto do coronelismo.",
+  "example": "Ex: Um chefe político local pressionar moradores para votar em determinado candidato."
+},
+{
+  "word": "FISIOLÓGISMO",
+  "def": "Prática política de buscar apoio por meio da distribuição de cargos ou benefícios em troca de sustentação.",
+  "example": "Ex: Um grupo apoiar o governo em troca de espaço na administração."
+},
+{
+  "word": "GOVERNABILIDADE",
+  "def": "Capacidade de um governo conseguir implementar sua agenda dentro das regras e relações institucionais.",
+  "example": "Ex: O governo negociar apoio no Congresso para aprovar uma proposta."
+},
+{
+  "word": "BASE ALIADA",
+  "def": "Grupo de partidos ou parlamentares que apoia determinado governo ou sua agenda.",
+  "example": "Ex: Partidos da base apoiarem uma proposta apresentada pelo Executivo."
+}
+  ],
+  "inteligencia_artificial": [
+    {
+      "word": "AUTOMAÇÃO",
+      "def": "Quando a máquina faz o trabalho que antes era do humano.",
+      "example": "Ex: Caixa de mercado que se paga sozinho."
+    },
+    {
+      "word": "ALGORITMO",
+      "def": "Sequência de regras que decide o que você vê na internet.",
+      "example": "Ex: Feed que só mostra o que te prende."
+    },
+    {
+      "word": "DEEPFAKE",
+      "def": "Vídeo ou áudio falso criado por IA pra parecer real.",
+      "example": ""
+    },
+    {
+      "word": "VIÉS ALGORÍTMICO",
+      "def": "Quando a IA repete o preconceito dos dados que usaram pra treinar ela.",
+      "example": ""
+    },
+    {
+      "word": "SINGULARIDADE",
+      "def": "Teoria de que a IA vai superar a inteligência humana e mudar tudo.",
+      "example": ""
+    },
+    {
+      "word": "PROMPT",
+      "def": "Comando que você dá pra IA gerar texto, imagem ou vídeo.",
+      "example": ""
+    },
+    {
+      "word": "DESEMPREGO TECNOLÓGICO",
+      "def": "Vagas que somem porque a máquina faz mais barato.",
+      "example": ""
+    },
+    {
+      "word": "BOLHA",
+      "def": "Quando o algoritmo só te mostra o que você já concorda.",
+      "example": ""
+    }
+  ],
+  "historia_rap": [
+    {
+      "word": "BOOMBAP",
+      "def": "Estilo clássico de beat dos anos 90, base do rap underground.",
+      "example": "Ex: Racionais, Sabotage."
+    },
+    {
+      "word": "FREESTYLE",
+      "def": "Improviso rimado na hora, sem nada escrito.",
+      "example": ""
+    },
+    {
+      "word": "BATALHA DE RIMA",
+      "def": "Duelo de MCs improvisando, ataque e resposta.",
+      "example": "Ex: Batalha da Aldeia, Batalha do Tanque."
+    },
+    {
+      "word": "FLOW",
+      "def": "Jeito que o MC encaixa a voz no beat, ritmo e respiração.",
+      "example": ""
+    },
+    {
+      "word": "PUNCHLINE",
+      "def": "Frase final que dá a porrada, faz a plateia gritar.",
+      "example": ""
+    },
+    {
+      "word": "DISS",
+      "def": "Música feita pra atacar outro MC diretamente.",
+      "example": ""
+    },
+    {
+      "word": "UNDERGROUND",
+      "def": "Cena fora da mídia grande, feita na rua, independente.",
+      "example": ""
+    },
+    {
+      "word": "OLD SCHOOL",
+      "def": "Era clássica do rap, anos 80-90, base de tudo.",
+      "example": ""
+    },
+    {
+      "word": "TRAP",
+      "def": "Vertente com 808, hi-hat rápido, nascida no sul dos EUA.",
+      "example": ""
+    },
+    {
+      "word": "GRIME",
+      "def": "Estilo britânico, rápido, 140 BPM, batalha pura.",
+      "example": ""
+    }
+  ]
+}
