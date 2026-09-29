@@ -2307,6 +2307,12 @@
     
 
     const beatsList = [
+      { name: "INSTRUMENTAL Estilo Vagabundo - MV Bill & Kmilla CDD", style: "DNA Rap", url: "https://videotourl.com/audio/1790642241748-a764410a-a7d6-4561-b05a-e099fed8a7b6.mp3" },
+    
+      { name: "Bearded Skull - Green Hip-Hop Instrumental", style: "Bearded Skull", url: "https://videotourl.com/audio/1790642002525-e658a6d2-73f5-48e2-a6db-91b697e4163d.mp3" },
+      
+      { name: "Nem Cisca", style: "Kamau", url: "https://videotourl.com/audio/1790641825998-e3f70946-6950-4a3e-b7dc-0a4f02517992.mp3" },
+      
         { name: "Detroit Type beat Padrinhos Mágicos", style: "bigel", url: "https://videotourl.com/audio/1789509761922-90b5cadf-55d6-4f7d-9756-8a9534c8e56e.mp3" },
       
         { name: "Vida Bandida", style: "Greezy", url: "https://videotourl.com/audio/1789435585968-f05954f9-3131-417c-b6ac-e0eabbb39fa4.mp3" },
@@ -3558,7 +3564,7 @@ function startBattleMatchmaking() {
   const warmTimerEl = document.getElementById('voice-battle-timer');
   if(warmTimerEl){ warmTimerEl.style.display = 'none'; }
   const warmLabelEl = document.getElementById('voice-turn-label');
-  if(warmLabelEl){ warmLabelEl.innerText = 'AGUARDANDO OS 2 MCS LIBERAREM O MICROFONE...'; warmLabelEl.style.color = 'var(--warning)'; }
+  if(warmLabelEl){ warmLabelEl.innerText = 'CONECTANDO...'; warmLabelEl.style.color = 'var(--success)'; }
 
   console.log("RHYMEX: procurando adversário real...");
 
