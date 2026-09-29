@@ -3550,7 +3550,15 @@ function startBattleMatchmaking() {
   const overlay =
     document.getElementById('matchmaking-overlay');
 
-  overlay.classList.add('active');
+    overlay.classList.add(
+    "active"
+  );
+
+  // Enquanto os 2 não liberarem o mic, o cronômetro fica escondido
+  const warmTimerEl = document.getElementById('voice-battle-timer');
+  if(warmTimerEl){ warmTimerEl.style.display = 'none'; }
+  const warmLabelEl = document.getElementById('voice-turn-label');
+  if(warmLabelEl){ warmLabelEl.innerText = 'AGUARDANDO OS 2 MCS LIBERAREM O MICROFONE...'; warmLabelEl.style.color = 'var(--warning)'; }
 
   console.log("RHYMEX: procurando adversário real...");
 
@@ -4931,12 +4939,19 @@ async function(
     ) < 0;
 
 
-  console.log(
+    console.log(
     "RHYMEX:",
     isCaller
       ? "sou o CALLER"
       : "sou o ANSWERER"
   );
+
+  window.myBattleSide = isCaller ? 'player1' : 'player2';
+
+  // Avisa: meu microfone tá liberado. O "se prepare" só começa quando os 2 avisarem.
+  try {
+    await set(ref(db, `battles/${battleId}/ready/${window.myBattleSide}`), true);
+  } catch(e){ console.log('ready flag erro', e); }
 
 
   if (isCaller) {
@@ -4965,8 +4980,9 @@ async function(
   registerBattlePresence();
   window.battleWinAwarded = false;
     window.mcResultShown = false;
-  listenSpectatorList(currentBattleId, 'battle-spec-avatars', 'battle-spec-count');
-  if (isCaller) startBattleEngine();
+    listenSpectatorList(currentBattleId, 'battle-spec-avatars', 'battle-spec-count');
+  // O warmup SÓ começa quando os 2 MCs liberarem o microfone
+  if (isCaller) waitBothReadyThenStart();
 
 };
 
@@ -5254,6 +5270,42 @@ function listenForSpectators() {
 // (só o player1/criador executa; os outros obedecem)
 // ==========================================
 
+// Espera os 2 microfones liberados antes de disparar o warmup.
+// Se o oponente não liberar em 60s, cancela a batalha sozinho.
+let readyWaitTimer = null;
+let readyWaitStop = null;
+
+function cancelReadyWait(){
+  if(readyWaitStop){ readyWaitStop(); readyWaitStop = null; }
+  if(readyWaitTimer){ clearTimeout(readyWaitTimer); readyWaitTimer = null; }
+}
+
+function waitBothReadyThenStart(){
+  const battleId = currentBattleId;
+  if(!battleId) return;
+  cancelReadyWait();
+  let started = false;
+  readyWaitStop = onValue(ref(db, `battles/${battleId}/ready`), (snap)=>{
+    const r = snap.val() || {};
+    if(r.player1 && r.player2 && !started){
+      started = true;
+      cancelReadyWait();
+      console.log('RHYMEX: os 2 mics liberados — iniciando o "se prepare"!');
+      startBattleEngine();
+    }
+  });
+  readyWaitTimer = setTimeout(()=>{
+    if(started || !currentBattleId) return;
+    cancelReadyWait();
+    showRhymexModal({
+      icon: 'mic-off',
+      title: 'Oponente não conectou',
+      text: 'O adversário não conseguiu liberar o microfone a tempo. Busca outra batalha!'
+    });
+    setTimeout(()=>{ if(currentBattleId) window.leaveVoiceBattle(); }, 5000);
+  }, 60000);
+}
+
 function startBattleEngine(){
   const battleId = currentBattleId;
   if(!battleId) return;
@@ -5396,7 +5448,10 @@ function renderBattleEngine(eng){
       const names = window.battleNames || { player1:'MC 1', player2:'MC 2' };
     
 
-    if(eng.phase === 'warmup'){
+        if(eng.phase === 'warmup'){
+    // Chegou aqui = os 2 mics estão liberados. Agora sim mostra o cronômetro.
+    const tEl = document.getElementById('voice-battle-timer');
+    if(tEl) tEl.style.display = 'block';
         if(label){ label.innerText = 'PREPARE-SE... A BATALHA VAI COMEÇAR'; label.style.color = 'var(--accent-purple-bright)'; }
     if(status){ status.innerText = 'AQUECENDO MOTORES...'; status.style.color = 'var(--accent-purple)'; }
     const tip = document.getElementById('voice-headphone-tip');
@@ -5520,6 +5575,7 @@ function registerBattlePresence(){
 function handleOpponentLeft(){
     clearInterval(battleEngineInterval);
   clearInterval(battleCountdownInterval);
+  cancelReadyWait();
   stopVoiceRings();
   if(battleStateListener){ battleStateListener(); battleStateListener = null; }
   const status = document.getElementById('voice-battle-status');
@@ -5624,8 +5680,9 @@ async function() {
   );
 
 
-  clearInterval(battleEngineInterval);
+    clearInterval(battleEngineInterval);
   clearInterval(battleCountdownInterval);
+  cancelReadyWait();
   if(battleStateListener){ battleStateListener(); battleStateListener = null; }
   if(spectatorListListener){ spectatorListListener(); spectatorListListener = null; }
   lastEngine = null;
