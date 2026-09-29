@@ -5483,18 +5483,31 @@ function renderBattleEngine(eng){
     if(label){ label.innerText = vaiBateVolta? 'SE PREPARE PRO BATE-VOLTA' : ('ROUND '+eng.round+' FINALIZADO'); label.style.color = 'var(--accent-purple-bright)'; }
     if(status){ status.innerText = vaiBateVolta? 'O DESEMPATE VEM AÍ... 15 SEGUNDOS PRA CADA' : ('PREPARE-SE PARA O ROUND '+(eng.round+1)+'...'); status.style.color = 'var(--accent-purple)'; }
     if(status){ status.innerText = 'PREPARE-SE PARA O ROUND 2...'; status.style.color = 'var(--accent-purple)'; }
-    } else if(eng.phase === 'finished'){
+        } else if(eng.phase === 'finished'){
     clearInterval(battleCountdownInterval);
-    if(label){ label.innerText = 'FIM DA BATALHA — VALEU PELO SHOW 🎤'; label.style.color = '#10B981'; }
+    if(label){ label.innerText = 'FIM DE BATALHA — CUMPRIMENTE SEU OPONENTE 🤝'; label.style.color = '#EF4444'; }
     if(status){ status.innerText = 'BATALHA ENCERRADA'; status.style.color = 'var(--text-secondary)'; }
-                if(!window.mcResultShown){
+    if(!window.mcResultShown){
       window.mcResultShown = true;
       // ANTI-FARM: só conta a batalha pra quem ficou até o fim
       if(window.addBattlePlayed) window.addBattlePlayed();
-      showRhymexModal({ icon:'trophy', title:'Fim da batalha', text:'Os rounds acabaram! Valeu pelo show, MC 🎤' });
-      setTimeout(()=>{ if(currentBattleId) window.leaveVoiceBattle(); }, 6000);
-      }
-  }
+      // DESPEDIDA: 5 segundos pra cumprimentar o oponente antes do modal final
+      let goodbyeSecs = 5;
+      const goodbyeTimerEl = document.getElementById('voice-battle-timer');
+      if(goodbyeTimerEl){ goodbyeTimerEl.style.display = 'block'; goodbyeTimerEl.innerText = goodbyeSecs; }
+      window.goodbyeInterval = setInterval(()=>{
+        goodbyeSecs--;
+        if(goodbyeSecs <= 0){
+          clearInterval(window.goodbyeInterval);
+          window.goodbyeInterval = null;
+          showRhymexModal({ icon:'trophy', title:'Fim da batalha', text:'Os rounds acabaram! Valeu pelo show, MC 🎤' });
+          setTimeout(()=>{ if(currentBattleId) window.leaveVoiceBattle(); }, 4000);
+        } else {
+          if(goodbyeTimerEl) goodbyeTimerEl.innerText = goodbyeSecs;
+        }
+      }, 1000);
+    }
+}
 }
 
 
@@ -5582,6 +5595,7 @@ function handleOpponentLeft(){
     clearInterval(battleEngineInterval);
   clearInterval(battleCountdownInterval);
   cancelReadyWait();
+  if(window.goodbyeInterval){ clearInterval(window.goodbyeInterval); window.goodbyeInterval = null; }
   stopVoiceRings();
   if(battleStateListener){ battleStateListener(); battleStateListener = null; }
   const status = document.getElementById('voice-battle-status');
@@ -5686,9 +5700,10 @@ async function() {
   );
 
 
-    clearInterval(battleEngineInterval);
+        clearInterval(battleEngineInterval);
   clearInterval(battleCountdownInterval);
   cancelReadyWait();
+  if(window.goodbyeInterval){ clearInterval(window.goodbyeInterval); window.goodbyeInterval = null; }
   if(battleStateListener){ battleStateListener(); battleStateListener = null; }
   if(spectatorListListener){ spectatorListListener(); spectatorListListener = null; }
   lastEngine = null;
@@ -5956,8 +5971,9 @@ function initPlateiaReal(){
 
 
 function getPatente(wins){
-  if(wins >= 20) return { nome: 'OURO', cor: '#FBBF24', bg: 'rgba(251, 191, 36, 0.15)' };
-  if(wins >= 10) return { nome: 'DIAMANTE', cor: '#9CA3AF', bg: 'rgba(255,255,255,0.05)' };
+  if(wins >= 100) return { nome: 'LENDA', cor: '#DC2626', bg: 'rgba(220, 38, 38, 0.15)' };
+  if(wins >= 60) return { nome: 'OURO', cor: '#FBBF24', bg: 'rgba(251, 191, 36, 0.15)' };
+  if(wins >= 30) return { nome: 'DIAMANTE', cor: '#9CA3AF', bg: 'rgba(255,255,255,0.05)' };
   return { nome: 'MESTRE', cor: '#A855F7', bg: 'rgba(168, 85, 247, 0.15)' };
 }
 
@@ -6015,14 +6031,14 @@ window.loadRanking = async function(){
   container.innerHTML = `<p style="text-align:center;color:#6b7280;padding:20px;">Carregando ranking...</p>`;
   try {
     const snap = await get(ref(db, 'users'));
-    if(!snap.exists()){
-      container.innerHTML = `<div style="text-align:center;padding:40px 20px;"><p style="color:white;font-weight:700;">Nenhum MC no ranking ainda</p><p style="color:#6b7280;font-size:0.85rem;margin-top:8px;">Vence 3 batalhas pra entrar no TOP 10!</p></div>`;
+        if(!snap.exists()){
+      container.innerHTML = `<div style="text-align:center;padding:40px 20px;"><p style="color:white;font-weight:700;">Nenhum MC no ranking ainda</p><p style="color:#6b7280;font-size:0.85rem;margin-top:8px;">Complete 10 batalhas pra entrar no TOP 10!</p></div>`;
       return;
-    }
+        }
     let lista = [];
     snap.forEach(child=>{
       const u = child.val();
-      if(u.battles && u.battles >= 5) lista.push(u);
+      if(u.battles && u.battles >= 10) lista.push(u);
     });
     // Ordena por batalhas completas disputadas
     lista.sort((a,b)=>{
@@ -6031,7 +6047,7 @@ window.loadRanking = async function(){
     lista = lista.slice(0, 10); // TOP 10
 
     if(lista.length === 0){
-      container.innerHTML = `<div style="text-align:center;padding:40px 20px;"><p style="color:white;font-weight:700;">Nenhum MC no ranking ainda</p><p style="color:#6b7280;font-size:0.85rem;margin-top:8px;">Vence 5 batalhas pra entrar no TOP 10!</p></div>`;
+      container.innerHTML = `<div style="text-align:center;padding:40px 20px;"><p style="color:white;font-weight:700;">Nenhum MC no ranking ainda</p><p style="color:#6b7280;font-size:0.85rem;margin-top:8px;">Complete 10 batalhas pra entrar no TOP 10!</p></div>`;
       return;
     }
 
@@ -6054,8 +6070,8 @@ window.loadRanking = async function(){
     });
     container.innerHTML = html;
     } catch(e){
-    console.log('Erro ranking:', e);
-    container.innerHTML = `<div style="text-align:center;padding:40px 20px;"><p style="color:white;font-weight:700;">Nenhum MC no ranking ainda</p><p style="color:#6b7280;font-size:0.85rem;margin-top:8px;">Vence 3 batalhas pra entrar no TOP 10!</p></div>`;
+        console.log('Erro ranking:', e);
+    container.innerHTML = `<div style="text-align:center;padding:40px 20px;"><p style="color:white;font-weight:700;">Nenhum MC no ranking ainda</p><p style="color:#6b7280;font-size:0.85rem;margin-top:8px;">Complete 10 batalhas pra entrar no TOP 10!</p></div>`;
   }
 };
 
