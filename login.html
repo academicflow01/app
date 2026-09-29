@@ -56,13 +56,20 @@
       -webkit-tap-highlight-color: transparent;
     }
 
+        html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
     body {
       background-color: var(--bg-base);
       color: var(--text-main);
       font-family: var(--font-main);
       min-height: 100vh;
+      min-height: 100dvh;
+      width: 100%;
       display: flex;
-      align-items: center;
+      align-items: safe center;
       justify-content: center;
       padding: 20px;
       overflow-x: hidden;
@@ -128,18 +135,21 @@
       margin-bottom: 28px;
     }
 
-    .brand-logo {
+        .brand-logo {
       font-family: var(--font-main);
       font-weight: 900;
-      font-size: 2.2rem;
+      font-size: clamp(1.5rem, 8vw, 2.2rem);
       letter-spacing: 2px;
       color: var(--text-main);
       display: inline-flex;
       align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 100%;
       gap: 10px;
       margin-bottom: 6px;
       position: relative;
-    }
+        }
 
     .brand-logo span {
       background: linear-gradient(135deg, var(--text-main) 40%, var(--purple-bright) 100%);
@@ -313,18 +323,24 @@
 
 
     /* Tela de Transição pós-Sucesso */
-    .app-redirect-overlay {
+        .app-redirect-overlay {
       position: fixed;
       inset: 0;
       background: var(--bg-base);
       z-index: 100;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      align-items: safe center;
+      justify-content: safe center;
+      padding: 24px;
+      text-align: center;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.5s ease;
+    }
+
+    .app-redirect-overlay > * {
+      max-width: 100%;
     }
 
     .app-redirect-overlay.active {
@@ -400,15 +416,16 @@
   </div>
 
   <!-- Overlay de Transição / Sucesso pós-login -->
-  <div id="redirect-overlay" class="app-redirect-overlay">
-    <div class="brand-logo" style="margin-bottom: 12px;">
-      <span>Academic Flow</span><span class="dot"></span>
+    <div id="redirect-overlay" class="app-redirect-overlay">
+    <div style="width:64px;height:64px;border-radius:50%;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);display:flex;align-items:center;justify-content:center;margin-bottom:16px;animation:fadeIn 0.4s ease">
+      <i data-lucide="check" style="width:28px;height:28px;color:#10B981"></i>
     </div>
-    <div style="display: flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.85rem;">
-      <div class="spinner" style="display: block; width: 16px; height: 16px;"></div>
-      <span>Carregando seu espaço...</span>
+    <div style="font-weight:800;font-size:1.1rem;margin-bottom:6px">Login realizado com sucesso!</div>
+    <div style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:0.85rem;">
+      <div class="spinner" style="display:block;width:16px;height:16px;"></div>
+      <span>Redirecionando você...</span>
     </div>
-  </div>
+    </div>
 
   <!-- Script da Interface -->
   <script type="module">
@@ -437,11 +454,14 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
   
+    let loginFlowActive = false;
+
   onAuthStateChanged(auth, (user) => {
-  if (user) {
-    window.location.href = "index.html";
-  }
-});
+    // Só redireciona direto se NÃO estiver no meio do fluxo de login
+    if (user && !loginFlowActive) {
+      window.location.href = "index.html";
+    }
+  });
   
   
     // Inicialização dos Ícones Lucide
@@ -458,39 +478,76 @@ const provider = new GoogleAuthProvider();
 
     
 
+    /* Mostra mensagem de estado no card */
+function showStatus(type, text){
+  statusBox.className = 'status-message ' + type;
+  statusBox.style.display = 'flex';
+  statusText.innerText = text;
+  statusIcon.setAttribute('data-lucide', type === 'success' ? 'check-circle-2' : 'alert-circle');
+  lucide.createIcons();
+}
+
+function hideStatus(){
+  statusBox.style.display = 'none';
+}
+
+/* Reseta o botão pro estado inicial */
+function resetButton(){
+  btn.disabled = false;
+  btnText.innerText = "Continuar com Google";
+  btnIcon.style.display = 'flex';
+  btnSpinner.style.display = 'none';
+}
+
     /* Handler principal do clique no botão Google */
 async function handleGoogleLogin() {
   try {
+    // Ativa ANTES do popup: impede o onAuthStateChanged de redirecionar
+    // no meio do fluxo (ele dispara antes do popup terminar)
+    loginFlowActive = true;
+    hideStatus();
     btn.disabled = true;
+    btnIcon.style.display = 'none';
+    btnSpinner.style.display = 'block';
     btnText.innerText = "Conectando...";
-    
+
     await setPersistence(auth, browserLocalPersistence);
 
     const result = await signInWithPopup(auth, provider);
-
     const user = result.user;
 
-    console.log("Login realizado com sucesso!");
-    console.log("Nome:", user.displayName);
-    console.log("E-mail:", user.email);
-    console.log("UID:", user.uid);
+        console.log("Login realizado com sucesso!", user.displayName);
 
-    btnText.innerText = "Entrando...";
-    
-    window.location.href = "index.html";
+    // Mensagem de sucesso no card + overlay bonito
+    showStatus('success', 'Login realizado com sucesso! Redirecionando...');
+    overlay.classList.add('active');
 
-  } catch (error) {
+    // Dá tempo da pessoa ver a confirmação antes de entrar no site
+    setTimeout(()=>{
+      window.location.href = "index.html";
+    }, 1800);
+
+    } catch (error) {
     console.error("Erro no login:", error);
+    loginFlowActive = false; // libera o redirect automático de novo
+    resetButton();
 
-    btn.disabled = false;
-    btnText.innerText = "Continuar com Google";
-
-    console.error(error.code);
+    if(error.code === 'auth/popup-closed-by-user'){
+      showStatus('error', 'Você não concluiu o login com o Google. Clique novamente para tentar.');
+    } else if(error.code === 'auth/cancelled-popup-request'){
+      showStatus('error', 'Uma janela de login já estava aberta. Tente novamente.');
+    } else if(error.code === 'auth/popup-blocked'){
+      showStatus('error', 'O navegador bloqueou a janela de login. Permita pop-ups e tente de novo.');
+    } else if(error.code === 'auth/network-request-failed'){
+      showStatus('error', 'Falha de conexão. Verifique sua internet e tente novamente.');
+    } else {
+      showStatus('error', 'Não foi possível fazer login. Tente novamente.');
+    }
   }
-}
+  }
   
   window.handleGoogleLogin = handleGoogleLogin;
 
   </script>
 </body>
-</html>
+  </html>
