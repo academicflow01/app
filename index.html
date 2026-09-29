@@ -1854,7 +1854,7 @@
         <p id="escola-aula-def" style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5; margin-bottom:12px;">Definição aqui</p>
         <div style="background:var(--bg-surface); border-radius:12px; padding:12px; border-left:3px solid #FBBF24;">
           <p style="font-size:0.7rem; color:var(--text-muted); font-weight:700;">EXEMPLO DE RUA:</p>
-          <p id="escola-aula-exemplo" style="font-size:0.85rem; color:var(--text-primary); font-style:italic; margin-top:4px;">"Exemplo de rima"</p>
+          <p id="escola-aula-exemplo" style="font-size:0.85rem; color:var(--text-primary); font-style:italic; margin-top:4px; white-space:pre-line;">"Exemplo de rima"</p>
         </div>
         <button class="btn btn-secondary" style="margin-top:16px;" onclick="voltarListaEscola()">Voltar para lista</button>
       </div>
@@ -2371,10 +2371,33 @@ let isPaused = false;
     lucide.createIcons();
 
 
-        // --- STATS REAIS DO PERFIL ---
+                // --- STATS REAIS DO PERFIL (tempo + batalhas agora são POR CONTA, no Firebase) ---
+    window.rhymexTrainingSeconds = 0;
+    window.rhymexBattlesPlayed = 0;
+
+    // Busca as stats da conta logada no Firebase
+    async function loadTrainingTimeFromFirebase(){
+      if(!window.rhymexUser || !window.rhymexFb){
+        loadRealStats();
+        return;
+      }
+      try {
+        const tSnap = await window.rhymexFb.get(window.rhymexFb.ref(window.rhymexDb, `users/${window.rhymexUser.uid}/trainingSeconds`));
+        window.rhymexTrainingSeconds = tSnap.exists() ? (tSnap.val() || 0) : 0;
+        const bSnap = await window.rhymexFb.get(window.rhymexFb.ref(window.rhymexDb, `users/${window.rhymexUser.uid}/battles`));
+        window.rhymexBattlesPlayed = bSnap.exists() ? (bSnap.val() || 0) : 0;
+      } catch(e){ console.log('Erro lendo stats:', e); }
+      loadRealStats();
+    }
+
     function loadRealStats(){
-      const time = parseInt(localStorage.getItem('rhymex_training_seconds') || '0');
-      const wins = parseInt(localStorage.getItem('rhymex_battles_won') || '0');
+      // Logado: lê do Firebase (por conta). Deslogado: usa o do navegador (temporário).
+      const time = window.rhymexUser
+        ? window.rhymexTrainingSeconds
+        : parseInt(localStorage.getItem('rhymex_training_seconds') || '0');
+      const battles = window.rhymexUser
+        ? window.rhymexBattlesPlayed
+        : parseInt(localStorage.getItem('rhymex_battles_won') || '0');
       const timeEl = document.getElementById('stat-training-time');
       const winsEl = document.getElementById('stat-battles-won');
       if(timeEl){
@@ -2382,12 +2405,23 @@ let isPaused = false;
         else if(time < 3600) timeEl.innerText = Math.floor(time/60) + 'min';
         else timeEl.innerText = (time/3600).toFixed(1) + 'h';
       }
-      if(winsEl) winsEl.innerText = wins;
+      if(winsEl) winsEl.innerText = battles;
     }
-    function addTrainingTime(seconds){
-      let current = parseInt(localStorage.getItem('rhymex_training_seconds') || '0');
-      current += seconds;
-      localStorage.setItem('rhymex_training_seconds', current);
+
+    async function addTrainingTime(seconds){
+      // Logado: soma no Firebase com transaction (seguro até contra clique duplo)
+      if(window.rhymexUser && window.rhymexFb){
+        try {
+          const tRef = window.rhymexFb.ref(window.rhymexDb, `users/${window.rhymexUser.uid}/trainingSeconds`);
+          const res = await window.rhymexFb.runTransaction(tRef, (atual) => (atual || 0) + seconds);
+          window.rhymexTrainingSeconds = res.snapshot.val() || 0;
+        } catch(e){ console.log('Erro salvando tempo de treino:', e); }
+      } else {
+        // Visitante: mantém no navegador (não aparece no perfil mesmo)
+        let current = parseInt(localStorage.getItem('rhymex_training_seconds') || '0');
+        current += seconds;
+        localStorage.setItem('rhymex_training_seconds', current);
+      }
       loadRealStats();
     }
     loadRealStats();
@@ -2904,11 +2938,12 @@ function pegarProximoBeat() {
 
 
             const escolaData = [
-      { id: "rima", titulo: "O que é Rima?", tag: "BASE", def: "Rima é a repetição de sons iguais ou semelhantes no final das palavras, principalmente na última sílaba de versos de um poema ou música", exemplo: "\"PÃO rima com MÃO, CORAÇÃO rima com CANÇÃO.\"", video: "", audio: "" },
-      { id: "metrica", titulo: "Métrica", tag: "CONSTRUÇÃO", def: "Métrica na batalha de rima é a organização do ritmo e da quantidade de sílabas ou tempos para encaixar as palavras perfeitamente no compasso da batida.", exemplo: "\"O meu FOCO tá no JOGO, eu trago o FOGO pro TOPO\"", video: "", audio: "" },
+      { id: "rima", titulo: "O que é Rima?", tag: "BASE", def: "Rima é a repetição de sons iguais ou semelhantes no final das palavras, principalmente na última sílaba de versos de um poema ou música", exemplo: "\"No chão da rua eu aprendi a lição / Minha rima é forte, tem disposição / Quem vive de aparência é ilusão / E quem tem verdade carrega no coração — Percebeu? As palavras finais terminam no mesmo som: lição, disposição, ilusão, coração. É esse encaixe de sons que faz o verso fluir.\"", video: "", audio: "" },
+      { id: "metrica", titulo: "Métrica", tag: "CONSTRUÇÃO", def: "Métrica é como suas rimas se organizam no beat. O esquema de rimas define essa ordem: AABB (emparelhada — o 1 rima com o 2, o 3 com o 4), ABAB (alternada — o 1 com o 3, o 2 com o 4), ABBA (interpolada — o 1 com o 4, o 2 com o 3) e AAAA (monorrima — tudo no mesmo som). Trocar de esquema no meio da batalha mostra domínio técnico e não deixa o verso repetitivo.", exemplo: "\"AABB: 'Pronto pra guerra (A) / Minha mente não erra (A) / Seu nome se enterra (B) / Flow de outra esfera (B)'.\n\nABAB: 'Rimo de coração (A) / Cheguei pra guerra (B) / Carrego paixão (A) / Te enterro na terra (B)'.\"", video: "", audio: "" },
       { id: "punchline", titulo: "Punchline", tag: "ATAQUE", def: "É a frase final que dá a porrada. É o que faz a plateia gritar. Todo verso tem que terminar com punch.", exemplo: "\"Cê fala de rua mas nunca dormiu na rua, fala de luta mas nunca perdeu na luta\"", video: "", audio: "" },
       { id: "carteirada", titulo: "Carteirada", tag: "AUTOEXALTAÇÃO", def: "É quando o MC usa o peso do seu nome, de seus títulos ou de suas grandes conquistas passadas para intimidar o oponente ou impressionar o público.", exemplo: "\"Você fala muito, mas eu sou o maior campeão nacional!\"", video: "", audio: "" },
-      { id: "dobrar", titulo: "Dobrar o Flow", tag: "TÉCNICA", def: "A dobra (ou dobrar a rima) é uma técnica de fluxo (flow) em que o MC duplica a velocidade ou o encaixe das palavras em relação ao tempo da batida (beat), mantendo um padrão complexo de rimas curtas e contínuas no mesmo compasso.", exemplo: "\"Tic tac tic tac no beat eu acelero, a sua mente trava, e eu libero\"", video: "", audio: "audios/dobra-exemplo.mp3" }
+      { id: "dobrar", titulo: "Dobrar o Flow", tag: "TÉCNICA", def: "A dobra (ou dobrar a rima) é uma técnica de fluxo (flow) em que o MC duplica a velocidade ou o encaixe das palavras em relação ao tempo da batida (beat), mantendo um padrão complexo de rimas curtas e contínuas no mesmo compasso.", exemplo: "\"Tic tac tic tac no beat eu acelero, a sua mente trava, e eu libero\"", video: "", audio: "audios/dobra-exemplo.mp3" },
+      { id: "panela", titulo: "O que é Panela?", tag: "CULTURA", def: "Panela é a torcida organizada de um MC: um grupo que vai na batalha pra gritar por ele em todo verso, bom ou ruim. Funciona como uma claque — faz barulho, anima o MC e tenta pressionar o jurado e a plateia a votar nele.", exemplo: "\"Repara: o MC trava no meio do verso e mesmo assim a galera dele grita como se ele tivesse mandado a punchline do ano. Isso é panela — apoio incondicional, não julgamento técnico. Jurado experiente percebe e desconta.\"", video: "", audio: "" }
     ];
     
 
@@ -3605,9 +3640,13 @@ import { getDatabase, ref, push, set, get, onValue, remove, update, onChildAdded
     measurementId: "G-6281J4HV5E"
   };
 
-  const app = initializeApp(firebaseConfig);
+    const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 const db = getDatabase(app);
+
+// Expõe pro script principal (tempo de treino por conta)
+window.rhymexDb = db;
+window.rhymexFb = { ref, get, runTransaction };
 
 // SISTEMA ÚNICO DE PRESENÇA - LOGADO OU NÃO, CONTA 1 SÓ
 let anonId = localStorage.getItem('rhymex_anon_id');
@@ -3720,7 +3759,7 @@ setPersistence(auth, browserLocalPersistence)
             <div style="background:#181A26;border:1px solid rgba(239,68,68,0.4);border-radius:16px;padding:24px;max-width:380px;width:100%;text-align:center">
               <div style="width:64px;height:64px;background:rgba(239,68,68,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px auto;font-size:32px">🚫</div>
               <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:8px;color:#EF4444">Conta Banida</h2>
-              <p style="color:#9ca3af;font-size:0.85rem;margin-bottom:16px">Sua conta <b style="color:white">${user.email}</b> foi banida do RHYMEX.</p>
+              <p style="color:#9ca3af;font-size:0.85rem;margin-bottom:16px">Sua conta <b style="color:white">${user.email}</b> foi banida do Academic Flow.</p>
               <a href="https://wa.me/5591987687717?text=Fui banido no Academic Flow, meu email: ${user.email}" target="_blank" style="display:block;background:#25D366;color:white;padding:12px;border-radius:10px;text-decoration:none;font-weight:800;text-align:center">Falar com Suporte</a>
             </div>
           `;
@@ -3754,13 +3793,14 @@ setPersistence(auth, browserLocalPersistence)
             try {
         const userRef = ref(db, `users/${user.uid}`);
         const userSnap = await get(userRef);
-                if(!userSnap.exists()){
+                                if(!userSnap.exists()){
           await set(userRef, {
             uid: user.uid,
             name: user.displayName || 'MC',
             email: user.email.toLowerCase(),
             wins: 0,
             battles: 0,
+            trainingSeconds: 0,
             lastWinAt: 0,
             createdAt: Date.now()
           });
@@ -3809,12 +3849,17 @@ setPersistence(auth, browserLocalPersistence)
           const initials = name.split(' ').map(part => part[0]).join('').substring(0, 2).toUpperCase();
           profileAvatar.innerText = initials;
         }
-        lucide.createIcons();
+                lucide.createIcons();
       }
 
-    } else {
+      // ===== 5. CARREGA O TEMPO DE TREINO DESTA CONTA =====
+      if(window.loadTrainingTimeFromFirebase) window.loadTrainingTimeFromFirebase();
+
+        } else {
       // ===== DESLOGADO: VOLTA A SER VISITANTE =====
       window.rhymexUser = null;
+      window.rhymexTrainingSeconds = 0;
+      window.rhymexBattlesPlayed = 0;
       if(myPresenceRef){ try{ await remove(myPresenceRef); }catch(e){} myPresenceRef = null; }
       criarPresencaAnonima();
 
@@ -5483,7 +5528,7 @@ function renderBattleEngine(eng){
     if(label){ label.innerText = vaiBateVolta? 'SE PREPARE PRO BATE-VOLTA' : ('ROUND '+eng.round+' FINALIZADO'); label.style.color = 'var(--accent-purple-bright)'; }
     if(status){ status.innerText = vaiBateVolta? 'O DESEMPATE VEM AÍ... 15 SEGUNDOS PRA CADA' : ('PREPARE-SE PARA O ROUND '+(eng.round+1)+'...'); status.style.color = 'var(--accent-purple)'; }
     if(status){ status.innerText = 'PREPARE-SE PARA O ROUND 2...'; status.style.color = 'var(--accent-purple)'; }
-        } else if(eng.phase === 'finished'){
+            } else if(eng.phase === 'finished'){
     clearInterval(battleCountdownInterval);
     if(label){ label.innerText = 'FIM DE BATALHA — CUMPRIMENTE SEU OPONENTE 🤝'; label.style.color = '#EF4444'; }
     if(status){ status.innerText = 'BATALHA ENCERRADA'; status.style.color = 'var(--text-secondary)'; }
@@ -5507,7 +5552,7 @@ function renderBattleEngine(eng){
         }
       }, 1000);
     }
-}
+  }
 }
 
 
@@ -5998,17 +6043,13 @@ window.addBattleWin = async function(){
 window.addBattlePlayed = async function(){
   if(!window.rhymexUser) return;
   const uid = window.rhymexUser.uid;
-  const userRef = ref(db, `users/${uid}`);
   try {
-    const snap = await get(userRef);
-    let battles = 1;
-    if(snap.exists() && snap.val().battles) battles = snap.val().battles + 1;
-    await update(userRef, { battles: battles });
-    // Atualiza o número que aparece no perfil (ele lê do celular, não do Firebase)
-    let localBattles = parseInt(localStorage.getItem('rhymex_battles_won') || '0') + 1;
-    localStorage.setItem('rhymex_battles_won', localBattles);
+    // Soma direto no Firebase com transaction (por conta, vale em qualquer celular)
+    const bRef = ref(db, `users/${uid}/battles`);
+    const res = await runTransaction(bRef, (atual) => (atual || 0) + 1);
+    window.rhymexBattlesPlayed = res.snapshot.val() || 0;
     loadRealStats();
-    console.log('Batalha completa registrada:', battles);
+    console.log('Batalha completa registrada:', window.rhymexBattlesPlayed);
   } catch(e){ console.log('Erro battle played:', e); }
 };
 
